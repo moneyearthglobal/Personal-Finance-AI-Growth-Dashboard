@@ -41,9 +41,166 @@
       --amber: #d97706;
     }
 
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
+    html.light body,
+    html.light .font-bold,
+    html.light .font-extrabold,
+    html.light .font-black,
+    html.light #liveClockText,
+    html.light #selectedDateLabel,
+    html.light #rateSilver,
+    html.light #rateGold22,
+    html.light #rateXauUsd {
+      font-weight: 800;
+    }
+
+    html.light [data-action] svg {
+      color: #090612 !important;
+      stroke: #090612 !important;
+      stroke-width: 2.5 !important;
+      filter: contrast(1.35);
+    }
+
+    html.light [data-action] > div {
+      background-color: rgba(95, 37, 159, 0.16) !important;
+      border: 1.5px solid rgba(24, 16, 43, 0.25);
+    }
+
+    html.light [data-action] span {
+      color: #090612 !important;
+      font-weight: 900 !important;
+    }
+
+    html.light .theme-hero-metric-box {
+      background: linear-gradient(135deg, #4c1d95 0%, #6d28d9 55%, #7e22ce 100%) !important;
+      color: #ffffff !important;
+      border: 1px solid rgba(196, 181, 253, 0.45) !important;
+      box-shadow: 0 8px 18px -8px rgba(95, 37, 159, 0.45);
+    }
+
+    html.light .theme-hero-metric-box .text-muted,
+    html.light .theme-hero-metric-box .text-purple-300,
+    html.light .theme-hero-metric-box .text-emerald-300 {
+      color: #f3e8ff !important;
+    }
+
+    html.light .theme-hero-metric-box .text-emerald-400 {
+      color: #6ee7b7 !important;
+      font-weight: 900 !important;
+    }
+
+    html.light .theme-hero-metric-box .text-rose-400 {
+      color: #fda4af !important;
+      font-weight: 900 !important;
+    }
+
+    html.light .theme-hero-metric-box .text-sky-400 {
+      color: #7dd3fc !important;
+      font-weight: 900 !important;
+    }
+
+    html.light .theme-hero-metric-box .text-amber-300 {
+      color: #fde047 !important;
+      font-weight: 900 !important;
+    }
+
+    html.light #rateSilver {
+      color: #334155 !important;
+    }
+
+    .pink-bullion-box {
+      background: linear-gradient(135deg, #3b0764 0%, #5b21b6 55%, #6d28d9 100%) !important;
+      color: #ffffff !important;
+      border: 1.5px solid rgba(196, 181, 253, 0.45) !important;
+      box-shadow: 0 8px 20px -8px rgba(91, 33, 182, 0.45) !important;
+    }
+
+    .pink-bullion-box,
+    .pink-bullion-box span,
+    .pink-bullion-box p,
+    .pink-bullion-box #bullionBiasSentence {
+      color: #ffffff !important;
+      font-weight: 800 !important;
+    }
+
+    .pink-bullion-box .asset-gold,
+    .pink-bullion-box #rateGold22 {
+      color: #fde047 !important;
+      font-weight: 900 !important;
+    }
+
+    .pink-bullion-box .asset-silver,
+    .pink-bullion-box #rateSilver {
+      color: #e2e8f0 !important;
+      font-weight: 900 !important;
+    }
+
+    .pink-bullion-box .asset-global,
+    .pink-bullion-box #rateXauUsd {
+      color: #7dd3fc !important;
+      font-weight: 900 !important;
+    }
+
+    .pink-bullion-box button {
+      background-color: rgba(255, 255, 255, 0.16) !important;
+      color: #ffffff !important;
+      border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    }
+
+    html.light .pink-bullion-box {
+      background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 55%, #c4b5fd 100%) !important;
+      color: #090612 !important;
+      border: 1.5px solid rgba(109, 40, 217, 0.35) !important;
+      box-shadow: 0 8px 18px -8px rgba(95, 37, 159, 0.25) !important;
+    }
+
+    html.light .pink-bullion-box,
+    html.light .pink-bullion-box span,
+    html.light .pink-bullion-box p,
+    html.light .pink-bullion-box #bullionBiasSentence {
+      color: #090612 !important;
+      font-weight: 900 !important;
+    }
+
+    html.light .pink-bullion-box .asset-gold,
+    html.light .pink-bullion-box #rateGold22 {
+      color: #92400e !important;
+      font-weight: 900 !important;
+    }
+
+    html.light .pink-bullion-box .asset-silver,
+    html.light .pink-bullion-box #rateSilver {
+      color: #1e293b !important;
+      font-weight: 900 !important;
+    }
+
+    html.light .pink-bullion-box .asset-global,
+    html.light .pink-bullion-box #rateXauUsd {
+      color: #0369a1 !important;
+      font-weight: 900 !important;
+    }
+
+    html.light .pink-bullion-box button {
+      background-color: #5f259f !important;
+      color: #ffffff !important;
+      border: 1px solid #4c1d95 !important;
+    }
+
+    html.light #liveClockText,
+    html.light #selectedDateLabel {
+      color: #3b0764 !important;
+    }
+
+    html.light #langToggleBtn,
+    html.light #themeToggleBtn {
+      background-color: #5f259f !important;
+      color: #ffffff !important;
+      border-color: #4c1d95 !important;
+      font-weight: 900 !important;
+    }
+
+    html.light .text-muted {
+      color: #3b2866 !important;
+      font-weight: 700;
     }
 
     body {
@@ -127,98 +284,103 @@
       50% { transform: translateY(-4px); }
     }
     @keyframes robotEyeRoll {
-      0%, 100% { transform: translate(0, 0); }
-      25% { transform: translate(1.4px, -0.8px); }
-      50% { transform: translate(-1.4px, -0.8px); }
-      75% { transform: translate(0px, 0.9px); }
+      0%, 100% { transform: translate(0px, 0px); }
+      20% { transform: translate(2.2px, -1.3px); }
+      45% { transform: translate(-2.2px, -1.2px); }
+      70% { transform: translate(1.2px, 1.5px); }
+      85% { transform: translate(-1.2px, 1.2px); }
+    }
+    @keyframes robotSmilePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
     }
     .robot-float {
-      animation: robotFloat 3s ease-in-out infinite;
+      animation: robotFloat 2.8s ease-in-out infinite;
     }
     .robot-eye {
-      animation: robotEyeRoll 4.2s ease-in-out infinite;
+      animation: robotEyeRoll 3s ease-in-out infinite;
+    }
+    .robot-smile {
+      transform-origin: center;
+      animation: robotSmilePulse 2.4s ease-in-out infinite;
     }
   </style>
 </head>
 <body class="pb-28">
   <div id="appCaptureRoot" class="max-w-xl md:max-w-3xl lg:max-w-6xl mx-auto px-3.5 sm:px-6 pt-3 sm:pt-5 space-y-3.5 sm:space-y-4">
 
-    <!-- Top Header & Live Clock Row (Responsive across Mobile, Tab & Desktop) -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-stretch">
-      <!-- Top Header Bar -->
-      <header class="lg:col-span-8 card-surface px-3.5 sm:px-5 py-2.5 flex items-center justify-between gap-2">
-        <button id="openProfileBtn" type="button" class="flex items-center gap-2.5 text-left pill-btn">
-          <!-- Red-background cartoon portrait matching user's reference image -->
-          <div id="headerAvatarBox" class="w-11 h-11 rounded-full overflow-hidden border-2 border-purple-400 shadow-md flex-shrink-0 bg-[#e10600]">
-            <svg viewBox="0 0 140 140" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-              <rect width="140" height="140" fill="#e10600"/>
-              <path d="M16 140 C20 112, 46 104, 70 104 C94 104, 120 112, 124 140 Z" fill="#172554"/>
-              <path d="M47 105 Q70 121 93 105" fill="none" stroke="#0f172a" stroke-width="4.5"/>
-              <path d="M56 86 L56 108 Q70 115 84 108 L84 86 Z" fill="#d97706"/>
-              <ellipse cx="38" cy="66" rx="6.5" ry="9.5" fill="#e08222" stroke="#1c1917" stroke-width="2"/>
-              <ellipse cx="102" cy="66" rx="6.5" ry="9.5" fill="#e08222" stroke="#1c1917" stroke-width="2"/>
-              <path d="M41 52 C41 31, 99 31, 99 52 C100 78, 88 96, 70 97 C52 96, 40 78, 41 52 Z" fill="#f59e0b" stroke="#1c1917" stroke-width="2.2"/>
-              <g fill="#111827">
-                <circle cx="44" cy="36" r="10"/><circle cx="56" cy="27" r="12"/><circle cx="71" cy="24" r="13"/>
-                <circle cx="86" cy="28" r="12"/><circle cx="97" cy="37" r="10"/><circle cx="39" cy="47" r="8"/>
-                <circle cx="101" cy="47" r="8"/><circle cx="51" cy="37" r="9"/><circle cx="66" cy="34" r="10"/>
-                <circle cx="81" cy="36" r="9"/>
-              </g>
-              <path d="M46 51 Q54 47 62 51" stroke="#111827" stroke-width="3.6" fill="none" stroke-linecap="round"/>
-              <path d="M78 51 Q86 47 94 51" stroke="#111827" stroke-width="3.6" fill="none" stroke-linecap="round"/>
-              <ellipse cx="54" cy="60" rx="5.2" ry="4.4" fill="#ffffff"/>
-              <ellipse cx="86" cy="60" rx="5.2" ry="4.4" fill="#ffffff"/>
-              <circle cx="54.5" cy="60" r="3.4" fill="#1c1917"/>
-              <circle cx="86.5" cy="60" r="3.4" fill="#1c1917"/>
-              <circle cx="55.7" cy="58.8" r="1.2" fill="#ffffff"/>
-              <circle cx="87.7" cy="58.8" r="1.2" fill="#ffffff"/>
-              <rect x="42" y="52" width="24" height="16" rx="4.5" fill="none" stroke="#e2e8f0" stroke-width="2.6"/>
-              <rect x="74" y="52" width="24" height="16" rx="4.5" fill="none" stroke="#e2e8f0" stroke-width="2.6"/>
-              <path d="M66 59 Q70 57 74 59" fill="none" stroke="#e2e8f0" stroke-width="2.6"/>
-              <path d="M68 62 Q65 71 70 72 Q74 72 73 69" fill="none" stroke="#b45309" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M41 66 C41 88, 55 98, 70 98 C85 98, 99 88, 99 66 C95 76, 87 82, 70 82 C53 82, 45 76, 41 66 Z" fill="#111827"/>
-              <path d="M55 77 Q70 72 85 77 Q82 81 70 80 Q58 81 55 77 Z" fill="#111827"/>
-              <path d="M57 79 Q70 90 83 79 Z" fill="#ffffff"/>
-              <path d="M61 83 Q70 88 79 83 Z" fill="#f43f5e"/>
-            </svg>
-          </div>
-          <div>
-            <div class="flex items-center gap-1.5">
-              <span class="font-extrabold text-sm sm:text-base tracking-tight">Shiv Prem</span>
-              <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-purple-600/30 text-purple-300 font-bold">PRO AI</span>
-            </div>
-            <div class="text-[11px] text-muted mt-0.5">Personal Wealth AI</div>
-          </div>
-        </button>
-
-        <div class="flex items-center gap-1.5">
-          <button id="langToggleBtn" type="button" class="pill-btn px-2.5 py-1.5 rounded-xl text-xs font-extrabold bg-purple-600/25 border border-purple-400/30">
-            EN
-          </button>
-          <button id="themeToggleBtn" type="button" class="pill-btn p-2 rounded-xl bg-purple-600/25 border border-purple-400/30" title="Toggle Theme">
-            <span id="themeIcon">☀️</span>
-          </button>
+    <!-- Top Header & Centered Live Date/Time Strip -->
+    <header class="card-surface px-3.5 sm:px-5 py-2.5 flex items-center justify-between gap-2">
+      <button id="openProfileBtn" type="button" class="pill-btn flex items-center gap-2.5 text-left min-w-0">
+        <div id="headerAvatarBox" class="w-11 h-11 rounded-full overflow-hidden bg-red-600 border-2 border-red-400/70 flex-shrink-0 flex items-center justify-center shadow-md">
+          <svg viewBox="0 0 140 140" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <rect width="140" height="140" fill="#dc0000"/>
+            <path d="M26 140 C28 109, 48 97, 70 97 C92 97, 112 109, 114 140 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2.5"/>
+            <path d="M56 97 L70 113 L84 97" fill="#0f172a"/>
+            <rect x="61" y="88" width="18" height="14" rx="5" fill="#e08222"/>
+            <ellipse cx="38" cy="66" rx="6.5" ry="9.5" fill="#e08222" stroke="#1c1917" stroke-width="2"/>
+            <ellipse cx="102" cy="66" rx="6.5" ry="9.5" fill="#e08222" stroke="#1c1917" stroke-width="2"/>
+            <path d="M41 52 C41 31, 99 31, 99 52 C100 78, 88 96, 70 97 C52 96, 40 78, 41 52 Z" fill="#f59e0b" stroke="#1c1917" stroke-width="2.2"/>
+            <g fill="#111827">
+              <circle cx="44" cy="36" r="10"/><circle cx="56" cy="27" r="12"/><circle cx="71" cy="24" r="13"/>
+              <circle cx="86" cy="28" r="12"/><circle cx="97" cy="37" r="10"/><circle cx="39" cy="47" r="8"/>
+              <circle cx="101" cy="47" r="8"/><circle cx="51" cy="37" r="9"/><circle cx="66" cy="34" r="10"/>
+              <circle cx="81" cy="36" r="9"/>
+            </g>
+            <path d="M46 51 Q54 47 62 51" stroke="#111827" stroke-width="3.6" fill="none" stroke-linecap="round"/>
+            <path d="M78 51 Q86 47 94 51" stroke="#111827" stroke-width="3.6" fill="none" stroke-linecap="round"/>
+            <ellipse cx="54" cy="60" rx="5.2" ry="4.4" fill="#ffffff"/>
+            <ellipse cx="86" cy="60" rx="5.2" ry="4.4" fill="#ffffff"/>
+            <circle cx="54.5" cy="60" r="3.4" fill="#1c1917"/>
+            <circle cx="86.5" cy="60" r="3.4" fill="#1c1917"/>
+            <circle cx="55.7" cy="58.8" r="1.2" fill="#ffffff"/>
+            <circle cx="87.7" cy="58.8" r="1.2" fill="#ffffff"/>
+            <rect x="42" y="52" width="24" height="16" rx="4.5" fill="none" stroke="#e2e8f0" stroke-width="2.6"/>
+            <rect x="74" y="52" width="24" height="16" rx="4.5" fill="none" stroke="#e2e8f0" stroke-width="2.6"/>
+            <path d="M66 59 Q70 57 74 59" fill="none" stroke="#e2e8f0" stroke-width="2.6"/>
+            <path d="M68 62 Q65 71 70 72 Q74 72 73 69" fill="none" stroke="#b45309" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M41 66 C41 88, 55 98, 70 98 C85 98, 99 88, 99 66 C95 76, 87 82, 70 82 C53 82, 45 76, 41 66 Z" fill="#111827"/>
+            <path d="M55 77 Q70 72 85 77 Q82 81 70 80 Q58 81 55 77 Z" fill="#111827"/>
+            <path d="M57 79 Q70 90 83 79 Z" fill="#ffffff"/>
+            <path d="M61 83 Q70 88 79 83 Z" fill="#f43f5e"/>
+          </svg>
         </div>
-      </header>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="font-extrabold text-sm sm:text-base tracking-tight">Shiv Prem</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-purple-600/30 text-purple-300 font-bold">PRO AI</span>
+          </div>
+          <div class="text-[11px] text-muted mt-0.5">Personal Wealth AI</div>
+        </div>
+      </button>
 
-      <!-- Centered Live Date & Time Strip -->
-      <div class="lg:col-span-4 card-surface py-2.5 px-4 flex items-center justify-center gap-2 text-center">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0"></span>
-        <span id="liveClockText" class="text-xs sm:text-sm font-extrabold tracking-wide text-purple-200"></span>
+      <div class="flex items-center gap-1.5">
+        <button id="langToggleBtn" type="button" class="pill-btn px-2.5 py-1.5 rounded-xl text-xs font-extrabold bg-purple-600/25 border border-purple-400/30">
+          EN
+        </button>
+        <button id="themeToggleBtn" type="button" class="pill-btn p-2 rounded-xl bg-purple-600/25 border border-purple-400/30" title="Toggle Theme">
+          <span id="themeIcon">☀️</span>
+        </button>
       </div>
+    </header>
+
+    <!-- Centered Live Date & Time Strip right below Shiv Prem Profile -->
+    <div class="card-surface py-2.5 px-4 flex items-center justify-center gap-2 text-center">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0"></span>
+      <span id="liveClockText" class="text-xs sm:text-sm font-extrabold tracking-wide text-purple-200"></span>
     </div>
 
     <!-- Adaptive Multi-Device Workspace Grid (Mobile 1-Col | Tablet & Desktop 2-Col) -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5 sm:gap-4 items-start">
 
-      <!-- LEFT COLUMN (Hero Overview, Quick Actions, AI Progress, Calculator, Rates & Analytics) -->
+      <!-- LEFT COLUMN (1. Portfolio Overview -> 2. Quick Actions -> 3. Today Commodity Rate + Bias & Bot ON/OFF -> AI Progress -> Calculator -> Analytics) -->
       <div class="lg:col-span-6 space-y-3.5 sm:space-y-4">
 
-        <!-- 1. OVERVIEW CARD (PHONEPE HERO) -->
+        <!-- 1. PORTFOLIO OVERVIEW (SINGLE TITLE) -->
         <section class="phonepe-hero rounded-3xl p-4 sm:p-5 text-white space-y-3">
           <div class="flex items-center justify-between">
             <div>
-              <span class="text-[11px] uppercase tracking-widest font-extrabold text-purple-200">OVERVIEW</span>
+              <h1 class="text-sm sm:text-base font-black tracking-wide text-white" data-i18n="overallPortfolioSubTitle">Portfolio Overview</h1>
               <div id="heroNetWorth" class="text-2xl sm:text-3xl font-black tracking-tight mt-0.5">₹0</div>
             </div>
             <button id="editPortfolioBtn" type="button" class="pill-btn px-3 py-1.5 rounded-xl bg-white/15 hover:bg-white/25 text-xs font-bold backdrop-blur-sm">
@@ -297,6 +459,62 @@
           </div>
         </section>
 
+        <!-- 3. TODAY COMMODITY RATE + MINI ROBOTIC AI SUGGESTION (TODAY BIAS • SWING BIAS • PULLBACK BIAS + BOT ON/OFF) -->
+        <section class="pink-bullion-box rounded-2xl p-3.5 sm:p-4 space-y-2.5">
+          <div class="flex items-center justify-between gap-2">
+            <div class="flex items-center gap-1.5 text-xs font-black tracking-wide">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0"></span>
+              <span data-i18n="todayCommodityTitle">Today Commodity Rate</span>
+            </div>
+            <button id="editRatesBtn" type="button" class="pill-btn px-2 py-0.5 rounded-lg font-extrabold text-[10px] flex-shrink-0">
+              ✏️ Update
+            </button>
+          </div>
+
+          <div class="space-y-1 text-[11px] font-extrabold">
+            <div class="flex items-center justify-between gap-2 bg-black/20 rounded-xl px-2.5 py-1.5">
+              <span class="asset-gold inline-flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 18 4 22 12 18 20 6 20 2 12"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+                <span data-i18n="indGold22Lbl">Indian Gold (22K / கிராம்)</span>
+              </span>
+              <span id="rateGold22" class="asset-gold">₹7,180</span>
+            </div>
+
+            <div class="flex items-center justify-between gap-2 bg-black/20 rounded-xl px-2.5 py-1.5">
+              <span class="asset-silver inline-flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="10" rx="2"/><line x1="8" y1="7" x2="8" y2="17"/><line x1="16" y1="7" x2="16" y2="17"/></svg>
+                <span data-i18n="silverPriceLbl">Silver Price (வெள்ளி / கிராம்)</span>
+              </span>
+              <span id="rateSilver" class="asset-silver">₹94</span>
+            </div>
+
+            <div class="flex items-center justify-between gap-2 bg-black/20 rounded-xl px-2.5 py-1.5">
+              <span class="asset-global inline-flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M14.5 9a2.5 2.5 0 0 0-5 0c0 2.5 5 2 5 4.5a2.5 2.5 0 0 1-5 0"/><line x1="12" y1="5.5" x2="12" y2="18.5"/></svg>
+                <span data-i18n="globalXauLbl">Global XAU/USD</span>
+              </span>
+              <span id="rateXauUsd" class="asset-global">$2,685</span>
+            </div>
+          </div>
+
+          <!-- Compact Robotic AI Suggestion Box below Today Commodity Rate -->
+          <div class="bg-black/25 rounded-xl p-2.5 space-y-2 border border-white/15">
+            <div class="flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-lg bg-purple-600/40 border border-purple-300/40 flex items-center justify-center flex-shrink-0">
+                  <svg class="w-4 h-4 text-emerald-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="16" height="13" rx="3"/><line x1="12" y1="2" x2="12" y2="6"/><circle cx="9" cy="12" r="1.3"/><circle cx="15" cy="12" r="1.3"/><path d="M9 16h6"/></svg>
+                </span>
+                <span class="text-xs font-black tracking-wide" data-i18n="miniAiSugTitle">AI Suggestion • Money Earth Global Algo Bot</span>
+              </div>
+              <button id="toggleAlgoBotBtn" type="button" class="pill-btn px-2.5 py-1 rounded-lg text-[10px] font-black transition-colors"></button>
+            </div>
+
+            <p id="bullionBiasSentence" class="text-[11px] font-bold leading-snug"></p>
+            <p id="upcomingNewsSentence" class="text-[11px] font-bold leading-snug opacity-95"></p>
+            <p id="botModeAdviceSentence" class="text-[11px] font-extrabold leading-snug"></p>
+          </div>
+        </section>
+
         <!-- 5. AI PROGRESS & IMPROVEMENT -->
         <section class="card-surface p-3.5 sm:p-4 space-y-2.5">
           <div class="flex items-center justify-between">
@@ -348,31 +566,6 @@
               </div>
             </div>
           </div>
-        </section>
-
-        <!-- 8. 22K GOLD • SILVER • GLOBAL XAU/USD -->
-        <section class="card-surface p-3.5 sm:p-4 space-y-2.5">
-          <div class="flex items-center justify-between">
-            <h2 class="text-sm font-extrabold" data-i18n="ratesTitle">22K தங்கம் • வெள்ளி • குளோபல் XAU/USD</h2>
-            <button id="editRatesBtn" type="button" class="pill-btn px-2.5 py-1 rounded-lg sub-surface text-[11px] font-bold text-amber-400">
-              ✏️ Update Rates
-            </button>
-          </div>
-          <div class="grid grid-cols-3 gap-2 text-center">
-            <div class="sub-surface p-2.5">
-              <div class="text-[10px] text-muted">22K Gold (1g)</div>
-              <div id="rateGold22" class="text-xs font-black text-amber-400 mt-0.5">₹7,180</div>
-            </div>
-            <div class="sub-surface p-2.5">
-              <div class="text-[10px] text-muted">Silver (1g)</div>
-              <div id="rateSilver" class="text-xs font-black text-slate-300 mt-0.5">₹94</div>
-            </div>
-            <div class="sub-surface p-2.5">
-              <div class="text-[10px] text-muted">XAU / USD</div>
-              <div id="rateXauUsd" class="text-xs font-black text-purple-300 mt-0.5">$2,685</div>
-            </div>
-          </div>
-          <p id="ratesAiNote" class="text-[11px] text-muted"></p>
         </section>
 
         <!-- 9. INTERACTIVE CHARTS -->
@@ -430,26 +623,26 @@
           </div>
 
           <!-- Monthly Overall Performance Strip inside Calendar -->
-          <div class="sub-surface p-2.5 space-y-1.5">
+          <div class="theme-hero-metric-box sub-surface p-2.5 space-y-1.5">
             <div class="flex items-center justify-between text-[11px] font-extrabold text-purple-300">
               <span id="calMonthlyPerfTitle">Monthly Overall Performance</span>
-              <span id="calMonthlyPerfTag" class="text-[10px] text-muted">November 2026</span>
+              <span id="calMonthlyPerfTag" class="text-[10px] font-extrabold text-purple-200">November 2026</span>
             </div>
             <div class="grid grid-cols-4 gap-1.5 text-center">
-              <div class="bg-black/20 rounded-xl p-1.5">
-                <div class="text-[10px] text-muted" data-i18n="perfIncomeLbl">வரவு / Income</div>
+              <div class="bg-black/25 rounded-xl p-1.5">
+                <div class="text-[10px] text-purple-100 font-bold" data-i18n="perfIncomeLbl">வரவு / Income</div>
                 <div id="calMonthInc" class="text-xs font-black text-emerald-400 mt-0.5">₹0</div>
               </div>
-              <div class="bg-black/20 rounded-xl p-1.5">
-                <div class="text-[10px] text-muted" data-i18n="perfSpendLbl">செலவு / Spend</div>
+              <div class="bg-black/25 rounded-xl p-1.5">
+                <div class="text-[10px] text-purple-100 font-bold" data-i18n="perfSpendLbl">செலவு / Spend</div>
                 <div id="calMonthExp" class="text-xs font-black text-rose-400 mt-0.5">₹0</div>
               </div>
-              <div class="bg-black/20 rounded-xl p-1.5">
-                <div class="text-[10px] text-muted" data-i18n="perfInvestLbl">முதலீடு</div>
+              <div class="bg-black/25 rounded-xl p-1.5">
+                <div class="text-[10px] text-purple-100 font-bold" data-i18n="perfInvestLbl">முதலீடு</div>
                 <div id="calMonthInv" class="text-xs font-black text-sky-400 mt-0.5">₹0</div>
               </div>
-              <div class="bg-black/20 rounded-xl p-1.5">
-                <div class="text-[10px] text-muted" data-i18n="perfHandLbl">கையிருப்பு</div>
+              <div class="bg-black/25 rounded-xl p-1.5">
+                <div class="text-[10px] text-purple-100 font-bold" data-i18n="perfHandLbl">கையிருப்பு</div>
                 <div id="calMonthHand" class="text-xs font-black text-amber-300 mt-0.5">₹0</div>
               </div>
             </div>
@@ -483,29 +676,29 @@
 
           <!-- Monthly vs Yearly Performance Summary -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            <div class="sub-surface p-2.5 space-y-1.5">
-              <div class="flex items-center justify-between text-[11px] font-extrabold text-purple-300">
+            <div class="theme-hero-metric-box sub-surface p-2.5 space-y-1.5">
+              <div class="flex items-center justify-between text-[11px] font-extrabold text-purple-200">
                 <span data-i18n="monthlyPerfBoxTitle">Monthly Performance</span>
-                <span id="sumMonthBadge" class="text-[10px] text-muted">November 2026</span>
+                <span id="sumMonthBadge" class="text-[10px] font-bold text-purple-100">November 2026</span>
               </div>
               <div class="grid grid-cols-2 gap-1.5 text-[11px]">
-                <div class="bg-black/20 rounded-lg px-2 py-1 flex justify-between"><span class="text-muted">வரவு:</span><span id="sumMInc" class="font-extrabold text-emerald-400">₹0</span></div>
-                <div class="bg-black/20 rounded-lg px-2 py-1 flex justify-between"><span class="text-muted">செலவு:</span><span id="sumMExp" class="font-extrabold text-rose-400">₹0</span></div>
-                <div class="bg-black/20 rounded-lg px-2 py-1 flex justify-between"><span class="text-muted">முதலீடு:</span><span id="sumMInv" class="font-extrabold text-sky-400">₹0</span></div>
-                <div class="bg-black/20 rounded-lg px-2 py-1 flex justify-between"><span class="text-muted">கையிருப்பு:</span><span id="sumMHand" class="font-extrabold text-amber-300">₹0</span></div>
+                <div class="bg-black/25 rounded-lg px-2 py-1 flex justify-between"><span class="text-purple-100 font-semibold">வரவு:</span><span id="sumMInc" class="font-black text-emerald-400">₹0</span></div>
+                <div class="bg-black/25 rounded-lg px-2 py-1 flex justify-between"><span class="text-purple-100 font-semibold">செலவு:</span><span id="sumMExp" class="font-black text-rose-400">₹0</span></div>
+                <div class="bg-black/25 rounded-lg px-2 py-1 flex justify-between"><span class="text-purple-100 font-semibold">முதலீடு:</span><span id="sumMInv" class="font-black text-sky-400">₹0</span></div>
+                <div class="bg-black/25 rounded-lg px-2 py-1 flex justify-between"><span class="text-purple-100 font-semibold">கையிருப்பு:</span><span id="sumMHand" class="font-black text-amber-300">₹0</span></div>
               </div>
             </div>
 
-            <div class="sub-surface p-2.5 space-y-1.5">
-              <div class="flex items-center justify-between text-[11px] font-extrabold text-emerald-300">
+            <div class="theme-hero-metric-box sub-surface p-2.5 space-y-1.5">
+              <div class="flex items-center justify-between text-[11px] font-extrabold text-purple-200">
                 <span data-i18n="yearlyPerfBoxTitle">Yearly Performance</span>
-                <span id="sumYearBadge" class="text-[10px] text-muted">2026 Full Year</span>
+                <span id="sumYearBadge" class="text-[10px] font-bold text-purple-100">2026 Full Year</span>
               </div>
               <div class="grid grid-cols-2 gap-1.5 text-[11px]">
-                <div class="bg-black/20 rounded-lg px-2 py-1 flex justify-between"><span class="text-muted">வரவு:</span><span id="sumYInc" class="font-extrabold text-emerald-400">₹0</span></div>
-                <div class="bg-black/20 rounded-lg px-2 py-1 flex justify-between"><span class="text-muted">செலவு:</span><span id="sumYExp" class="font-extrabold text-rose-400">₹0</span></div>
-                <div class="bg-black/20 rounded-lg px-2 py-1 flex justify-between"><span class="text-muted">முதலீடு:</span><span id="sumYInv" class="font-extrabold text-sky-400">₹0</span></div>
-                <div class="bg-black/20 rounded-lg px-2 py-1 flex justify-between"><span class="text-muted">கையிருப்பு:</span><span id="sumYHand" class="font-extrabold text-amber-300">₹0</span></div>
+                <div class="bg-black/25 rounded-lg px-2 py-1 flex justify-between"><span class="text-purple-100 font-semibold">வரவு:</span><span id="sumYInc" class="font-black text-emerald-400">₹0</span></div>
+                <div class="bg-black/25 rounded-lg px-2 py-1 flex justify-between"><span class="text-purple-100 font-semibold">செலவு:</span><span id="sumYExp" class="font-black text-rose-400">₹0</span></div>
+                <div class="bg-black/25 rounded-lg px-2 py-1 flex justify-between"><span class="text-purple-100 font-semibold">முதலீடு:</span><span id="sumYInv" class="font-black text-sky-400">₹0</span></div>
+                <div class="bg-black/25 rounded-lg px-2 py-1 flex justify-between"><span class="text-purple-100 font-semibold">கையிருப்பு:</span><span id="sumYHand" class="font-black text-amber-300">₹0</span></div>
               </div>
             </div>
           </div>
@@ -668,10 +861,12 @@
       <rect x="12" y="14" width="40" height="34" rx="12" fill="#1e1b4b" stroke="#c4b5fd" stroke-width="2.5"/>
       <rect x="17" y="20" width="30" height="16" rx="7" fill="#090612"/>
       <g class="robot-eye">
-        <circle cx="25" cy="28" r="3.5" fill="#38bdf8"/>
-        <circle cx="39" cy="28" r="3.5" fill="#38bdf8"/>
+        <circle cx="25" cy="28" r="3.8" fill="#38bdf8"/>
+        <circle cx="26.1" cy="26.8" r="1.2" fill="#ffffff"/>
+        <circle cx="39" cy="28" r="3.8" fill="#38bdf8"/>
+        <circle cx="40.1" cy="26.8" r="1.2" fill="#ffffff"/>
       </g>
-      <path d="M24 41 Q32 46 40 41" stroke="#34d399" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+      <path class="robot-smile" d="M23 40.5 Q32 47.5 41 40.5" stroke="#34d399" stroke-width="2.8" fill="none" stroke-linecap="round"/>
     </svg>
   </button>
 
@@ -730,10 +925,19 @@
       sipTarget: 0,
       sipCurrent: 0,
       customAvatar: "",
+      apiConfig: {
+        goldApiUrl: "",
+        newsApiUrl: "",
+        lastSync: ""
+      },
+      algoBotEnabled: false,
       rates: {
         gold22: 7180,
         silver: 94,
-        xauUsd: 2685
+        xauUsd: 2685,
+        todayBias: "Bullish / Steady",
+        swingBias: "Accumulation on Pullback",
+        pullbackBias: "Buy Near Support Zones"
       },
       months: {},
       dayLogs: {},
@@ -809,6 +1013,11 @@
     const I18N = {
       ta: {
         editBase: "திருத்து",
+        todayCommodityTitle: "Today Commodity Rate",
+        indGold22Lbl: "Indian Gold (22K / கிராம்)",
+        silverPriceLbl: "Silver Price (வெள்ளி / கிராம்)",
+        globalXauLbl: "Global XAU/USD",
+        miniAiSugTitle: "AI Suggestion • Money Earth Global Algo Bot",
         incomeLbl: "வருமானம்",
         expenseLbl: "செலவு",
         investLbl: "முதலீடு",
@@ -857,6 +1066,11 @@
       },
       en: {
         editBase: "Edit",
+        todayCommodityTitle: "Today Commodity Rate",
+        indGold22Lbl: "Indian Gold (22K / per gram)",
+        silverPriceLbl: "Silver Price (per gram)",
+        globalXauLbl: "Global XAU/USD",
+        miniAiSugTitle: "AI Suggestion • Money Earth Global Algo Bot",
         incomeLbl: "Income",
         expenseLbl: "Expense",
         investLbl: "Invested",
@@ -977,6 +1191,11 @@
         const key = el.getAttribute("data-i18n");
         if (dict[key]) el.textContent = dict[key];
       });
+
+      const opTitleEl = document.querySelector('[data-i18n="overallPortfolioSubTitle"]');
+      if (opTitleEl) {
+        opTitleEl.textContent = "Portfolio Overview";
+      }
     }
 
     function getAggregates() {
@@ -1340,10 +1559,54 @@
       document.getElementById("rateGold22").textContent = formatINR(appState.rates.gold22);
       document.getElementById("rateSilver").textContent = formatINR(appState.rates.silver);
       document.getElementById("rateXauUsd").textContent = "$" + Number(appState.rates.xauUsd || 0).toLocaleString("en-US");
-      document.getElementById("ratesAiNote").textContent =
-        appState.lang === "ta"
-          ? "AI குறிப்பு: வாராந்திர தங்கம்/வெள்ளி விலை மாற்றங்களை அப்டேட் செய்து நீண்டகால சேமிப்புடன் ஒப்பிடுங்கள்."
-          : "AI Note: Update weekly bullion benchmarks to track inflation-hedged asset value.";
+
+      const tBias = appState.rates.todayBias || "Bullish / Steady";
+      const sBias = appState.rates.swingBias || "Accumulation on Pullback";
+      const pBias = appState.rates.pullbackBias || "Buy Near Support Zones";
+      const biasEl = document.getElementById("bullionBiasSentence");
+      if (biasEl) {
+        biasEl.textContent = `Today Bias: ${tBias} • Swing Bias: ${sBias} • Pullback Bias: ${pBias}.`;
+      }
+
+      const botBtn = document.getElementById("toggleAlgoBotBtn");
+      const isBotOn = Boolean(appState.algoBotEnabled);
+      if (botBtn) {
+        botBtn.textContent = isBotOn ? "BOT: ON" : "BOT: OFF";
+        botBtn.style.backgroundColor = isBotOn ? "#059669" : "#334155";
+        botBtn.style.color = "#ffffff";
+      }
+
+      const newsEl = document.getElementById("upcomingNewsSentence");
+      if (newsEl) {
+        newsEl.textContent =
+          appState.lang === "ta"
+            ? "Upcoming News: US Fed வட்டி விகிதக் குறிப்புகள், உலகளாவிய பணவீக்கத் தரவு மற்றும் உள்ளூர் தங்க/வெள்ளி தேவை மாற்றங்களைக் கவனியுங்கள்."
+            : "Upcoming News: Watch US Fed rate signals, global inflation prints, and physical bullion demand shifts.";
+      }
+
+      const botAdviceEl = document.getElementById("botModeAdviceSentence");
+      if (botAdviceEl) {
+        if (isBotOn) {
+          botAdviceEl.textContent =
+            appState.lang === "ta"
+              ? "Money Earth Global Algo Bot இப்போது ON நிலையில் உள்ளது: API இணைப்பு தயாராகும்போது உங்கள் தனிப்பட்ட ஸ்ட்ராடஜியின்படி பாட் இயக்கத்தைக் கண்காணிக்கலாம்."
+              : "Money Earth Global Algo Bot is currently ON: Once your API is connected, manage live execution in your personal strategy dashboard.";
+        } else {
+          botAdviceEl.textContent =
+            appState.lang === "ta"
+              ? "Money Earth Global Algo Bot இப்போது OFF நிலையில் உள்ளது: API இணைத்த பிறகு எப்போது வேண்டுமானாலும் ON செய்து உங்கள் தனிப்பட்ட ஸ்ட்ராடஜியில் பயன்படுத்திக் கொள்ளலாம்."
+              : "Money Earth Global Algo Bot is currently OFF: Keep it OFF until API is connected, then switch ON whenever you run your personal strategy.";
+        }
+      }
+    }
+
+    const toggleAlgoBotBtnEl = document.getElementById("toggleAlgoBotBtn");
+    if (toggleAlgoBotBtnEl) {
+      toggleAlgoBotBtnEl.onclick = () => {
+        appState.algoBotEnabled = !Boolean(appState.algoBotEnabled);
+        saveState();
+        showToast(appState.algoBotEnabled ? "Algo Bot turned ON" : "Algo Bot turned OFF");
+      };
     }
 
     function renderDebtsAndSip() {
@@ -1398,6 +1661,28 @@
             })
             .join("")}
         </div>`;
+
+      const commitTargetSum = appState.commitments.reduce((s, c) => s + (Number(c.target) || 0), 0);
+      const profitGapSum = appState.profitHorizons.reduce(
+        (s, p) => s + Math.max(0, (Number(p.target) || 0) - (Number(p.achieved) || 0)),
+        0
+      );
+
+      const r3b1 = document.getElementById("row3Box1");
+      const r3b2 = document.getElementById("row3Box2");
+      const r3b3 = document.getElementById("row3Box3");
+      if (r3b1) r3b1.textContent = formatINR(agg.monthIncome - agg.monthExpense);
+      if (r3b2) r3b2.textContent = formatINR(commitTargetSum);
+      if (r3b3) r3b3.textContent = formatINR(profitGapSum);
+
+      const r4b1 = document.getElementById("row4Box1");
+      const r4b2 = document.getElementById("row4Box2");
+      const r4b3 = document.getElementById("row4Box3");
+      const r4b4 = document.getElementById("row4Box4");
+      if (r4b1) r4b1.textContent = formatINR(agg.monthHand);
+      if (r4b2) r4b2.textContent = formatINR(agg.totalInvest);
+      if (r4b3) r4b3.textContent = formatINR(agg.totalDebt);
+      if (r4b4) r4b4.textContent = formatINR(appState.sipCurrent);
     }
 
     function renderAll() {
@@ -1821,45 +2106,110 @@
 
     document.getElementById("editRatesBtn").onclick = () => {
       openModal(
-        "Update Bullion & XAU/USD Rates",
+        "Update Bullion & XAU/USD Rates + Bias",
         `
         <div><label class="text-xs font-bold">22K Gold 1g (₹)</label><input id="mRateG22" type="number" value="${appState.rates.gold22}" /></div>
         <div><label class="text-xs font-bold">Silver 1g (₹)</label><input id="mRateSil" type="number" value="${appState.rates.silver}" /></div>
         <div><label class="text-xs font-bold">Global XAU/USD ($)</label><input id="mRateXau" type="number" value="${appState.rates.xauUsd}" /></div>
+        <div><label class="text-xs font-bold">Today Bias</label><input id="mBiasToday" type="text" value="${escapeHtml(appState.rates.todayBias || "Bullish / Steady")}" /></div>
+        <div><label class="text-xs font-bold">Swing Bias</label><input id="mBiasSwing" type="text" value="${escapeHtml(appState.rates.swingBias || "Accumulation on Pullback")}" /></div>
+        <div><label class="text-xs font-bold">Pullback Bias</label><input id="mBiasPullback" type="text" value="${escapeHtml(appState.rates.pullbackBias || "Buy Near Support Zones")}" /></div>
         `,
         () => {
           appState.rates.gold22 = Number(document.getElementById("mRateG22").value) || 0;
           appState.rates.silver = Number(document.getElementById("mRateSil").value) || 0;
           appState.rates.xauUsd = Number(document.getElementById("mRateXau").value) || 0;
+          appState.rates.todayBias = document.getElementById("mBiasToday").value.trim() || "Bullish / Steady";
+          appState.rates.swingBias = document.getElementById("mBiasSwing").value.trim() || "Accumulation on Pullback";
+          appState.rates.pullbackBias = document.getElementById("mBiasPullback").value.trim() || "Buy Near Support Zones";
           closeModal();
           saveState();
-          showToast("Rates updated!");
+          showToast("Rates & Bias updated!");
         }
       );
     };
 
-    // Profile Modal (Avatar Photo Upload + PDF Export + JSON Backup/Restore)
-    document.getElementById("openProfileBtn").onclick = () => {
+    // Profile Modal (Avatar Photo Upload + Left-Panel Downloads & Live Gold/News API Integration)
+    const openProfileBtnEl = document.getElementById("openProfileBtn");
+    if (openProfileBtnEl) {
+      openProfileBtnEl.onclick = () => {
+      const apiCfg = appState.apiConfig || { goldApiUrl: "", newsApiUrl: "", lastSync: "" };
       openModal(
-        "Shiv Prem • Profile & Backup",
+        "Shiv Prem • Profile, Downloads & Live API",
         `
-        <div class="space-y-2.5 text-xs">
-          <p class="text-muted">Upload your portrait photo, download exact theme PDF, or export/import JSON backup.</p>
-          <label class="block w-full py-2.5 rounded-xl bg-rose-600/25 border border-rose-400/40 text-rose-200 font-bold text-center cursor-pointer">
-            🖼️ Upload Profile Photo (Red Avatar)
-            <input id="inputAvatarPhoto" type="file" accept="image/*" class="hidden" />
-          </label>
-          <button id="btnDownloadPdf" type="button" class="w-full py-2.5 rounded-xl bg-purple-600 text-white font-bold">📄 Download Exact Theme PDF</button>
-          <button id="btnExportJson" type="button" class="w-full py-2.5 rounded-xl sub-surface font-bold">⬇️ Export JSON Backup</button>
-          <label class="block w-full py-2.5 rounded-xl sub-surface font-bold text-center cursor-pointer">
-            ⬆️ Import JSON Backup
-            <input id="inputImportJson" type="file" accept=".json,application/json" class="hidden" />
-          </label>
+        <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 text-xs">
+          <div class="sm:col-span-6 sub-surface p-2.5 space-y-2">
+            <div class="font-black text-purple-300 text-[11px] uppercase">⬇️ Downloads & Profile</div>
+            <label class="block w-full py-2 rounded-xl bg-rose-600/25 border border-rose-400/40 text-rose-200 font-bold text-center cursor-pointer">
+              🖼️ Upload Profile Photo
+              <input id="inputAvatarPhoto" type="file" accept="image/*" class="hidden" />
+            </label>
+            <button id="btnDownloadPdf" type="button" class="w-full py-2 rounded-xl bg-purple-600 text-white font-bold">📄 Download Exact Theme PDF</button>
+            <button id="btnExportJson" type="button" class="w-full py-2 rounded-xl sub-surface font-bold">⬇️ Export JSON Backup</button>
+            <label class="block w-full py-2 rounded-xl sub-surface font-bold text-center cursor-pointer">
+              ⬆️ Import JSON Backup
+              <input id="inputImportJson" type="file" accept=".json,application/json" class="hidden" />
+            </label>
+          </div>
+          <div class="sm:col-span-6 sub-surface p-2.5 space-y-2">
+            <div class="font-black text-pink-300 text-[11px] uppercase">🔌 Live API Integration</div>
+            <div>
+              <label class="text-[10px] font-bold text-muted">Live Gold / Bullion API URL</label>
+              <input id="inputGoldApiUrl" type="text" placeholder="https://api.example.com/gold" value="${escapeHtml(apiCfg.goldApiUrl || "")}" />
+            </div>
+            <div>
+              <label class="text-[10px] font-bold text-muted">Live Market News API URL</label>
+              <input id="inputNewsApiUrl" type="text" placeholder="https://api.example.com/news" value="${escapeHtml(apiCfg.newsApiUrl || "")}" />
+            </div>
+            <button id="btnSaveSyncApis" type="button" class="w-full py-2 rounded-xl bg-pink-600 text-white font-bold">⚡ Save & Sync Live APIs</button>
+            <div id="liveApiStatusBox" class="bg-black/25 rounded-xl p-2 text-[10px] text-pink-100 leading-relaxed">
+              ${apiCfg.lastSync ? `Last Sync: ${escapeHtml(apiCfg.lastSync)}` : "Ready: Configure Gold & News API endpoints or sync simulated live feed."}
+            </div>
+          </div>
         </div>
         `,
         null,
         true
       );
+
+      document.getElementById("btnSaveSyncApis").onclick = async () => {
+        const gUrl = document.getElementById("inputGoldApiUrl").value.trim();
+        const nUrl = document.getElementById("inputNewsApiUrl").value.trim();
+        appState.apiConfig = {
+          goldApiUrl: gUrl,
+          newsApiUrl: nUrl,
+          lastSync: new Date().toLocaleTimeString("en-IN")
+        };
+        const statusEl = document.getElementById("liveApiStatusBox");
+        statusEl.textContent = "Syncing Live Gold & News APIs...";
+        try {
+          if (gUrl) {
+            const res = await fetch(gUrl);
+            if (res.ok) {
+              const data = await res.json();
+              if (data.gold22) appState.rates.gold22 = Number(data.gold22) || appState.rates.gold22;
+              if (data.silver) appState.rates.silver = Number(data.silver) || appState.rates.silver;
+              if (data.xauUsd) appState.rates.xauUsd = Number(data.xauUsd) || appState.rates.xauUsd;
+            }
+          }
+          let newsSnippet = "Gold & Bullion API ready.";
+          if (nUrl) {
+            const nRes = await fetch(nUrl);
+            if (nRes.ok) {
+              const nData = await nRes.json();
+              const headline = nData.headline || (Array.isArray(nData.articles) && nData.articles[0] && nData.articles[0].title) || "Live market feed connected.";
+              newsSnippet = `News: ${headline}`;
+            }
+          }
+          saveState();
+          statusEl.textContent = `Synced at ${appState.apiConfig.lastSync} • ${newsSnippet}`;
+          showToast("Live API settings synced!");
+        } catch (err) {
+          saveState();
+          statusEl.textContent = `Saved (${appState.apiConfig.lastSync}). Endpoint check: ${err.message || "CORS/Network"}.`;
+          showToast("API config saved!");
+        }
+      };
 
       document.getElementById("inputAvatarPhoto").onchange = (ev) => {
         const file = ev.target.files[0];
@@ -1882,17 +2232,45 @@
           const canvas = await html2canvas(root, {
             scale: 2,
             backgroundColor: appState.theme === "light" ? "#f4f1fa" : "#090612",
-            useCORS: true
+            useCORS: true,
+            logging: false
           });
           const imgData = canvas.toDataURL("image/png");
           const { jsPDF } = window.jspdf;
           const pdf = new jsPDF("p", "mm", "a4");
-          const pdfW = pdf.internal.pageSize.getWidth();
-          const pdfH = (canvas.height * pdfW) / canvas.width;
-          pdf.addImage(imgData, "PNG", 0, 0, pdfW, Math.min(pdfH, 295));
-          pdf.save(`Shiv_Prem_Finance_${appState.selectedMonth}.pdf`);
+          const pdfWidth = pdf.internal.pageSize.getWidth();
+          const pdfHeight = pdf.internal.pageSize.getHeight();
+          const imgProps = pdf.getImageProperties(imgData);
+          const ratio = pdfWidth / imgProps.width;
+          const totalScaledHeight = imgProps.height * ratio;
+
+          let heightLeft = totalScaledHeight;
+          let position = 0;
+
+          pdf.addImage(imgData, "PNG", 0, position, pdfWidth, totalScaledHeight);
+          heightLeft -= pdfHeight;
+
+          while (heightLeft > 0) {
+            position = heightLeft - totalScaledHeight;
+            pdf.addPage();
+            pdf.addImage(imgData, "PNG", 0, position, pdfWidth, totalScaledHeight);
+            heightLeft -= pdfHeight;
+          }
+
+          const pdfBlob = pdf.output("blob");
+          const url = URL.createObjectURL(pdfBlob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = `Shiv_Prem_Finance_${appState.selectedMonth}.pdf`;
+          document.body.appendChild(link);
+          link.click();
+          setTimeout(() => {
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+          }, 1000);
           showToast("PDF downloaded!");
         } catch (err) {
+          console.error("PDF Error:", err);
           showToast("PDF export failed");
         }
       };
@@ -1929,7 +2307,8 @@
         };
         reader.readAsText(file);
       };
-    };
+      };
+    }
 
     // Interactive Portfolio AI Coach Chat Modal
     function generatePortfolioAiReply(userQuery) {
@@ -1968,9 +2347,9 @@
             <div class="sub-surface p-2.5 rounded-2xl whitespace-pre-line leading-relaxed border-l-4 border-purple-500">${escapeHtml(initialReply)}</div>
           </div>
           <div class="flex flex-wrap gap-1.5">
-            <button type="button" data-ai-chip="Short-Term Plan" class="px-2.5 py-1 rounded-full bg-purple-600/25 text-purple-300 text-[11px] font-bold">🎯 Short-Term</button>
-            <button type="button" data-ai-chip="Debt Strategy" class="px-2.5 py-1 rounded-full bg-rose-600/25 text-rose-300 text-[11px] font-bold">🏦 Debt Plan</button>
-            <button type="button" data-ai-chip="SIP & Wealth" class="px-2.5 py-1 rounded-full bg-sky-600/25 text-sky-300 text-[11px] font-bold">📈 SIP Status</button>
+            <button type="button" data-ai-chip="Short-Term Plan" class="px-3 py-1 rounded-full bg-purple-600 text-white shadow-sm text-[11px] font-extrabold">🎯 Short-Term</button>
+            <button type="button" data-ai-chip="Debt Strategy" class="px-3 py-1 rounded-full bg-rose-600 text-white shadow-sm text-[11px] font-extrabold">🏦 Debt Plan</button>
+            <button type="button" data-ai-chip="SIP & Wealth" class="px-3 py-1 rounded-full bg-sky-600 text-white shadow-sm text-[11px] font-extrabold">📈 SIP Status</button>
           </div>
           <div class="flex gap-1.5 pt-1">
             <input id="aiChatInput" type="text" placeholder="${appState.lang === "ta" ? "உங்கள் போர்ட்ஃபோலியோ பற்றி கேளுங்கள்..." : "Ask about your portfolio..."}" />
