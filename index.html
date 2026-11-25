@@ -971,7 +971,7 @@
         <div class="sub-surface p-3 space-y-2">
           <div class="flex items-center justify-between">
             <span class="text-xs font-black" data-i18n="sec_sip">📈 மாதாந்திர SIP முதலீடு</span>
-            <button type="button" data-action="setSipTarget" class="pill-btn px-2.5 py-1 rounded-lg bg-sky-500/20 text-sky-400 text-[10px] font-extrabold">Target</button>
+            <button type="button" data-action="setSipTarget" class="pill-btn px-2.5 py-1 rounded-lg bg-sky-500/20 text-sky-400 text-[10px] font-extrabold">✏️ Edit / Target</button>
           </div>
           <div class="space-y-1 text-xs">
             <div class="flex justify-between">
@@ -1724,6 +1724,7 @@
               </div>
               <div class="flex items-center gap-1.5 flex-shrink-0">
                 <span class="font-black text-emerald-400">+${formatINR(item.amount)}</span>
+                <button type="button" data-edit-inc="${item.id}" class="px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 font-black text-[10px]" title="Edit">✏️</button>
                 <button type="button" data-del-inc="${item.id}" class="text-rose-400 font-black text-[11px]">✕</button>
               </div>
             </div>`
@@ -1745,6 +1746,7 @@
               </div>
               <div class="flex items-center gap-1.5 flex-shrink-0">
                 <span class="font-black text-rose-400">-${formatINR(item.amount)}</span>
+                <button type="button" data-edit-exp="${item.id}" class="px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 font-black text-[10px]" title="Edit">✏️</button>
                 <button type="button" data-del-exp="${item.id}" class="text-rose-400 font-black text-[11px]">✕</button>
               </div>
             </div>`
@@ -1831,6 +1833,7 @@
                   <div class="text-[10px] text-muted">${escapeHtml(c.dueNote || `${shortMonths[(Number(mStr) || 1) - 1]} ${yStr}`)} • ${formatINR(cov)} / ${formatINR(req)} (${pct}%)</div>
                 </div>
                 <div class="flex items-center gap-1">
+                  <button type="button" data-edit-comp="${c.id}" class="px-2 py-1 rounded-lg bg-purple-500/20 text-purple-300 text-[10px] font-bold" title="Edit">✏️</button>
                   <button type="button" data-fund-comp="${c.id}" class="px-2.5 py-1 rounded-lg bg-amber-500/25 text-amber-300 text-[10px] font-extrabold">Pending ▾</button>
                   <button type="button" data-del-comp="${c.id}" class="px-2 py-1 rounded-lg bg-rose-500/20 text-rose-400 text-[10px] font-bold">✕</button>
                 </div>
@@ -1866,6 +1869,7 @@
                   </div>
                   <div class="flex items-center gap-1.5 flex-shrink-0">
                     <span class="font-black text-emerald-400">${formatINR(c.covered)}</span>
+                    <button type="button" data-edit-comp="${c.id}" class="px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 text-[9px] font-bold" title="Edit">✏️</button>
                     <button type="button" data-reset-comp="${c.id}" class="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[9px] font-bold" title="Reopen">↺</button>
                     <button type="button" data-del-comp="${c.id}" class="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-400 text-[9px] font-bold">✕</button>
                   </div>
@@ -1940,6 +1944,7 @@
                 <div class="text-[10px] text-muted">Due: ${escapeHtml(b.dueDate || "-")} • ${formatINR(b.amount)}</div>
               </div>
               <div class="flex items-center gap-1 flex-shrink-0">
+                <button type="button" data-edit-bill="${b.id}" class="pill-btn px-2 py-1 rounded-lg bg-purple-500/20 text-purple-300 text-[10px] font-bold" title="Edit">✏️</button>
                 ${
                   b.paid
                     ? `<span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-black">PAID ✓</span>`
@@ -1989,6 +1994,7 @@
                   <div class="text-[10px] text-muted">${escapeHtml(c.timeline || "")} • ${formatINR(sav)} / ${formatINR(tgt)} (${pct}%)</div>
                 </div>
                 <div class="flex items-center gap-1">
+                  <button type="button" data-edit-commit="${c.id}" class="pill-btn px-2 py-1 rounded-lg bg-purple-500/20 text-purple-300 text-[10px] font-bold" title="Edit">✏️</button>
                   <button type="button" data-topup-commit="${c.id}" class="pill-btn px-2 py-1 rounded-lg bg-purple-600 text-white text-[10px] font-black">+ Save</button>
                   <button type="button" data-del-commit="${c.id}" class="pill-btn px-2 py-1 rounded-lg bg-rose-500/20 text-rose-400 text-[10px] font-bold">✕</button>
                 </div>
@@ -2061,6 +2067,7 @@
                   <div class="text-[10px] text-muted">${formatINR(ach)} / ${formatINR(tgt)} (${pct}%)</div>
                 </div>
                 <div class="flex items-center gap-1">
+                  <button type="button" data-edit-profit="${p.id}" class="pill-btn px-2 py-1 rounded-lg bg-purple-500/20 text-purple-300 text-[10px] font-bold" title="Edit">✏️</button>
                   <button type="button" data-topup-profit="${p.id}" class="pill-btn px-2 py-1 rounded-lg bg-emerald-600 text-white text-[10px] font-black">+ Profit</button>
                   <button type="button" data-del-profit="${p.id}" class="pill-btn px-2 py-1 rounded-lg bg-rose-500/20 text-rose-400 text-[10px] font-bold">✕</button>
                 </div>
@@ -2520,6 +2527,7 @@
                 <div class="text-[10px] font-extrabold text-amber-300 mt-0.5">${lang === "en" ? "Monthly EMI" : "மாதாந்திர EMI"}: ${formatINR(emiVal)}</div>
               </div>
               <div class="flex items-center gap-1 flex-shrink-0">
+                <button type="button" data-edit-debt="${d.id}" class="px-2 py-1 rounded bg-purple-500/20 text-purple-300 text-[10px] font-bold" title="Edit">✏️ Edit</button>
                 <button type="button" data-pay-debt="${d.id}" class="px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">Pay</button>
                 <button type="button" data-del-debt="${d.id}" class="px-1.5 py-1 rounded bg-rose-500/20 text-rose-400 text-[10px] font-bold">✕</button>
               </div>
@@ -3037,6 +3045,232 @@
         const id = delDebt.getAttribute("data-del-debt");
         appState.debts = appState.debts.filter((x) => x.id !== id);
         saveState();
+        return;
+      }
+
+      const editDebt = e.target.closest("[data-edit-debt]");
+      if (editDebt) {
+        const id = editDebt.getAttribute("data-edit-debt");
+        const d = appState.debts.find((x) => x.id === id);
+        if (d) {
+          openModal(
+            `✏️ கடன் & EMI திருத்து: ${d.title}`,
+            `
+            <div><label class="text-xs font-bold">கடன் பெயர்</label><input id="eDebtTitle" type="text" value="${escapeHtml(d.title)}" /></div>
+            <div><label class="text-xs font-bold">மொத்த கடன் தொகை (₹)</label><input id="eDebtTotal" type="number" value="${Number(d.total) || 0}" /></div>
+            <div><label class="text-xs font-bold">ஏற்கனவே கட்டியது (₹)</label><input id="eDebtPaid" type="number" value="${Number(d.paid) || 0}" /></div>
+            <div><label class="text-xs font-bold">மாதாந்திர EMI (Monthly EMI ₹)</label><input id="eDebtEmi" type="number" value="${Number(d.emi) || 0}" /></div>
+            `,
+            () => {
+              d.title = document.getElementById("eDebtTitle").value.trim() || d.title;
+              d.total = Math.max(0, Number(document.getElementById("eDebtTotal").value) || 0);
+              d.paid = Math.max(0, Number(document.getElementById("eDebtPaid").value) || 0);
+              d.emi = Math.max(0, Number(document.getElementById("eDebtEmi").value) || 0);
+              closeModal();
+              saveState();
+              showToast("கடன் & EMI விவரம் அப்டேட் செய்யப்பட்டது!");
+            }
+          );
+        }
+        return;
+      }
+
+      const editInc = e.target.closest("[data-edit-inc]");
+      if (editInc) {
+        const id = editInc.getAttribute("data-edit-inc");
+        const bucket = getMonthBucket(appState, appState.selectedMonth);
+        const item = bucket.income.find((x) => x.id === id);
+        if (item) {
+          openModal(
+            `✏️ வரவு திருத்து (Edit Income)`,
+            `
+            <div><label class="text-xs font-bold">வரவு விவரம்</label><input id="eIncTitle" type="text" value="${escapeHtml(item.title)}" /></div>
+            <div><label class="text-xs font-bold">தொகை (₹)</label><input id="eIncAmt" type="number" value="${Number(item.amount) || 0}" /></div>
+            <div><label class="text-xs font-bold">தேதி</label><input id="eIncDate" type="date" value="${escapeHtml(item.date || "")}" /></div>
+            `,
+            () => {
+              item.title = document.getElementById("eIncTitle").value.trim() || item.title;
+              item.amount = Math.max(0, Number(document.getElementById("eIncAmt").value) || 0);
+              const newDt = document.getElementById("eIncDate").value || item.date;
+              if (newDt && newDt.slice(0, 7) !== appState.selectedMonth) {
+                bucket.income = bucket.income.filter((x) => x.id !== id);
+                item.date = newDt;
+                getMonthBucket(appState, newDt.slice(0, 7)).income.push(item);
+              } else {
+                item.date = newDt;
+              }
+              closeModal();
+              saveState();
+              showToast("வரவு பதிவு திருத்தப்பட்டது!");
+            }
+          );
+        }
+        return;
+      }
+
+      const editExp = e.target.closest("[data-edit-exp]");
+      if (editExp) {
+        const id = editExp.getAttribute("data-edit-exp");
+        const bucket = getMonthBucket(appState, appState.selectedMonth);
+        const item = bucket.expense.find((x) => x.id === id);
+        if (item) {
+          openModal(
+            `✏️ செலவு திருத்து (Edit Spend)`,
+            `
+            <div><label class="text-xs font-bold">செலவு விவரம்</label><input id="eExpTitle" type="text" value="${escapeHtml(item.title)}" /></div>
+            <div><label class="text-xs font-bold">தொகை (₹)</label><input id="eExpAmt" type="number" value="${Number(item.amount) || 0}" /></div>
+            <div><label class="text-xs font-bold">தேதி</label><input id="eExpDate" type="date" value="${escapeHtml(item.date || "")}" /></div>
+            `,
+            () => {
+              item.title = document.getElementById("eExpTitle").value.trim() || item.title;
+              item.amount = Math.max(0, Number(document.getElementById("eExpAmt").value) || 0);
+              const newDt = document.getElementById("eExpDate").value || item.date;
+              if (newDt && newDt.slice(0, 7) !== appState.selectedMonth) {
+                bucket.expense = bucket.expense.filter((x) => x.id !== id);
+                item.date = newDt;
+                getMonthBucket(appState, newDt.slice(0, 7)).expense.push(item);
+              } else {
+                item.date = newDt;
+              }
+              closeModal();
+              saveState();
+              showToast("செலவு பதிவு திருத்தப்பட்டது!");
+            }
+          );
+        }
+        return;
+      }
+
+      const editComp = e.target.closest("[data-edit-comp]");
+      if (editComp) {
+        const id = editComp.getAttribute("data-edit-comp");
+        const ym = appState.selectedMonth || TODAY_INFO.ym;
+        const bucket = getMonthBucket(appState, ym);
+        const item = (bucket.compulsory || []).find((c) => c.id === id);
+        if (item) {
+          openModal(
+            `✏️ கட்டாயத் தேவை திருத்து (${ym})`,
+            `
+            <div><label class="text-xs font-bold">பெயர்</label><input id="eCompTitle" type="text" value="${escapeHtml(item.title)}" /></div>
+            <div><label class="text-xs font-bold">கட்டாயத் தொகை (₹)</label><input id="eCompReq" type="number" value="${Number(item.required) || 0}" /></div>
+            <div><label class="text-xs font-bold">செலுத்திய தொகை (₹)</label><input id="eCompCov" type="number" value="${Number(item.covered) || 0}" /></div>
+            <div><label class="text-xs font-bold">குறிப்பு</label><input id="eCompNote" type="text" value="${escapeHtml(item.dueNote || "")}" /></div>
+            `,
+            () => {
+              item.title = document.getElementById("eCompTitle").value.trim() || item.title;
+              item.required = Math.max(0, Number(document.getElementById("eCompReq").value) || 0);
+              item.covered = Math.max(0, Number(document.getElementById("eCompCov").value) || 0);
+              item.dueNote = document.getElementById("eCompNote").value.trim();
+              item.completedDate = item.covered >= item.required && item.required > 0 ? (item.completedDate || `${ym}-${String(appState.selectedDay).padStart(2, "0")}`) : "";
+              closeModal();
+              saveState();
+              showToast("கட்டாயத் தேவை திருத்தப்பட்டது!");
+            }
+          );
+        }
+        return;
+      }
+
+      const editBill = e.target.closest("[data-edit-bill]");
+      if (editBill) {
+        const id = editBill.getAttribute("data-edit-bill");
+        const bill = (appState.bills || []).find((b) => b.id === id);
+        if (bill) {
+          openModal(
+            `✏️ Bill திருத்து: ${bill.title}`,
+            `
+            <div><label class="text-xs font-bold">Bill பெயர்</label><input id="eBillTitle" type="text" value="${escapeHtml(bill.title)}" /></div>
+            <div><label class="text-xs font-bold">தொகை (₹)</label><input id="eBillAmt" type="number" value="${Number(bill.amount) || 0}" /></div>
+            <div><label class="text-xs font-bold">Due தேதி</label><input id="eBillDate" type="date" value="${escapeHtml(bill.dueDate || "")}" /></div>
+            <label class="flex items-center gap-2 font-bold pt-1">
+              <input id="eBillPaid" type="checkbox" class="!w-auto" ${bill.paid ? "checked" : ""} />
+              <span>Paid (செலுத்தப்பட்டது)</span>
+            </label>
+            `,
+            () => {
+              bill.title = document.getElementById("eBillTitle").value.trim() || bill.title;
+              bill.amount = Math.max(0, Number(document.getElementById("eBillAmt").value) || 0);
+              bill.dueDate = document.getElementById("eBillDate").value || bill.dueDate;
+              bill.paid = document.getElementById("eBillPaid").checked;
+              closeModal();
+              saveState();
+              showToast("Bill விவரம் திருத்தப்பட்டது!");
+            }
+          );
+        }
+        return;
+      }
+
+      const editCommit = e.target.closest("[data-edit-commit]");
+      if (editCommit) {
+        const id = editCommit.getAttribute("data-edit-commit");
+        const item = (appState.commitments || []).find((c) => c.id === id);
+        if (item) {
+          openModal(
+            `✏️ இலக்கு திருத்து (Edit Goal)`,
+            `
+            <div>
+              <label class="text-xs font-bold">பிரிவு (Horizon)</label>
+              <select id="eGoalHorizon">
+                <option value="short" ${item.horizon === "short" ? "selected" : ""}>Short-Term</option>
+                <option value="mid" ${item.horizon === "mid" ? "selected" : ""}>Mid-Term</option>
+                <option value="long" ${item.horizon === "long" ? "selected" : ""}>Long-Term</option>
+              </select>
+            </div>
+            <div><label class="text-xs font-bold">இலக்கு பெயர்</label><input id="eGoalTitle" type="text" value="${escapeHtml(item.title)}" /></div>
+            <div><label class="text-xs font-bold">இலக்கு தொகை (₹)</label><input id="eGoalTarget" type="number" value="${Number(item.target) || 0}" /></div>
+            <div><label class="text-xs font-bold">சேமித்தது (₹)</label><input id="eGoalSaved" type="number" value="${Number(item.saved) || 0}" /></div>
+            <div><label class="text-xs font-bold">கால அளவு</label><input id="eGoalTime" type="text" value="${escapeHtml(item.timeline || "")}" /></div>
+            `,
+            () => {
+              item.horizon = document.getElementById("eGoalHorizon").value;
+              item.title = document.getElementById("eGoalTitle").value.trim() || item.title;
+              item.target = Math.max(0, Number(document.getElementById("eGoalTarget").value) || 0);
+              item.saved = Math.max(0, Number(document.getElementById("eGoalSaved").value) || 0);
+              item.timeline = document.getElementById("eGoalTime").value.trim();
+              item.completedDate = item.target > 0 && item.saved >= item.target ? (item.completedDate || TODAY_INFO.full) : "";
+              appState.activeCommitTab = item.horizon;
+              closeModal();
+              saveState();
+              showToast("இலக்கு விவரம் திருத்தப்பட்டது!");
+            }
+          );
+        }
+        return;
+      }
+
+      const editProfit = e.target.closest("[data-edit-profit]");
+      if (editProfit) {
+        const id = editProfit.getAttribute("data-edit-profit");
+        const item = (appState.profitHorizons || []).find((p) => p.id === id);
+        if (item) {
+          openModal(
+            `✏️ Profit இலக்கு திருத்து`,
+            `
+            <div>
+              <label class="text-xs font-bold">பிரிவு</label>
+              <select id="eProfHorizon">
+                <option value="short" ${item.horizon === "short" ? "selected" : ""}>Short-Term</option>
+                <option value="mid" ${item.horizon === "mid" ? "selected" : ""}>Mid-Term</option>
+                <option value="long" ${item.horizon === "long" ? "selected" : ""}>Long-Term</option>
+              </select>
+            </div>
+            <div><label class="text-xs font-bold">Profit இலக்கு பெயர்</label><input id="eProfTitle" type="text" value="${escapeHtml(item.title)}" /></div>
+            <div><label class="text-xs font-bold">Target Profit (₹)</label><input id="eProfTarget" type="number" value="${Number(item.target) || 0}" /></div>
+            <div><label class="text-xs font-bold">அடைந்தது (₹)</label><input id="eProfAch" type="number" value="${Number(item.achieved) || 0}" /></div>
+            `,
+            () => {
+              item.horizon = document.getElementById("eProfHorizon").value;
+              item.title = document.getElementById("eProfTitle").value.trim() || item.title;
+              item.target = Math.max(0, Number(document.getElementById("eProfTarget").value) || 0);
+              item.achieved = Math.max(0, Number(document.getElementById("eProfAch").value) || 0);
+              appState.activeProfitTab = item.horizon;
+              closeModal();
+              saveState();
+              showToast("Profit இலக்கு திருத்தப்பட்டது!");
+            }
+          );
+        }
         return;
       }
 
