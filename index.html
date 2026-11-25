@@ -70,14 +70,100 @@
       color: #2d1f47 !important;
     }
 
-    html[data-theme="light"] .quick-action-btn svg {
-      color: #090612 !important;
-      stroke-width: 2.5 !important;
-    }
-
     html[data-theme="light"] .quick-action-btn span {
       color: #090612 !important;
       font-weight: 800 !important;
+    }
+
+    html[data-theme="light"] .text-purple-300,
+    html[data-theme="light"] .text-purple-400 {
+      color: #581c87 !important;
+      font-weight: 800 !important;
+    }
+
+    html[data-theme="light"] .text-emerald-300,
+    html[data-theme="light"] .text-emerald-400 {
+      color: #047857 !important;
+      font-weight: 800 !important;
+    }
+
+    html[data-theme="light"] .text-rose-300,
+    html[data-theme="light"] .text-rose-400 {
+      color: #be123c !important;
+      font-weight: 800 !important;
+    }
+
+    html[data-theme="light"] .text-amber-300,
+    html[data-theme="light"] .text-amber-400 {
+      color: #b45309 !important;
+      font-weight: 800 !important;
+    }
+
+    html[data-theme="light"] .text-sky-300,
+    html[data-theme="light"] .text-sky-400 {
+      color: #0369a1 !important;
+      font-weight: 800 !important;
+    }
+
+    html[data-theme="light"] .overview-gradient .text-purple-200,
+    html[data-theme="light"] .overview-gradient .text-purple-100,
+    html[data-theme="light"] .purple-perf-panel .text-purple-200,
+    html[data-theme="light"] .purple-perf-panel .text-purple-100 {
+      color: #f3e8ff !important;
+    }
+
+    html[data-theme="light"] .overview-gradient .text-emerald-300,
+    html[data-theme="light"] .purple-perf-panel .text-emerald-300 {
+      color: #6ee7b7 !important;
+    }
+
+    html[data-theme="light"] .overview-gradient .text-rose-300,
+    html[data-theme="light"] .purple-perf-panel .text-rose-300 {
+      color: #fda4af !important;
+    }
+
+    html[data-theme="light"] .overview-gradient .text-amber-300,
+    html[data-theme="light"] .purple-perf-panel .text-amber-300 {
+      color: #fcd34d !important;
+    }
+
+    html[data-theme="light"] .overview-gradient .text-sky-300,
+    html[data-theme="light"] .purple-perf-panel .text-sky-300 {
+      color: #7dd3fc !important;
+    }
+
+    .tv-chart-shell {
+      background: linear-gradient(180deg, #130b2e 0%, #0a0618 100%);
+      border: 1px solid rgba(196, 181, 253, 0.25);
+    }
+
+    html[data-theme="light"] .tv-chart-shell {
+      background: linear-gradient(180deg, #ffffff 0%, #f5f0ff 100%);
+      border: 1.5px solid rgba(95, 37, 159, 0.28);
+    }
+
+    .zoom-stage-box {
+      background: rgba(10, 6, 24, 0.85);
+      border: 1px solid rgba(168, 85, 247, 0.35);
+    }
+
+    html[data-theme="light"] .zoom-stage-box {
+      background: #ffffff;
+      border: 1.5px solid rgba(95, 37, 159, 0.3);
+    }
+
+    .qa-icon-badge {
+      width: 2.35rem;
+      height: 2.35rem;
+      border-radius: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .quick-action-btn:hover .qa-icon-badge {
+      transform: scale(1.06);
     }
 
     .overview-gradient {
@@ -135,6 +221,15 @@
 
     .live-dot {
       animation: pulseDot 1.6s infinite ease-in-out;
+    }
+
+    @keyframes tvLivePulse {
+      0%, 100% { r: 5; opacity: 0.9; }
+      50% { r: 11; opacity: 0.15; }
+    }
+
+    .tv-live-ring {
+      animation: tvLivePulse 1.4s infinite ease-in-out;
     }
 
     @keyframes botFloat {
@@ -229,10 +324,10 @@
       </div>
     </header>
 
-    <!-- Main Content Grid (1-Column on Phone, 2-Column on Laptop/Desktop) -->
-    <main class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
-      <!-- Left Column on Laptop: Overview, Quick Actions, Calendar, Summary -->
-      <div class="lg:col-span-7 space-y-4">
+    <!-- Main Content Grid (1-Column on Phone, Balanced 2-Column on Tablet/Foldable & Laptop/Desktop) -->
+    <main class="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
+      <!-- Left Column: Overview, Quick Actions, Calendar, Summary & Large 2030 ₹1 Crore Chart -->
+      <div class="md:col-span-7 space-y-4">
       <!-- 1. Portfolio Overview -->
       <section id="sec-overview" class="overview-gradient rounded-3xl p-4 sm:p-5 shadow-xl space-y-3.5">
         <div class="flex items-start justify-between gap-2">
@@ -296,68 +391,84 @@
         </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-          <button type="button" data-action="todayEntry" class="quick-action-btn pill-btn sub-surface p-3 flex flex-col items-center justify-center gap-1.5 text-center">
-            <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-              <rect x="3" y="4" width="18" height="18" rx="3" />
-              <path d="M16 2v4M8 2v4M3 10h18" />
-            </svg>
+          <button type="button" data-action="todayEntry" class="quick-action-btn pill-btn sub-surface p-3 flex flex-col items-center justify-center gap-1.5 text-center border-purple-500/30">
+            <div class="qa-icon-badge bg-gradient-to-br from-violet-600 to-indigo-600 text-white shadow-md shadow-violet-600/30">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="18" rx="3" />
+                <path d="M16 2v4M8 2v4M3 10h18" />
+              </svg>
+            </div>
             <span class="text-[11px] font-extrabold">Today Entry</span>
           </button>
 
-          <button type="button" data-action="addIncome" class="quick-action-btn pill-btn sub-surface p-3 flex flex-col items-center justify-center gap-1.5 text-center">
-            <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M12 8v8M8 12h8" />
-            </svg>
+          <button type="button" data-action="addIncome" class="quick-action-btn pill-btn sub-surface p-3 flex flex-col items-center justify-center gap-1.5 text-center border-emerald-500/35">
+            <div class="qa-icon-badge bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-500/35">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 8v8M8 12h8" />
+              </svg>
+            </div>
             <span class="text-[11px] font-extrabold">வருமானம் சேர்</span>
           </button>
 
-          <button type="button" data-action="addExpense" class="quick-action-btn pill-btn sub-surface p-3 flex flex-col items-center justify-center gap-1.5 text-center">
-            <svg class="w-5 h-5 text-rose-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M8 12h8" />
-            </svg>
+          <button type="button" data-action="addExpense" class="quick-action-btn pill-btn sub-surface p-3 flex flex-col items-center justify-center gap-1.5 text-center border-rose-500/35">
+            <div class="qa-icon-badge bg-gradient-to-br from-rose-500 to-pink-600 text-white shadow-md shadow-rose-500/35">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M8 12h8" />
+              </svg>
+            </div>
             <span class="text-[11px] font-extrabold">செலவு பதிவு</span>
           </button>
 
-          <button type="button" data-action="addBill" class="quick-action-btn pill-btn sub-surface p-3 flex flex-col items-center justify-center gap-1.5 text-center">
-            <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-              <path d="M6 2h12v20l-3-2-3 2-3-2-3 2V2z" />
-              <path d="M9 7h6M9 11h6M9 15h4" />
-            </svg>
+          <button type="button" data-action="addBill" class="quick-action-btn pill-btn sub-surface p-3 flex flex-col items-center justify-center gap-1.5 text-center border-amber-500/35">
+            <div class="qa-icon-badge bg-gradient-to-br from-amber-500 to-orange-500 text-white shadow-md shadow-amber-500/35">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24">
+                <path d="M6 2h12v20l-3-2-3 2-3-2-3 2V2z" />
+                <path d="M9 7h6M9 11h6M9 15h4" />
+              </svg>
+            </div>
             <span class="text-[11px] font-extrabold">Bills / பில்ஸ்</span>
           </button>
 
-          <button type="button" data-action="addCompulsory" class="quick-action-btn pill-btn sub-surface p-3 flex flex-col items-center justify-center gap-1.5 text-center">
-            <svg class="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-              <path d="M12 2l8 4v6c0 5-3.5 9.7-8 11-4.5-1.3-8-6-8-11V6l8-4z" />
-              <path d="M9 12l2 2 4-4" />
-            </svg>
+          <button type="button" data-action="addCompulsory" class="quick-action-btn pill-btn sub-surface p-3 flex flex-col items-center justify-center gap-1.5 text-center border-orange-500/35">
+            <div class="qa-icon-badge bg-gradient-to-br from-orange-500 to-red-500 text-white shadow-md shadow-orange-500/35">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24">
+                <path d="M12 2l8 4v6c0 5-3.5 9.7-8 11-4.5-1.3-8-6-8-11V6l8-4z" />
+                <path d="M9 12l2 2 4-4" />
+              </svg>
+            </div>
             <span class="text-[11px] font-extrabold">கட்டாயத் தேவை</span>
           </button>
 
-          <button type="button" data-action="addDebt" class="quick-action-btn pill-btn sub-surface p-3 flex flex-col items-center justify-center gap-1.5 text-center">
-            <svg class="w-5 h-5 text-pink-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-              <rect x="2" y="5" width="20" height="14" rx="2" />
-              <path d="M2 10h20" />
-            </svg>
+          <button type="button" data-action="addDebt" class="quick-action-btn pill-btn sub-surface p-3 flex flex-col items-center justify-center gap-1.5 text-center border-fuchsia-500/35">
+            <div class="qa-icon-badge bg-gradient-to-br from-fuchsia-600 to-purple-700 text-white shadow-md shadow-fuchsia-600/35">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24">
+                <rect x="2" y="5" width="20" height="14" rx="2" />
+                <path d="M2 10h20" />
+              </svg>
+            </div>
             <span class="text-[11px] font-extrabold">கடன் அடைப்பு</span>
           </button>
 
-          <button type="button" data-action="addSip" class="quick-action-btn pill-btn sub-surface p-3 flex flex-col items-center justify-center gap-1.5 text-center">
-            <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-              <path d="M3 17l6-6 4 4 8-8" />
-              <path d="M17 7h4v4" />
-            </svg>
+          <button type="button" data-action="addSip" class="quick-action-btn pill-btn sub-surface p-3 flex flex-col items-center justify-center gap-1.5 text-center border-sky-500/35">
+            <div class="qa-icon-badge bg-gradient-to-br from-sky-500 to-cyan-600 text-white shadow-md shadow-sky-500/35">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+                <path d="M3 17l6-6 4 4 8-8" />
+                <path d="M17 7h4v4" />
+              </svg>
+            </div>
             <span class="text-[11px] font-extrabold">SIP முதலீடு</span>
           </button>
 
-          <button type="button" data-action="addGoal" class="quick-action-btn pill-btn sub-surface p-3 flex flex-col items-center justify-center gap-1.5 text-center">
-            <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="9" />
-              <circle cx="12" cy="12" r="5" />
-              <circle cx="12" cy="12" r="1.5" fill="currentColor" />
-            </svg>
+          <button type="button" data-action="addGoal" class="quick-action-btn pill-btn sub-surface p-3 flex flex-col items-center justify-center gap-1.5 text-center border-indigo-500/35">
+            <div class="qa-icon-badge bg-gradient-to-br from-indigo-500 to-blue-600 text-white shadow-md shadow-indigo-500/35">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9" />
+                <circle cx="12" cy="12" r="5" />
+                <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+              </svg>
+            </div>
             <span class="text-[11px] font-extrabold">இலக்குகள் / Goals</span>
           </button>
         </div>
@@ -489,6 +600,7 @@
           </div>
         </div>
 
+        <!-- Monthly Received & Spend Lists (Directly Under Monthly Performance) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           <div class="sub-surface p-3 space-y-2">
             <div class="flex items-center justify-between text-xs font-extrabold">
@@ -506,11 +618,138 @@
             <div id="spendList" class="space-y-1.5 max-h-40 overflow-y-auto no-scrollbar"></div>
           </div>
         </div>
+
+        <!-- Yearly Performance Box + Month-by-Month Full Year History -->
+        <div class="purple-perf-panel p-3 space-y-2 text-xs border border-amber-400/30">
+          <div class="flex justify-between font-extrabold">
+            <span class="text-purple-100" data-i18n="yearly_perf">📆 Yearly Performance</span>
+            <span id="sumYearLabel" class="text-amber-300">2026 Full Year</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+            <div class="purple-perf-tile px-2 py-1.5 flex justify-between">
+              <span class="text-[10px] text-purple-200" data-i18n="lbl_income">வரவு</span>
+              <span id="sumYearInc" class="font-black text-emerald-300">₹0</span>
+            </div>
+            <div class="purple-perf-tile px-2 py-1.5 flex justify-between">
+              <span class="text-[10px] text-purple-200" data-i18n="lbl_expense">செலவு</span>
+              <span id="sumYearExp" class="font-black text-rose-300">₹0</span>
+            </div>
+            <div class="purple-perf-tile px-2 py-1.5 flex justify-between">
+              <span class="text-[10px] text-purple-200" data-i18n="lbl_invest">முதலீடு</span>
+              <span id="sumYearInv" class="font-black text-sky-300">₹0</span>
+            </div>
+            <div class="purple-perf-tile px-2 py-1.5 flex justify-between">
+              <span class="text-[10px] text-purple-200" data-i18n="lbl_hand">கையிருப்பு</span>
+              <span id="sumYearHand" class="font-black text-amber-300">₹0</span>
+            </div>
+          </div>
+
+          <!-- Month-by-Month Yearly History Breakdown -->
+          <div class="bg-black/25 border border-white/15 rounded-xl p-2.5 space-y-1.5">
+            <div class="flex items-center justify-between text-[11px] font-black text-amber-300">
+              <span data-i18n="yearly_hist_hdr">📊 வருடாந்திர மாத வாரியான ஹிஸ்டரி (Yearly Monthly History)</span>
+              <span id="yearlyActiveMonthsBadge" class="text-[10px] text-purple-200">0 Months</span>
+            </div>
+            <div id="yearlyHistoryList" class="space-y-1.5 max-h-44 overflow-y-auto no-scrollbar"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8A. Cashflow & 2026-2030 ₹1 Crore Target Trajectory Chart (Large Center-Left View on Tablet & Laptop) -->
+      <section id="sec-analytics" class="surface-card p-4 space-y-3.5">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h2 class="text-sm font-black" data-i18n="sec_analytics">📊 Cashflow &amp; Wealth Growth Analytics</h2>
+            <p class="text-[11px] text-muted" data-i18n="sub_analytics">2026–2030 ₹1 Crore (1 CR) Target Trajectory</p>
+          </div>
+          <button type="button" data-action="setOneYearTarget" class="pill-btn px-3 py-1 rounded-xl bg-purple-600 text-white text-[11px] font-extrabold shadow" data-i18n="btn_set_1yr">
+            🎯 1-Year Target
+          </button>
+        </div>
+
+        <!-- Full-Width TradingView Style 2026–2030 Target Achievement Flow Chart (Click to Maximize) -->
+        <div id="tvChartCard" title="Click to Maximize 2030 Target Graph" class="sub-surface p-3.5 flex flex-col justify-between space-y-2.5 cursor-pointer hover:border-purple-400 transition-colors">
+          <div class="flex flex-wrap items-center justify-between gap-1">
+            <div>
+              <div class="text-xs sm:text-sm font-black flex items-center gap-1.5">
+                <span data-i18n="tv_title">2030 ₹1 Crore Target Plan (2026 – 2030)</span>
+                <span id="tvTrendBadge" class="px-2 py-0.5 rounded-full text-[9px] font-black bg-emerald-500/20 text-emerald-400">BULLISH • GREEN</span>
+              </div>
+              <div id="tvEtaSubtitle" class="text-[10px] sm:text-[11px] text-muted font-bold mt-0.5">Calculating part-by-part roadmap to ₹1 Crore...</div>
+            </div>
+            <div class="flex items-center gap-2 text-right">
+              <div>
+                <div class="text-[9px] uppercase font-bold text-muted" data-i18n="one_yr_tgt_lbl">Part-1 (1-Year Target)</div>
+                <div id="tvTargetTopVal" class="text-xs sm:text-sm font-black text-amber-400">₹20,00,000</div>
+              </div>
+              <span class="px-2 py-1 rounded-lg bg-purple-600/25 text-purple-300 text-[10px] font-black">⤢</span>
+            </div>
+          </div>
+
+          <!-- Advanced Live Portfolio Metrics Strip -->
+          <div class="grid grid-cols-3 gap-1.5 text-center text-[10px]">
+            <div class="bg-black/25 border border-purple-500/20 rounded-lg px-2 py-1">
+              <span class="text-muted font-bold block" data-i18n="tv_net_worth">Net Worth (After Debt)</span>
+              <span id="tvNetWorthStat" class="font-black text-emerald-400">₹0</span>
+            </div>
+            <div class="bg-black/25 border border-purple-500/20 rounded-lg px-2 py-1">
+              <span class="text-muted font-bold block" data-i18n="tv_debt_drag">Debt Impact</span>
+              <span id="tvDebtImpactStat" class="font-black text-rose-400">-₹0</span>
+            </div>
+            <div class="bg-black/25 border border-purple-500/20 rounded-lg px-2 py-1">
+              <span class="text-muted font-bold block" data-i18n="tv_pace_score">Portfolio Index</span>
+              <span id="tvPortfolioIdxStat" class="font-black text-amber-400">0 PTS</span>
+            </div>
+          </div>
+
+          <div class="w-full tv-chart-shell rounded-xl p-2.5 shadow-inner">
+            <svg id="tradingViewGrowthSvg" viewBox="0 0 360 185" class="w-full h-52 sm:h-64 overflow-visible"></svg>
+          </div>
+        </div>
+
+        <!-- 2030 ₹1 Crore Target Plan (Part-by-Part Roadmap) & AI Calculation Box -->
+        <div class="purple-perf-panel p-3.5 space-y-2.5 border border-purple-400/35">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <div class="text-xs sm:text-sm font-black text-amber-300" data-i18n="box_1yr_title">🎯 2030 ₹1 Crore (1 CR) Target Plan — Part-by-Part Roadmap</div>
+              <div class="text-[11px] text-purple-200" data-i18n="box_1yr_sub">2030-க்குள் ₹1 கோடி இலக்கை வருட வாரியாக (Part 1 → Part 5) அடையும் AI கணக்கீடு</div>
+            </div>
+            <button type="button" data-action="setOneYearTarget" class="pill-btn px-2.5 py-1 rounded-lg bg-amber-400 text-slate-950 text-[11px] font-black shadow" data-i18n="btn_edit_1yr">
+              ✏️ Edit Part-1 Target
+            </button>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
+            <div class="purple-perf-tile p-2">
+              <div class="text-[10px] text-purple-200 font-bold" data-i18n="calc_2030_proj">2030 இலக்கு (1 CR)</div>
+              <div id="box2030ProjVal" class="text-xs sm:text-sm font-black text-amber-300 mt-0.5">₹1,00,00,000</div>
+            </div>
+            <div class="purple-perf-tile p-2">
+              <div class="text-[10px] text-purple-200 font-bold" data-i18n="calc_1yr_goal">Part-1 (1-Year இலக்கு)</div>
+              <div id="box1YrTargetVal" class="text-xs sm:text-sm font-black text-purple-200 mt-0.5">₹20,00,000</div>
+            </div>
+            <div class="purple-perf-tile p-2">
+              <div class="text-[10px] text-purple-200 font-bold" data-i18n="calc_1yr_days">1 CR அடைய நாட்கள்</div>
+              <div id="box1YrDaysVal" class="text-xs sm:text-sm font-black text-emerald-300 mt-0.5">0 Days</div>
+            </div>
+            <div class="purple-perf-tile p-2">
+              <div class="text-[10px] text-purple-200 font-bold" data-i18n="calc_1yr_daily">தினசரி சேமிப்பு இலக்கு</div>
+              <div id="box1YrDailyVal" class="text-xs sm:text-sm font-black text-sky-300 mt-0.5">₹0 / day</div>
+            </div>
+          </div>
+
+          <div class="bg-black/30 rounded-xl p-2.5 border border-white/10 text-xs">
+            <div class="text-[10px] font-black uppercase text-emerald-300" data-i18n="ai_1yr_hdr">🤖 AI 2030 ₹1 Crore Part-by-Part Strategy &amp; Suggestion</div>
+            <p id="box1YrAiSuggestion" class="text-[11px] text-purple-100 leading-relaxed mt-1">
+              Loading AI 2030 ₹1 Crore calculation...
+            </p>
+          </div>
+        </div>
       </section>
       </div>
 
-      <!-- Right Column on Laptop: Compulsory + History, Yearly Perf, Bills, Goals, AI, Calc, 2030 Chart -->
-      <div class="lg:col-span-5 space-y-4">
+      <!-- Right Column: Compulsory + History, Yearly Perf, Bills, Goals, AI, Calc, Debt & EMI + SIP -->
+      <div class="md:col-span-5 space-y-4">
       <!-- 5A. Monthly Compulsory Commitment (Month-Specific + History Icon + Portfolio Sync) -->
       <section class="surface-card p-4 space-y-3">
         <div class="flex flex-wrap items-center justify-between gap-2">
@@ -551,32 +790,6 @@
 
         <!-- Inline Completed Monthly Compulsory History -->
         <div id="compInlineHistoryBox" class="space-y-1.5"></div>
-      </section>
-
-      <!-- 5B-Top. Yearly Performance Box (Positioned Directly Above Bills & Due Payable) -->
-      <section class="purple-perf-panel p-4 space-y-2.5 text-xs shadow-lg">
-        <div class="flex items-center justify-between font-extrabold">
-          <span class="text-sm font-black text-purple-100" data-i18n="yearly_perf">📆 Yearly Performance</span>
-          <span id="sumYearLabel" class="px-2.5 py-0.5 rounded-full bg-black/30 text-amber-300 font-black text-[11px]">2026 Full Year</span>
-        </div>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-          <div class="purple-perf-tile px-3 py-2 flex flex-col justify-between">
-            <span class="text-[10px] text-purple-200 font-bold" data-i18n="lbl_income">வரவு</span>
-            <span id="sumYearInc" class="text-sm font-black text-emerald-300 mt-0.5">₹0</span>
-          </div>
-          <div class="purple-perf-tile px-3 py-2 flex flex-col justify-between">
-            <span class="text-[10px] text-purple-200 font-bold" data-i18n="lbl_expense">செலவு</span>
-            <span id="sumYearExp" class="text-sm font-black text-rose-300 mt-0.5">₹0</span>
-          </div>
-          <div class="purple-perf-tile px-3 py-2 flex flex-col justify-between">
-            <span class="text-[10px] text-purple-200 font-bold" data-i18n="lbl_invest">முதலீடு</span>
-            <span id="sumYearInv" class="text-sm font-black text-sky-300 mt-0.5">₹0</span>
-          </div>
-          <div class="purple-perf-tile px-3 py-2 flex flex-col justify-between">
-            <span class="text-[10px] text-purple-200 font-bold" data-i18n="lbl_hand">கையிருப்பு</span>
-            <span id="sumYearHand" class="text-sm font-black text-amber-300 mt-0.5">₹0</span>
-          </div>
-        </div>
       </section>
 
       <!-- 5B. Bills & Due Payable Tracker -->
@@ -740,109 +953,37 @@
         </div>
       </section>
 
-      <!-- 8. Cashflow & Wealth Growth Analytics + TradingView 2026-2030 Target Chart + Debt & SIP -->
-      <section id="sec-analytics" class="surface-card p-4 space-y-3.5">
-        <div class="flex flex-wrap items-center justify-between gap-2">
-          <div>
-            <h2 class="text-sm font-black" data-i18n="sec_analytics">📊 Cashflow &amp; Wealth Growth Analytics</h2>
-            <p class="text-[11px] text-muted" data-i18n="sub_analytics">2026–2030 ₹1 Crore (1 CR) Target Trajectory</p>
-          </div>
-          <button type="button" data-action="setOneYearTarget" class="pill-btn px-3 py-1 rounded-xl bg-purple-600 text-white text-[11px] font-extrabold shadow" data-i18n="btn_set_1yr">
-            🎯 1-Year Target
-          </button>
-        </div>
-
-        <!-- Full-Width TradingView Style 2026–2030 Target Achievement Flow Chart (Click to Maximize) -->
-        <div id="tvChartCard" title="Click to Maximize 2030 Target Graph" class="sub-surface p-3 flex flex-col justify-between space-y-2 cursor-pointer hover:border-purple-400 transition-colors">
-          <div class="flex flex-wrap items-center justify-between gap-1">
+      <!-- 8B. Debt & EMI Monitor + Monthly SIP Investment (Balanced Right Column) -->
+      <section class="surface-card p-4 space-y-3">
+        <!-- Debt & EMI Monitor -->
+        <div class="sub-surface p-3 space-y-2">
+          <div class="flex items-center justify-between gap-2">
             <div>
-              <div class="text-xs font-black flex items-center gap-1.5">
-                <span data-i18n="tv_title">2030 ₹1 Crore Target Plan (2026 – 2030)</span>
-                <span id="tvTrendBadge" class="px-2 py-0.5 rounded-full text-[9px] font-black bg-emerald-500/20 text-emerald-400">BULLISH • GREEN</span>
-              </div>
-              <div id="tvEtaSubtitle" class="text-[10px] text-muted font-bold mt-0.5">Calculating part-by-part roadmap to ₹1 Crore...</div>
-            </div>
-            <div class="flex items-center gap-2 text-right">
-              <div>
-                <div class="text-[9px] uppercase font-bold text-muted" data-i18n="one_yr_tgt_lbl">Part-1 (1-Year Target)</div>
-                <div id="tvTargetTopVal" class="text-xs font-black text-amber-400">₹20,00,000</div>
-              </div>
-              <span class="px-2 py-1 rounded-lg bg-purple-600/25 text-purple-300 text-[10px] font-black">⤢</span>
-            </div>
-          </div>
-
-          <div class="w-full bg-black/25 rounded-xl p-2 border border-purple-500/20">
-            <svg id="tradingViewGrowthSvg" viewBox="0 0 360 175" class="w-full h-44 overflow-visible"></svg>
-          </div>
-        </div>
-
-        <!-- 2030 ₹1 Crore Target Plan (Part-by-Part Roadmap) & AI Calculation Box -->
-        <div class="purple-perf-panel p-3.5 space-y-2.5 border border-purple-400/35">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <div>
-              <div class="text-xs sm:text-sm font-black text-amber-300" data-i18n="box_1yr_title">🎯 2030 ₹1 Crore (1 CR) Target Plan — Part-by-Part Roadmap</div>
-              <div class="text-[11px] text-purple-200" data-i18n="box_1yr_sub">2030-க்குள் ₹1 கோடி இலக்கை வருட வாரியாக (Part 1 → Part 5) அடையும் AI கணக்கீடு</div>
-            </div>
-            <button type="button" data-action="setOneYearTarget" class="pill-btn px-2.5 py-1 rounded-lg bg-amber-400 text-slate-950 text-[11px] font-black shadow" data-i18n="btn_edit_1yr">
-              ✏️ Edit Part-1 Target
-            </button>
-          </div>
-
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
-            <div class="purple-perf-tile p-2">
-              <div class="text-[10px] text-purple-200 font-bold" data-i18n="calc_2030_proj">2030 இலக்கு (1 CR)</div>
-              <div id="box2030ProjVal" class="text-xs sm:text-sm font-black text-amber-300 mt-0.5">₹1,00,00,000</div>
-            </div>
-            <div class="purple-perf-tile p-2">
-              <div class="text-[10px] text-purple-200 font-bold" data-i18n="calc_1yr_goal">Part-1 (1-Year இலக்கு)</div>
-              <div id="box1YrTargetVal" class="text-xs sm:text-sm font-black text-purple-200 mt-0.5">₹20,00,000</div>
-            </div>
-            <div class="purple-perf-tile p-2">
-              <div class="text-[10px] text-purple-200 font-bold" data-i18n="calc_1yr_days">1 CR அடைய நாட்கள்</div>
-              <div id="box1YrDaysVal" class="text-xs sm:text-sm font-black text-emerald-300 mt-0.5">0 Days</div>
-            </div>
-            <div class="purple-perf-tile p-2">
-              <div class="text-[10px] text-purple-200 font-bold" data-i18n="calc_1yr_daily">தினசரி சேமிப்பு இலக்கு</div>
-              <div id="box1YrDailyVal" class="text-xs sm:text-sm font-black text-sky-300 mt-0.5">₹0 / day</div>
-            </div>
-          </div>
-
-          <div class="bg-black/30 rounded-xl p-2.5 border border-white/10 text-xs">
-            <div class="text-[10px] font-black uppercase text-emerald-300" data-i18n="ai_1yr_hdr">🤖 AI 2030 ₹1 Crore Part-by-Part Strategy &amp; Suggestion</div>
-            <p id="box1YrAiSuggestion" class="text-[11px] text-purple-100 leading-relaxed mt-1">
-              Loading AI 2030 ₹1 Crore calculation...
-            </p>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-          <!-- Debt & EMI Monitor -->
-          <div class="sub-surface p-3 space-y-2">
-            <div class="flex items-center justify-between">
               <span class="text-xs font-black" data-i18n="sec_debt">💳 கடன் &amp; EMI கண்காணிப்பு</span>
-              <button type="button" data-action="addDebt" class="pill-btn px-2 py-0.5 rounded-lg bg-pink-500/20 text-pink-400 text-[10px] font-extrabold">+ Debt</button>
+              <div id="totalMonthlyEmiBadge" class="text-[10px] font-extrabold text-amber-400 mt-0.5">Total Monthly EMI: ₹0</div>
             </div>
-            <div id="debtListBox" class="space-y-1.5 text-xs"></div>
+            <button type="button" data-action="addDebt" class="pill-btn px-2.5 py-1 rounded-lg bg-pink-500/20 text-pink-400 text-[10px] font-extrabold">+ Debt / EMI</button>
           </div>
+          <div id="debtListBox" class="space-y-1.5 text-xs"></div>
+        </div>
 
-          <!-- Monthly SIP Investment -->
-          <div class="sub-surface p-3 space-y-2">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-black" data-i18n="sec_sip">📈 மாதாந்திர SIP முதலீடு</span>
-              <button type="button" data-action="setSipTarget" class="pill-btn px-2 py-0.5 rounded-lg bg-sky-500/20 text-sky-400 text-[10px] font-extrabold">Target</button>
+        <!-- Monthly SIP Investment -->
+        <div class="sub-surface p-3 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-black" data-i18n="sec_sip">📈 மாதாந்திர SIP முதலீடு</span>
+            <button type="button" data-action="setSipTarget" class="pill-btn px-2.5 py-1 rounded-lg bg-sky-500/20 text-sky-400 text-[10px] font-extrabold">Target</button>
+          </div>
+          <div class="space-y-1 text-xs">
+            <div class="flex justify-between">
+              <span class="text-muted" data-i18n="lbl_sip_saved">சேமித்த SIP:</span>
+              <span id="sipSavedDisplay" class="font-black text-sky-400">₹0</span>
             </div>
-            <div class="space-y-1 text-xs">
-              <div class="flex justify-between">
-                <span class="text-muted" data-i18n="lbl_sip_saved">சேமித்த SIP:</span>
-                <span id="sipSavedDisplay" class="font-black text-sky-400">₹0</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-muted" data-i18n="lbl_sip_target">மாத இலக்கு:</span>
-                <span id="sipTargetDisplay" class="font-black">₹0</span>
-              </div>
-              <div class="w-full h-2 rounded-full bg-black/30 overflow-hidden mt-1">
-                <div id="sipBarFill" class="h-full bg-sky-400 rounded-full" style="width: 0%"></div>
-              </div>
+            <div class="flex justify-between">
+              <span class="text-muted" data-i18n="lbl_sip_target">மாத இலக்கு:</span>
+              <span id="sipTargetDisplay" class="font-black">₹0</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-black/30 overflow-hidden mt-1">
+              <div id="sipBarFill" class="h-full bg-sky-400 rounded-full" style="width: 0%"></div>
             </div>
           </div>
         </div>
@@ -978,14 +1119,14 @@
     <div class="surface-card w-full max-w-4xl p-4 sm:p-6 space-y-4 max-h-[92vh] overflow-y-auto shadow-2xl border-2 border-purple-400/50">
       <div class="flex items-center justify-between gap-2 border-b border-purple-500/25 pb-3">
         <div>
-          <h3 id="chartZoomTitle" class="text-base sm:text-lg font-black text-purple-300">Expanded Analytics View</h3>
+          <h3 id="chartZoomTitle" class="text-base sm:text-lg font-black">Expanded Analytics View</h3>
           <p id="chartZoomSubtitle" class="text-xs text-muted mt-0.5"></p>
         </div>
         <button id="closeChartZoomBtn" type="button" class="pill-btn px-3.5 py-2 rounded-xl bg-rose-600 text-white text-xs font-black shadow">
           ✕ Close
         </button>
       </div>
-      <div id="chartZoomStage" class="w-full bg-black/30 rounded-2xl p-3 sm:p-5 border border-purple-500/25 flex items-center justify-center"></div>
+      <div id="chartZoomStage" class="w-full zoom-stage-box rounded-2xl p-3 sm:p-5 flex items-center justify-center"></div>
       <div id="chartZoomFooter" class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs"></div>
     </div>
   </div>
@@ -1222,6 +1363,7 @@
         btn_spend: "+ செலவு",
         monthly_perf: "மாதாந்திர செயல்பாடு",
         yearly_perf: "📆 வருடாந்திர செயல்பாடு (Yearly Performance)",
+        yearly_hist_hdr: "📊 வருடாந்திர மாத வாரியான ஹிஸ்டரி (Yearly History)",
         lbl_income: "வரவு",
         lbl_expense: "செலவு",
         lbl_invest: "முதலீடு",
@@ -1290,6 +1432,7 @@
         btn_spend: "+ Spend",
         monthly_perf: "Monthly Performance",
         yearly_perf: "📆 Yearly Performance",
+        yearly_hist_hdr: "📊 Yearly Month-by-Month History",
         lbl_income: "Income",
         lbl_expense: "Spend",
         lbl_invest: "Invest",
@@ -1608,6 +1751,45 @@
             )
             .join("")
         : `<div class="text-[11px] text-muted text-center py-2">செலவு பதிவு இல்லை</div>`;
+
+      // Render Yearly Month-by-Month History under Yearly Performance
+      const yearlyHistEl = document.getElementById("yearlyHistoryList");
+      const yearlyBadgeEl = document.getElementById("yearlyActiveMonthsBadge");
+      if (yearlyHistEl) {
+        const shortMNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const yearRows = [];
+        for (let m = 1; m <= 12; m++) {
+          const ymKey = `${yStr}-${String(m).padStart(2, "0")}`;
+          const mb = appState.months[ymKey];
+          if (!mb) continue;
+          const mInc = (mb.income || []).reduce((s, x) => s + (Number(x.amount) || 0), 0);
+          const mExp = (mb.expense || []).reduce((s, x) => s + (Number(x.amount) || 0), 0);
+          const mInv = Number(mb.invest) || 0;
+          if (mInc === 0 && mExp === 0 && mInv === 0) continue;
+          const mNet = mInc - mExp;
+          yearRows.push(`
+            <div class="flex items-center justify-between gap-2 bg-black/30 px-2.5 py-1.5 rounded-lg text-[11px]">
+              <div class="font-extrabold text-purple-100">${shortMNames[m - 1]} ${yStr}</div>
+              <div class="flex items-center gap-2 text-[10px] font-black">
+                <span class="text-emerald-300">+${formatINR(mInc)}</span>
+                <span class="text-rose-300">-${formatINR(mExp)}</span>
+                <span class="${mNet >= 0 ? "text-amber-300" : "text-rose-400"}">(${mNet >= 0 ? "+" : ""}${formatINR(mNet)})</span>
+              </div>
+            </div>
+          `);
+        }
+        if (yearlyBadgeEl) {
+          yearlyBadgeEl.textContent =
+            appState.lang === "en" ? `${yearRows.length} Active Months` : `${yearRows.length} மாதங்கள்`;
+        }
+        yearlyHistEl.innerHTML = yearRows.length
+          ? yearRows.join("")
+          : `<div class="text-[11px] text-purple-200/80 text-center py-2">${
+              appState.lang === "en"
+                ? `No monthly totals recorded yet for ${yStr}.`
+                : `${yStr} ஆண்டிற்கான மாதாந்திர வரவு-செலவு ஹிஸ்டரி இன்னும் பதிவாகவில்லை.`
+            }</div>`;
+      }
     }
 
     function renderCompulsoryCommitments() {
@@ -1817,23 +1999,31 @@
             </div>`;
             })
             .join("")
-        : `<div class="sub-surface p-3 text-center text-[11px] text-muted">${appState.lang === "en" ? "No active commitments in this tab. Click '+ Add Goal' to add one." : "இந்தப் பிரிவில் செயலில் உள்ள இலக்குகள் இல்லை. '+ இலக்கு' அழுத்திச் சேர்க்கவும்."}</div>`;
+        : `<div class="sub-surface p-3 text-center text-[11px] text-muted">${appState.lang === "en" ? "No active commitments in this tab. Click '+ Add Goal'." : "இந்தப் பிரிவில் இலக்குகள் இல்லை. '+ இலக்கு' அழுத்திச் சேர்க்கவும்."}</div>`;
 
-      const histEl = document.getElementById("completedCommitHistoryBox");
-      if (histEl) {
-        histEl.innerHTML = completedItems.length
-          ? completedItems
-              .map(
-                (c, idx) => `
-              <div class="bg-emerald-500/15 border border-emerald-400/30 rounded-xl p-2.5 flex items-center justify-between gap-2 text-xs">
-                <div>
-                  <div class="font-black text-emerald-400">🏆 #${idx + 1} ${escapeHtml(c.title)} — ${appState.lang === "en" ? "Completed!" : "முடிக்கப்பட்டது!"}</div>
-                  <div class="text-[10px] text-muted">${escapeHtml(c.completedDate || appState.selectedMonth)} • ${formatINR(c.target)} (${appState.lang === "en" ? "Set your next target!" : "அடுத்த இலக்கை செட் செய்யுங்கள்!"})</div>
-                </div>
-                <button type="button" data-del-commit="${c.id}" class="px-2 py-1 rounded-lg bg-rose-500/20 text-rose-400 text-[10px] font-bold">✕</button>
-              </div>`
-              )
-              .join("")
+      const compHistEl = document.getElementById("completedCommitHistoryBox");
+      if (compHistEl) {
+        const horizonLabel = tab === "short" ? "Short-Term" : tab === "mid" ? "Mid-Term" : "Long-Term";
+        compHistEl.innerHTML = completedItems.length
+          ? `
+            <div class="bg-emerald-500/10 border border-emerald-400/30 rounded-xl p-2.5 space-y-1.5">
+              <div class="flex items-center justify-between text-[11px] font-black text-emerald-400">
+                <span>🏆 ${horizonLabel} Completed History (${completedItems.length})</span>
+                <button type="button" data-action="addGoal" class="px-2 py-0.5 rounded bg-emerald-600 text-white text-[10px] font-black">+ Set ${completedItems.length + 1}nd Target</button>
+              </div>
+              ${completedItems
+                .map(
+                  (c, idx) => `
+                <div class="flex items-center justify-between text-[11px] bg-black/20 px-2.5 py-1.5 rounded-lg">
+                  <div class="min-w-0">
+                    <div class="font-extrabold text-emerald-300 truncate">${idx + 1}st ${horizonLabel} Completed: ${escapeHtml(c.title)}</div>
+                    <div class="text-[10px] text-muted">Completed on ${escapeHtml(c.completedDate || TODAY_INFO.full)} • ${formatINR(c.target)}</div>
+                  </div>
+                  <button type="button" data-del-commit="${c.id}" class="text-rose-400 font-black text-[10px] ml-2">✕</button>
+                </div>`
+                )
+                .join("")}
+            </div>`
           : "";
       }
     }
@@ -1881,58 +2071,75 @@
             </div>`;
             })
             .join("")
-        : `<div class="sub-surface p-3 text-center text-[11px] text-muted">${appState.lang === "en" ? "No profit targets in this tab yet." : "இந்தப் பிரிவில் Profit இலக்குகள் இல்லை."}</div>`;
+        : `<div class="sub-surface p-3 text-center text-[11px] text-muted">${appState.lang === "en" ? "No profit targets yet. Click '+ Profit Goal'." : "லாப இலக்குகள் இல்லை. '+ Profit இலக்கு' அழுத்தவும்."}</div>`;
     }
 
     function renderAnalyticsAndDebt() {
       const agg = getAggregates();
       const lang = appState.lang === "en" ? "en" : "ta";
 
-      // 1. Portfolio Allocation Donut Circle Chart (Merged in Top Portfolio Overview)
+      // 1. Portfolio Allocation Donut Circle (Inside Portfolio Overview)
       const donutSvg = document.getElementById("analyticsDonutSvg");
       if (donutSvg) {
+        const inc = Math.max(0, agg.dispInc);
+        const exp = Math.max(0, agg.dispExp);
+        const inv = Math.max(0, agg.dispInv);
+        const dbt = Math.max(0, agg.dispDebt);
+        const total = inc + exp + inv + dbt;
+        const r = 64;
         const cx = 90;
         const cy = 90;
-        const r = 62;
-        const circumference = 2 * Math.PI * r;
-        const slices = [
-          { val: Math.max(0, agg.dispInc), color: "#34d399" },
-          { val: Math.max(0, agg.dispExp), color: "#f43f5e" },
-          { val: Math.max(0, agg.dispInv), color: "#38bdf8" },
-          { val: Math.max(0, agg.dispDebt), color: "#fbbf24" },
-          { val: Math.max(0, agg.dispSavings), color: "#c4b5fd" }
-        ];
-        const total = slices.reduce((s, x) => s + x.val, 0);
+        const circ = 2 * Math.PI * r;
 
         if (total <= 0) {
           donutSvg.innerHTML = `
             <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="18" />
-            <text x="${cx}" y="${cy - 4}" text-anchor="middle" fill="#e9d5ff" font-size="10" font-weight="800">${lang === "en" ? "No Data Yet" : "டேட்டா இல்லை"}</text>
-            <text x="${cx}" y="${cy + 13}" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="900">₹0</text>
+            <text x="${cx}" y="${cy - 4}" text-anchor="middle" fill="#e9d5ff" font-size="10" font-weight="800">NET</text>
+            <text x="${cx}" y="${cy + 14}" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="900">₹0</text>
           `;
         } else {
+          const segs = [
+            { val: inc, color: "#34d399" },
+            { val: exp, color: "#fb7185" },
+            { val: inv, color: "#38bdf8" },
+            { val: dbt, color: "#fbbf24" }
+          ];
           let offset = 0;
-          const arcs = slices
-            .map((sl) => {
-              const segLen = (sl.val / total) * circumference;
-              const arc = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${sl.color}" stroke-width="18" stroke-dasharray="${segLen} ${circumference}" stroke-dashoffset="${-offset}" transform="rotate(-90 ${cx} ${cy})" />`;
-              offset += segLen;
-              return arc;
+          const arcs = segs
+            .map((s) => {
+              const len = (s.val / total) * circ;
+              const dash = `${len} ${circ - len}`;
+              const el = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${s.color}" stroke-width="18" stroke-dasharray="${dash}" stroke-dashoffset="${-offset}" transform="rotate(-90 ${cx} ${cy})" />`;
+              offset += len;
+              return el;
             })
             .join("");
           donutSvg.innerHTML = `
             ${arcs}
-            <text x="${cx}" y="${cy - 5}" text-anchor="middle" fill="#e9d5ff" font-size="10" font-weight="800">${lang === "en" ? "Net Worth" : "நிகர மதிப்பு"}</text>
-            <text x="${cx}" y="${cy + 12}" text-anchor="middle" fill="${agg.dispBal >= 0 ? "#6ee7b7" : "#fda4af"}" font-size="12.5" font-weight="900">${formatINR(agg.dispBal)}</text>
+            <text x="${cx}" y="${cy - 4}" text-anchor="middle" fill="#e9d5ff" font-size="10" font-weight="800">NET</text>
+            <text x="${cx}" y="${cy + 14}" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="900">${formatINR(agg.dispBal)}</text>
           `;
         }
       }
 
-      // 2. TradingView-Style 2026–2030 ₹1 Crore Target Plan (Part-by-Part Roadmap)
+      // 2. TradingView-Style 2026–2030 ₹1 Crore Target Plan (Entire Portfolio + Debt Minus Analysis + Blinking Live Dot)
       const tvSvg = document.getElementById("tradingViewGrowthSvg");
       const goal2030 = Math.max(100000, Number(appState.goal2030Target) || 10000000);
       const part1Target = Math.max(10000, Number(appState.oneYearTarget) || Math.round(goal2030 / 5));
-      const currentWealth = agg.dispBal + agg.dispInv;
+
+      const totalGoalSaved = (appState.commitments || []).reduce((s, c) => s + (Number(c.saved) || 0), 0);
+      const totalProfitAch = (appState.profitHorizons || []).reduce((s, p) => s + (Number(p.achieved) || 0), 0);
+      const unpaidBillsSum = (appState.bills || []).filter((b) => !b.paid).reduce((s, b) => s + (Number(b.amount) || 0), 0);
+      const curBucket = getMonthBucket(appState, appState.selectedMonth || TODAY_INFO.ym);
+      const pendingCompSum = (curBucket.compulsory || []).reduce(
+        (s, c) => s + Math.max(0, (Number(c.required) || 0) - (Number(c.covered) || 0)),
+        0
+      );
+
+      // Entire Portfolio Net Worth (Automatically drops into negative RED territory when Debt + Liabilities exceed Assets)
+      const grossAssets = agg.dispBal + agg.dispInv + totalGoalSaved + Math.round(totalProfitAch * 0.25);
+      const totalLiabilities = agg.dispDebt + unpaidBillsSum + pendingCompSum;
+      const currentWealth = grossAssets - totalLiabilities;
       const posWealth = Math.max(0, currentWealth);
       const remainingTo1Cr = Math.max(0, goal2030 - posWealth);
       const remainingToPart1 = Math.max(0, part1Target - posWealth);
@@ -1941,18 +2148,32 @@
       const estDaysTo1Cr = remainingTo1Cr === 0 ? 0 : Math.max(1, Math.ceil((remainingTo1Cr / monthlyNetPace) * 30));
       const estDaysToPart1 = remainingToPart1 === 0 ? 0 : Math.max(1, Math.ceil((remainingToPart1 / monthlyNetPace) * 30));
 
-      const isBullish = currentWealth >= 0 && agg.monthHand >= 0;
-      const lineColor = isBullish ? "#10b981" : "#f43f5e";
-      const areaFill = isBullish ? "rgba(16, 185, 129, 0.16)" : "rgba(244, 63, 94, 0.16)";
+      const isMinusOrBear = currentWealth < 0 || (agg.dispDebt > 0 && currentWealth < agg.dispDebt * 0.5);
+      const isLight = appState.theme === "light";
+      const bullColor = isLight ? "#059669" : "#00e676";
+      const bearColor = isLight ? "#e11d48" : "#ff3b5c";
+      const lineColor = currentWealth < 0 ? bearColor : isMinusOrBear ? bearColor : bullColor;
+      const areaFill = currentWealth < 0 || isMinusOrBear ? "url(#tvBearGrad)" : "url(#tvBullGrad)";
+      const axisTextColor = isLight ? "#1e1b4b" : "#e9d5ff";
+      const subAxisColor = isLight ? "#4c1d95" : "#a78bfa";
+      const gridLineColor = isLight ? "rgba(95,37,159,0.18)" : "rgba(196,181,253,0.16)";
+      const vertLineColor = isLight ? "rgba(95,37,159,0.14)" : "rgba(196,181,253,0.12)";
+      const nodeStrokeColor = isLight ? "#ffffff" : "#090612";
 
-      const badgeEl = document.getElementById("tvTrendBadge");
-      if (badgeEl) {
-        badgeEl.textContent = isBullish
-          ? lang === "en" ? "1 CR BULLISH • GREEN" : "1 CR வளர்ச்சி • GREEN"
-          : lang === "en" ? "DRAWDOWN • RED" : "சரிவு • RED";
-        badgeEl.className = isBullish
-          ? "px-2 py-0.5 rounded-full text-[9px] font-black bg-emerald-500/20 text-emerald-400"
-          : "px-2 py-0.5 rounded-full text-[9px] font-black bg-rose-500/20 text-rose-400";
+      const netStatEl = document.getElementById("tvNetWorthStat");
+      const debtStatEl = document.getElementById("tvDebtImpactStat");
+      const idxStatEl = document.getElementById("tvPortfolioIdxStat");
+      if (netStatEl) {
+        netStatEl.textContent = formatINR(currentWealth);
+        netStatEl.className = currentWealth < 0 ? "font-black text-rose-400" : "font-black text-emerald-400";
+      }
+      if (debtStatEl) {
+        debtStatEl.textContent = totalLiabilities > 0 ? `-${formatINR(totalLiabilities)}` : "₹0";
+      }
+      if (idxStatEl) {
+        const idxPts = Math.round((currentWealth / Math.max(1, part1Target)) * 1000);
+        idxStatEl.textContent = `${idxPts} PTS`;
+        idxStatEl.className = idxPts < 0 ? "font-black text-rose-400" : "font-black text-amber-400";
       }
 
       const topValEl = document.getElementById("tvTargetTopVal");
@@ -1984,123 +2205,323 @@
         if (remainingTo1Cr === 0) {
           boxAiSugEl.innerHTML =
             lang === "en"
-              ? `🎉 Incredible! You have achieved your <strong>2030 ₹1 Crore (${formatINR(goal2030)})</strong> milestone! Set your next multi-crore target to keep compounding.`
-              : `🎉 மாபெரும் சாதனை! உங்கள் <strong>2030 ₹1 கோடி (${formatINR(goal2030)})</strong> இலக்கை வெற்றிகரமாக அடைந்துவிட்டீர்கள்!`;
+              ? `🎉 Incredible! Your net portfolio after all debts has reached <strong>${formatINR(currentWealth)}</strong>, hitting your <strong>2030 ₹1 Crore (${formatINR(goal2030)})</strong> milestone!`
+              : `🎉 மாபெரும் சாதனை! அனைத்துக் கடன்களும் கழித்த பிறகும் உங்கள் நிகர போர்ட்ஃபோலியோ <strong>${formatINR(currentWealth)}</strong> ஆக உயர்ந்து <strong>2030 ₹1 கோடி (${formatINR(goal2030)})</strong> இலக்கை அடைந்துவிட்டது!`;
+        } else if (currentWealth < 0) {
+          boxAiSugEl.innerHTML =
+            lang === "en"
+              ? `⚠️ <strong>Debt Drawdown Alert (Red Zone):</strong> Your net portfolio is currently <strong>${formatINR(currentWealth)}</strong> due to <strong>${formatINR(totalLiabilities)}</strong> in debt & liabilities. Clear debt first to lift the chart back above ₹0 into the Green uptrend toward <strong>${formatINR(goal2030)}</strong>.`
+              : `⚠️ <strong>கடன் மைனஸ் எச்சரிக்கை (Red Zone):</strong> மொத்தக் கடன் & நிலுவை <strong>${formatINR(totalLiabilities)}</strong> காரணமாக உங்கள் நிகர போர்ட்ஃபோலியோ <strong>${formatINR(currentWealth)}</strong> மைனஸில் உள்ளது. முதலில் கடனை அடைத்து கிராப்பை ₹0-க்கு மேல் Green வளர்ச்சிப் பாதைக்குக் கொண்டு வாருங்கள்!`;
         } else {
           boxAiSugEl.innerHTML =
             lang === "en"
-              ? `<strong>2030 ₹1 Crore Roadmap (5 Parts):</strong> You are at <strong>${formatINR(currentWealth)}</strong>. Complete <strong>Part-1 (1-Year Goal: ${formatINR(part1Target)})</strong> first by saving <strong>${formatINR(dailyReqPart1)}/day</strong> (~${estDaysToPart1} days), then scale Part-2 to Part-5 (<strong>${formatINR(dailyReq1Cr)}/day</strong> overall) to hit <strong>${formatINR(goal2030)}</strong> by 2030.`
-              : `<strong>2030 ₹1 கோடி ரோட்மேப் (5 பகுதிகள்):</strong> தற்போது நீங்கள் <strong>${formatINR(currentWealth)}</strong> நிலையில் உள்ளீர்கள். முதலில் <strong>Part-1 (1-Year இலக்கு: ${formatINR(part1Target)})</strong>-ஐ அடைய தினமும் <strong>${formatINR(dailyReqPart1)}</strong> (~${estDaysToPart1} நாட்கள்) சேமியுங்கள்; இதே வேகத்தில் Part-2 முதல் Part-5 வரை (சராசரியாக தினமும் <strong>${formatINR(dailyReq1Cr)}</strong>) தொடர்ந்தால் 2030-க்குள் <strong>${formatINR(goal2030)} (1 CR)</strong> இலக்கை எளிதாக அடையலாம்!`;
-        }
-      }
-
-      const etaEl = document.getElementById("tvEtaSubtitle");
-      if (etaEl) {
-        if (remainingTo1Cr === 0) {
-          etaEl.textContent =
-            lang === "en"
-              ? `🎉 2030 ₹1 Crore Target (${formatINR(goal2030)}) Achieved!`
-              : `🎉 2030 ₹1 கோடி இலக்கு (${formatINR(goal2030)}) வெற்றிகரமாக அடையப்பட்டது!`;
-        } else {
-          etaEl.textContent =
-            lang === "en"
-              ? `Now: ${formatINR(currentWealth)} • Part-1: ${formatINR(part1Target)} • 2030 Goal: ${formatINR(goal2030)}`
-              : `தற்போது: ${formatINR(currentWealth)} • Part-1: ${formatINR(part1Target)} • 2030 இலக்கு: ${formatINR(goal2030)}`;
+              ? `<strong>Entire Portfolio Analysis:</strong> Net Worth after debt is <strong>${formatINR(currentWealth)}</strong>. Complete <strong>Part-1 (${formatINR(part1Target)})</strong> by saving <strong>${formatINR(dailyReqPart1)}/day</strong> (~${estDaysToPart1} days), then scale Part-2 to Part-5 (<strong>${formatINR(dailyReq1Cr)}/day</strong>) to hit <strong>${formatINR(goal2030)}</strong>.`
+              : `<strong>முழு போர்ட்ஃபோலியோ பகுப்பாய்வு:</strong> கடன் கழித்த நிகர மதிப்பு <strong>${formatINR(currentWealth)}</strong>. முதலில் <strong>Part-1 (${formatINR(part1Target)})</strong>-ஐ அடைய தினமும் <strong>${formatINR(dailyReqPart1)}</strong> (~${estDaysToPart1} நாட்கள்) சேமித்து, தொடர்ந்து 2030-க்குள் <strong>${formatINR(goal2030)} (1 CR)</strong> இலக்கை அடையுங்கள்!`;
         }
       }
 
       if (tvSvg) {
-        const years = [2026, 2027, 2028, 2029, 2030];
-        const stepPerYear = Math.max(10000, (goal2030 - posWealth) / 4);
-        const projectedVals = years.map((_, idx) => {
-          if (idx === 0) return posWealth;
-          if (idx === 1) return Math.max(posWealth + stepPerYear, part1Target);
-          if (idx === 4) return goal2030;
-          return Math.round(posWealth + stepPerYear * idx);
+        // Real historical path stops strictly at the current Blinking Live Point; clearly shows 2026 -> 2030 years below
+        const selYm = appState.selectedMonth || TODAY_INFO.ym;
+        const selYear = Number(selYm.slice(0, 4)) || 2026;
+        const selMonthNum = Number(selYm.slice(5, 7)) || 11;
+        const monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const curShortLabel = `${monthShortNames[selMonthNum - 1]} '${String(selYear).slice(-2)}`;
+
+        let runningCum = -totalLiabilities;
+        const monthlySeries = [];
+        for (let m = 1; m <= 12; m++) {
+          const ymKey = `${selYear}-${String(m).padStart(2, "0")}`;
+          const b = appState.months[ymKey];
+          if (b) {
+            const mInc = (b.income || []).reduce((s, x) => s + (Number(x.amount) || 0), 0);
+            const mExp = (b.expense || []).reduce((s, x) => s + (Number(x.amount) || 0), 0);
+            const mInv = Number(b.invest) || 0;
+            runningCum += mInc - mExp + mInv;
+          }
+          monthlySeries.push({
+            m,
+            ymKey,
+            val: runningCum,
+            hasData: Boolean(b && ((b.income || []).length || (b.expense || []).length || b.invest))
+          });
+        }
+
+        // Compact 4-point trajectory inside 2026 so 2026, 2027, 2028, 2029, 2030 years below are wide & crystal clear
+        const histCheckpoints = [1, Math.max(2, Math.floor(selMonthNum / 2)), selMonthNum]
+          .filter((v, i, arr) => v <= selMonthNum && arr.indexOf(v) === i)
+          .sort((a, b) => a - b);
+
+        const waypoints = [];
+        const baseScaleRef = Math.max(Math.abs(currentWealth), totalLiabilities, part1Target * 0.1, 25000);
+        const waveOffsets = [-0.14, 0.11, 0];
+
+        histCheckpoints.forEach((mNum, idx) => {
+          const isCurrentNode = mNum === selMonthNum;
+          let ptVal;
+          if (isCurrentNode) {
+            ptVal = currentWealth;
+          } else {
+            const mObj = monthlySeries[mNum - 1];
+            const progressRatio = mNum / Math.max(1, selMonthNum);
+            const rawHist = mObj && mObj.hasData ? mObj.val : currentWealth * progressRatio;
+            const wave = Math.round(baseScaleRef * (waveOffsets[idx % waveOffsets.length] || 0));
+            ptVal = rawHist + wave;
+          }
+          waypoints.push({
+            val: ptVal,
+            bottomLabel: isCurrentNode ? `${selYear}` : `${monthShortNames[mNum - 1]}`,
+            subTag: isCurrentNode ? curShortLabel : "",
+            isLive: isCurrentNode,
+            isYearMajor: mNum === 1 || isCurrentNode
+          });
         });
-        const maxScale = Math.max(goal2030 * 1.12, ...projectedVals, 100000);
+
+        const nowDate = new Date(selYear, selMonthNum - 1, Number(appState.selectedDay) || 1);
+        const predDate = new Date(nowDate.getTime() + estDaysTo1Cr * 24 * 60 * 60 * 1000);
+        const predYear = predDate.getFullYear();
+        const predMonthLabel = `${monthShortNames[predDate.getMonth()]} '${String(predYear).slice(-2)}`;
+        const futureYears = [2027, 2028, 2029, 2030].filter((y) => y > selYear);
+        if (predYear > 2030 && predYear <= 2045) {
+          futureYears.push(predYear);
+        }
+
+        const paceStatus =
+          remainingTo1Cr === 0
+            ? "achieved"
+            : currentWealth < 0
+            ? "debt_minus"
+            : predYear < 2030 || (predYear === 2030 && predDate.getMonth() <= 11)
+            ? "fast"
+            : "extended";
+
+        const badgeEl = document.getElementById("tvTrendBadge");
+        if (badgeEl) {
+          if (paceStatus === "achieved") {
+            badgeEl.textContent = lang === "en" ? "1 CR ACHIEVED ✓" : "1 CR இலக்கு அடைந்தது ✓";
+            badgeEl.className = "px-2 py-0.5 rounded-full text-[9px] font-black bg-emerald-500/20 text-emerald-300 border border-emerald-400/30";
+          } else if (paceStatus === "debt_minus") {
+            badgeEl.textContent = lang === "en" ? "DEBT MINUS • RED ZONE" : "கடன் மைனஸ் • RED ZONE";
+            badgeEl.className = "px-2 py-0.5 rounded-full text-[9px] font-black bg-rose-500/25 text-rose-300 border border-rose-400/40";
+          } else if (paceStatus === "fast") {
+            badgeEl.textContent =
+              lang === "en"
+                ? `NOW: ${curShortLabel} • ETA ${predMonthLabel}`
+                : `இப்போது: ${curShortLabel} • இலக்கு ${predMonthLabel}`;
+            badgeEl.className = "px-2 py-0.5 rounded-full text-[9px] font-black bg-emerald-500/20 text-emerald-300 border border-emerald-400/30";
+          } else {
+            badgeEl.textContent =
+              lang === "en"
+                ? `NOW: ${curShortLabel} • ETA ${predMonthLabel}`
+                : `இப்போது: ${curShortLabel} • நீட்டிப்பு ${predMonthLabel}`;
+            badgeEl.className = "px-2 py-0.5 rounded-full text-[9px] font-black bg-amber-500/20 text-amber-300 border border-amber-400/30";
+          }
+        }
+
+        const etaEl = document.getElementById("tvEtaSubtitle");
+        if (etaEl) {
+          if (remainingTo1Cr === 0) {
+            etaEl.textContent =
+              lang === "en"
+                ? `🎉 2030 ₹1 Crore Target (${formatINR(goal2030)}) Achieved!`
+                : `🎉 2030 ₹1 கோடி இலக்கு (${formatINR(goal2030)}) வெற்றிகரமாக அடையப்பட்டது!`;
+          } else {
+            etaEl.textContent =
+              lang === "en"
+                ? `Current: ${curShortLabel} (${formatINR(currentWealth)}) • AI 1 CR ETA: ${predMonthLabel} (${estDaysTo1Cr}d)`
+                : `தற்போதைய நிலை: ${curShortLabel} (${formatINR(currentWealth)}) • AI 1 CR இலக்கு: ${predMonthLabel} (${estDaysTo1Cr} நாட்கள்)`;
+          }
+        }
+
+        const allVals = waypoints.map((w) => w.val);
+        const minVal = Math.min(0, ...allVals, currentWealth < 0 ? currentWealth * 1.18 : 0);
+        const maxVal = Math.max(goal2030 * 1.1, ...allVals, 100000);
+        const spanVal = Math.max(10000, maxVal - minVal);
 
         const plotLeft = 12;
-        const plotRight = 294;
-        const plotTop = 16;
-        const plotBottom = 144;
+        const plotRight = 292;
+        const plotTop = 18;
+        const plotBottom = 146;
         const plotW = plotRight - plotLeft;
         const plotH = plotBottom - plotTop;
 
-        const yForVal = (v) => plotBottom - Math.min(1, Math.max(0, v / maxScale)) * plotH;
-        const xForIdx = (i) => plotLeft + (i / (years.length - 1)) * plotW;
+        const totalAxisSlots = Math.max(2, waypoints.length + futureYears.length - 1);
+        const yForVal = (v) => plotBottom - ((v - minVal) / spanVal) * plotH;
+        const xForSlot = (slotIdx) => plotLeft + (slotIdx / totalAxisSlots) * plotW;
+
+        const zeroY = yForVal(0);
 
         const gridLevels = [0, 0.33, 0.66, 1];
         const gridHtml = gridLevels
           .map((lvl) => {
-            const val = Math.round(maxScale * lvl);
+            const val = Math.round(minVal + spanVal * lvl);
             const y = plotBottom - lvl * plotH;
-            let shortAmt = `₹${Math.round(val / 1000)}k`;
-            if (val >= 10000000) shortAmt = `₹${(val / 10000000).toFixed(1).replace(/\.0$/, "")}Cr`;
-            else if (val >= 100000) shortAmt = `₹${(val / 100000).toFixed(0)}L`;
+            const absV = Math.abs(val);
+            const sign = val < 0 ? "-" : "";
+            let shortAmt = `${sign}₹${Math.round(absV / 1000)}k`;
+            if (absV >= 10000000) shortAmt = `${sign}₹${(absV / 10000000).toFixed(1).replace(/\.0$/, "")}Cr`;
+            else if (absV >= 100000) shortAmt = `${sign}₹${(absV / 100000).toFixed(0)}L`;
             return `
-              <line x1="${plotLeft}" y1="${y}" x2="${plotRight}" y2="${y}" stroke="rgba(168,85,247,0.18)" stroke-dasharray="3 3" />
-              <text x="${plotRight + 6}" y="${y + 3}" fill="currentColor" opacity="0.8" font-size="9" font-weight="800">${shortAmt}</text>
+              <line x1="${plotLeft}" y1="${y}" x2="${plotRight}" y2="${y}" stroke="${gridLineColor}" stroke-dasharray="3 3" />
+              <text x="${plotRight + 6}" y="${y + 3}" fill="${val < 0 ? bearColor : axisTextColor}" font-size="8.8" font-weight="900">${shortAmt}</text>
             `;
           })
           .join("");
 
+        const zeroLineHtml =
+          minVal < 0
+            ? `
+              <rect x="${plotLeft}" y="${zeroY}" width="${plotW}" height="${Math.max(0, plotBottom - zeroY)}" fill="${bearColor}" opacity="0.09" />
+              <line x1="${plotLeft}" y1="${zeroY}" x2="${plotRight}" y2="${zeroY}" stroke="${bearColor}" stroke-width="1.4" stroke-dasharray="4 2" opacity="0.85" />
+              <text x="${plotLeft + 4}" y="${zeroY - 3}" fill="${bearColor}" font-size="7.5" font-weight="900">₹0 BASELINE (MINUS BELOW)</text>
+            `
+            : "";
+
         const targetY = yForVal(part1Target);
         const goal2030Y = yForVal(goal2030);
         const targetLineHtml = `
-          <line x1="${plotLeft}" y1="${goal2030Y}" x2="${plotRight}" y2="${goal2030Y}" stroke="#10b981" stroke-width="1.2" stroke-dasharray="3 2" />
-          <rect x="${plotRight + 3}" y="${goal2030Y - 7}" width="52" height="14" rx="4" fill="#10b981" />
-          <text x="${plotRight + 29}" y="${goal2030Y + 2.5}" text-anchor="middle" fill="#090612" font-size="8" font-weight="900">1 CR</text>
+          <line x1="${plotLeft}" y1="${goal2030Y}" x2="${plotRight}" y2="${goal2030Y}" stroke="${bullColor}" stroke-width="1.5" stroke-dasharray="3 2" />
+          <rect x="${plotRight + 3}" y="${goal2030Y - 7}" width="54" height="14" rx="4" fill="${bullColor}" />
+          <text x="${plotRight + 30}" y="${goal2030Y + 2.5}" text-anchor="middle" fill="${isLight ? "#ffffff" : "#06120c"}" font-size="8" font-weight="900">1 CR</text>
 
-          <line x1="${plotLeft}" y1="${targetY}" x2="${plotRight}" y2="${targetY}" stroke="#fbbf24" stroke-width="1.3" stroke-dasharray="4 3" />
-          <rect x="${plotRight + 3}" y="${targetY - 7}" width="52" height="14" rx="4" fill="#fbbf24" />
-          <text x="${plotRight + 29}" y="${targetY + 2.5}" text-anchor="middle" fill="#090612" font-size="8" font-weight="900">PART-1</text>
+          <line x1="${plotLeft}" y1="${targetY}" x2="${plotRight}" y2="${targetY}" stroke="${isLight ? "#d97706" : "#fbbf24"}" stroke-width="1.4" stroke-dasharray="4 3" />
+          <rect x="${plotRight + 3}" y="${targetY - 7}" width="54" height="14" rx="4" fill="${isLight ? "#d97706" : "#fbbf24"}" />
+          <text x="${plotRight + 30}" y="${targetY + 2.5}" text-anchor="middle" fill="${isLight ? "#ffffff" : "#090612"}" font-size="8" font-weight="900">PART-1</text>
         `;
 
-        const coords = projectedVals.map((v, idx) => ({ x: xForIdx(idx), y: yForVal(v), val: v, yr: years[idx] }));
+        const coords = waypoints.map((wp, idx) => ({
+          x: xForSlot(idx),
+          y: yForVal(wp.val),
+          val: wp.val,
+          bottomLabel: wp.bottomLabel,
+          subTag: wp.subTag,
+          isLive: wp.isLive,
+          isYearMajor: wp.isYearMajor
+        }));
+
+        const curPt = coords[coords.length - 1];
+
+        let segmentsHtml = "";
+        for (let i = 0; i < coords.length - 1; i++) {
+          const p1 = coords[i];
+          const p2 = coords[i + 1];
+          const segNegOrDrop = p2.val < 0 || p2.val < p1.val;
+          const segColor = segNegOrDrop ? bearColor : bullColor;
+          segmentsHtml += `<line x1="${p1.x}" y1="${p1.y}" x2="${p2.x}" y2="${p2.y}" stroke="${segColor}" stroke-width="3.2" stroke-linecap="round" />`;
+        }
+
         const polylinePts = coords.map((c) => `${c.x},${c.y}`).join(" ");
-        const areaPts = `${coords[0].x},${plotBottom} ${polylinePts} ${coords[coords.length - 1].x},${plotBottom}`;
+        const baseFillY = minVal < 0 ? zeroY : plotBottom;
+        const areaPts = `${coords[0].x},${baseFillY} ${polylinePts} ${curPt.x},${baseFillY}`;
 
-        const curPt = coords[0];
-        const curBadgeText = `${isBullish ? "▲" : "▼"} ${formatINR(currentWealth)}`;
-
-        const yearLabelsHtml = coords
-          .map(
-            (c) => `
-            <line x1="${c.x}" y1="${plotTop}" x2="${c.x}" y2="${plotBottom}" stroke="rgba(168,85,247,0.12)" />
-            <text x="${c.x}" y="${plotBottom + 16}" text-anchor="middle" fill="currentColor" opacity="0.85" font-size="9.5" font-weight="900">${c.yr}</text>
-            <circle cx="${c.x}" cy="${c.y}" r="3.2" fill="${lineColor}" stroke="#090612" stroke-width="1.2" />
-          `
-          )
+        const histXLabelsHtml = coords
+          .map((c) => {
+            const nodeClr = c.val < 0 ? bearColor : bullColor;
+            if (c.isLive) {
+              return `
+                <line x1="${c.x}" y1="${plotTop}" x2="${c.x}" y2="${plotBottom}" stroke="${nodeClr}" stroke-width="1.3" stroke-dasharray="2 2" opacity="0.85" />
+                <rect x="${c.x - 19}" y="${plotBottom + 4}" width="38" height="14" rx="4" fill="${nodeClr}" />
+                <text x="${c.x}" y="${plotBottom + 13.5}" text-anchor="middle" fill="${isLight || currentWealth < 0 ? "#ffffff" : "#06120c"}" font-size="8.8" font-weight="900">${c.bottomLabel}</text>
+                <text x="${c.x}" y="${plotBottom + 26}" text-anchor="middle" fill="${nodeClr}" font-size="7.3" font-weight="900">NOW (${c.subTag})</text>
+              `;
+            }
+            return `
+              <line x1="${c.x}" y1="${plotTop}" x2="${c.x}" y2="${plotBottom}" stroke="${vertLineColor}" />
+              <text x="${c.x}" y="${plotBottom + 14}" text-anchor="middle" fill="${subAxisColor}" font-size="8.2" font-weight="800">${c.bottomLabel}</text>
+              <circle cx="${c.x}" cy="${c.y}" r="3.4" fill="${nodeClr}" stroke="${nodeStrokeColor}" stroke-width="1.3" />
+            `;
+          })
           .join("");
 
+        const futureXLabelsHtml = futureYears
+          .map((yr, idx) => {
+            const slot = waypoints.length + idx;
+            const fx = xForSlot(slot);
+            const isPredYear = yr === predYear;
+            const is2030 = yr === 2030;
+            const yrFill = isPredYear
+              ? paceStatus === "extended" || paceStatus === "debt_minus"
+                ? "#f59e0b"
+                : bullColor
+              : is2030
+              ? bullColor
+              : axisTextColor;
+            const predMarkerHtml = isPredYear
+              ? `
+                <circle cx="${fx}" cy="${goal2030Y}" r="6" fill="none" stroke="${yrFill}" stroke-width="1.8" stroke-dasharray="2 2" />
+                <circle cx="${fx}" cy="${goal2030Y}" r="2.6" fill="${yrFill}" />
+                <rect x="${Math.min(plotRight - 66, fx - 33)}" y="${Math.max(plotTop, goal2030Y - 21)}" width="66" height="14" rx="4" fill="${yrFill}" />
+                <text x="${Math.min(plotRight - 33, fx)}" y="${Math.max(plotTop + 10, goal2030Y - 11.5)}" text-anchor="middle" fill="${isLight ? "#ffffff" : "#090612"}" font-size="7.5" font-weight="900">🎯 ${predMonthLabel}</text>
+              `
+              : "";
+            return `
+              <line x1="${fx}" y1="${plotTop}" x2="${fx}" y2="${plotBottom}" stroke="${vertLineColor}" />
+              <text x="${fx}" y="${plotBottom + 14}" text-anchor="middle" fill="${yrFill}" font-size="9.2" font-weight="900">${yr}</text>
+              ${is2030 ? `<text x="${fx}" y="${plotBottom + 25}" text-anchor="middle" fill="${bullColor}" font-size="7.2" font-weight="900">1 CR GOAL</text>` : ""}
+              ${predMarkerHtml}
+            `;
+          })
+          .join("");
+
+        const liveNodeColor = currentWealth < 0 ? bearColor : bullColor;
+        const curBadgeText = `${currentWealth >= 0 ? "▲" : "▼"} ${formatINR(currentWealth)}`;
+        const badgeW = Math.max(82, curBadgeText.length * 6.3);
+        const badgeX = Math.min(plotRight - badgeW - 2, Math.max(plotLeft + 2, curPt.x - badgeW / 2));
+        const badgeY = curPt.y > plotTop + 26 ? curPt.y - 23 : curPt.y + 11;
+
         tvSvg.innerHTML = `
+          <defs>
+            <linearGradient id="tvBullGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="${bullColor}" stop-opacity="${isLight ? "0.26" : "0.34"}" />
+              <stop offset="100%" stop-color="${bullColor}" stop-opacity="0.02" />
+            </linearGradient>
+            <linearGradient id="tvBearGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="${bearColor}" stop-opacity="0.04" />
+              <stop offset="100%" stop-color="${bearColor}" stop-opacity="${isLight ? "0.28" : "0.36"}" />
+            </linearGradient>
+          </defs>
           ${gridHtml}
-          ${yearLabelsHtml}
+          ${zeroLineHtml}
+          ${histXLabelsHtml}
+          ${futureXLabelsHtml}
           ${targetLineHtml}
           <polygon points="${areaPts}" fill="${areaFill}" />
-          <polyline fill="none" stroke="${lineColor}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" points="${polylinePts}" />
-          <circle cx="${curPt.x}" cy="${curPt.y}" r="6" fill="${lineColor}" opacity="0.32" />
-          <circle cx="${curPt.x}" cy="${curPt.y}" r="3.8" fill="${lineColor}" stroke="#ffffff" stroke-width="1.5" />
-          <rect x="${curPt.x + 6}" y="${Math.max(4, curPt.y - 16)}" width="74" height="15" rx="5" fill="${lineColor}" />
-          <text x="${curPt.x + 43}" y="${Math.max(14, curPt.y - 6)}" text-anchor="middle" fill="#ffffff" font-size="8.5" font-weight="900">${curBadgeText}</text>
+          ${segmentsHtml}
+          <circle class="tv-live-ring" cx="${curPt.x}" cy="${curPt.y}" r="10" fill="${liveNodeColor}" />
+          <circle cx="${curPt.x}" cy="${curPt.y}" r="5" fill="${liveNodeColor}" stroke="${nodeStrokeColor}" stroke-width="1.8" />
+          <rect x="${badgeX}" y="${badgeY}" width="${badgeW}" height="16" rx="5" fill="${liveNodeColor}" />
+          <text x="${badgeX + badgeW / 2}" y="${badgeY + 11}" text-anchor="middle" fill="${isLight || currentWealth < 0 ? "#ffffff" : "#06120c"}" font-size="8.5" font-weight="900">${curBadgeText}</text>
         `;
       }
 
       const debtBox = document.getElementById("debtListBox");
+      const totalMonthlyEmi = (appState.debts || []).reduce((s, d) => {
+        const rem = Math.max(0, (Number(d.total) || 0) - (Number(d.paid) || 0));
+        return rem > 0 ? s + (Number(d.emi) || 0) : s;
+      }, 0);
+      const emiBadgeEl = document.getElementById("totalMonthlyEmiBadge");
+      if (emiBadgeEl) {
+        emiBadgeEl.textContent =
+          lang === "en"
+            ? `Total Monthly EMI: ${formatINR(totalMonthlyEmi)}`
+            : `மொத்த மாதாந்திர EMI: ${formatINR(totalMonthlyEmi)}`;
+      }
+
       debtBox.innerHTML = appState.debts.length
         ? appState.debts
             .map((d) => {
               const rem = Math.max(0, (Number(d.total) || 0) - (Number(d.paid) || 0));
+              const emiVal = Number(d.emi) || 0;
               return `
-            <div class="bg-black/20 p-2 rounded-xl flex items-center justify-between gap-2">
-              <div>
-                <div class="font-extrabold">${escapeHtml(d.title)}</div>
+            <div class="bg-black/20 p-2.5 rounded-xl flex items-center justify-between gap-2">
+              <div class="min-w-0">
+                <div class="font-extrabold truncate">${escapeHtml(d.title)}</div>
                 <div class="text-[10px] text-muted">${lang === "en" ? "Remaining" : "மீதம்"}: ${formatINR(rem)} / ${formatINR(d.total)}</div>
+                <div class="text-[10px] font-extrabold text-amber-300 mt-0.5">${lang === "en" ? "Monthly EMI" : "மாதாந்திர EMI"}: ${formatINR(emiVal)}</div>
               </div>
-              <div class="flex items-center gap-1">
-                <button type="button" data-pay-debt="${d.id}" class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">Pay</button>
-                <button type="button" data-del-debt="${d.id}" class="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-400 text-[10px] font-bold">✕</button>
+              <div class="flex items-center gap-1 flex-shrink-0">
+                <button type="button" data-pay-debt="${d.id}" class="px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">Pay</button>
+                <button type="button" data-del-debt="${d.id}" class="px-1.5 py-1 rounded bg-rose-500/20 text-rose-400 text-[10px] font-bold">✕</button>
               </div>
             </div>`;
             })
@@ -2370,17 +2791,19 @@
           <div><label class="text-xs font-bold">கடன் பெயர்</label><input id="mDebtTitle" type="text" placeholder="எ.கா: Personal Loan / Credit Card" /></div>
           <div><label class="text-xs font-bold">மொத்த கடன் தொகை (₹)</label><input id="mDebtTotal" type="number" placeholder="50000" /></div>
           <div><label class="text-xs font-bold">ஏற்கனவே கட்டியது (₹)</label><input id="mDebtPaid" type="number" value="0" /></div>
+          <div><label class="text-xs font-bold">மாதாந்திர EMI (Monthly EMI ₹)</label><input id="mDebtEmi" type="number" placeholder="3500" /></div>
           `,
           () => {
             const title = document.getElementById("mDebtTitle").value.trim();
             const total = Number(document.getElementById("mDebtTotal").value) || 0;
             const paid = Number(document.getElementById("mDebtPaid").value) || 0;
+            const emi = Number(document.getElementById("mDebtEmi").value) || 0;
             if (title && total > 0) {
-              appState.debts.push({ id: "debt_" + Date.now(), title, total, paid });
+              appState.debts.push({ id: "debt_" + Date.now(), title, total, paid, emi });
             }
             closeModal();
             saveState();
-            showToast("கடன் விவரம் சேர்க்கப்பட்டது!");
+            showToast("கடன் & Monthly EMI சேர்க்கப்பட்டது!");
           }
         );
       } else if (action === "setOneYearTarget") {
@@ -2594,14 +3017,15 @@
         const id = payDebt.getAttribute("data-pay-debt");
         const d = appState.debts.find((x) => x.id === id);
         if (d) {
+          const defaultPay = Number(d.emi) > 0 ? Number(d.emi) : 1000;
           openModal(
-            `Pay Debt: ${d.title}`,
-            `<div><label class="text-xs font-bold">Payment Amount (₹)</label><input id="mDebtPayVal" type="number" placeholder="1000" /></div>`,
+            `Pay Debt / EMI: ${d.title}`,
+            `<div><label class="text-xs font-bold">Payment Amount (₹) — Monthly EMI: ${formatINR(d.emi || 0)}</label><input id="mDebtPayVal" type="number" value="${defaultPay}" /></div>`,
             () => {
               d.paid = (Number(d.paid) || 0) + (Number(document.getElementById("mDebtPayVal").value) || 0);
               closeModal();
               saveState();
-              showToast("Debt payment recorded!");
+              showToast("Debt / EMI payment recorded!");
             }
           );
         }
