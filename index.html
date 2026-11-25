@@ -360,9 +360,9 @@
               <div class="text-[10px] text-purple-200 font-bold" data-i18n="lbl_invest">முதலீடு</div>
               <div id="ovInvest" class="text-sm font-black text-sky-300 mt-0.5">₹0</div>
             </div>
-            <div class="bg-black/25 border border-white/15 rounded-xl p-2">
-              <div class="text-[10px] text-purple-200 font-bold" data-i18n="lbl_debt">கடன்</div>
-              <div id="ovDebt" class="text-sm font-black text-amber-300 mt-0.5">₹0</div>
+            <div class="bg-red-950/55 border border-red-500/45 rounded-xl p-2">
+              <div class="text-[10px] text-red-200 font-bold" data-i18n="lbl_debt">கடன்</div>
+              <div id="ovDebt" class="text-sm font-black text-red-400 mt-0.5">₹0</div>
             </div>
             <div class="col-span-2 bg-black/25 border border-white/15 rounded-xl p-2 flex items-center justify-between">
               <span class="text-[10px] text-purple-200 font-bold" data-i18n="lbl_savings">சேமிப்பு (Savings)</span>
@@ -2154,7 +2154,7 @@
             { val: inc, color: "#34d399" },
             { val: exp, color: "#fb7185" },
             { val: inv, color: "#38bdf8" },
-            { val: dbt, color: "#fbbf24" }
+            { val: dbt, color: "#dc2626" }
           ];
           let offset = 0;
           const arcs = segs
@@ -3753,7 +3753,7 @@
           <div class="sub-surface p-2.5"><div class="text-[10px] text-muted font-bold">${lang === "en" ? "Income" : "வரவு"}</div><div class="text-sm font-black text-emerald-400 mt-0.5">${formatINR(agg.dispInc)}</div></div>
           <div class="sub-surface p-2.5"><div class="text-[10px] text-muted font-bold">${lang === "en" ? "Spend" : "செலவு"}</div><div class="text-sm font-black text-rose-400 mt-0.5">${formatINR(agg.dispExp)}</div></div>
           <div class="sub-surface p-2.5"><div class="text-[10px] text-muted font-bold">${lang === "en" ? "Investment" : "முதலீடு"}</div><div class="text-sm font-black text-sky-400 mt-0.5">${formatINR(agg.dispInv)}</div></div>
-          <div class="sub-surface p-2.5"><div class="text-[10px] text-muted font-bold">${lang === "en" ? "Debt" : "கடன்"}</div><div class="text-sm font-black text-amber-400 mt-0.5">${formatINR(agg.dispDebt)}</div></div>
+          <div class="sub-surface p-2.5 border border-red-500/40 bg-red-950/25"><div class="text-[10px] text-red-300 font-bold">${lang === "en" ? "Debt" : "கடன்"}</div><div class="text-sm font-black text-red-500 mt-0.5">${formatINR(agg.dispDebt)}</div></div>
         `;
       } else {
         titleEl.textContent = lang === "en" ? "📈 2030 ₹1 Crore Target Plan (2026 – 2030) — Expanded View" : "📈 2030 ₹1 கோடி (1 CR) வளர்ச்சி வரைபடம் — முழு அளவு பார்வை";
