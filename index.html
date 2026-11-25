@@ -956,7 +956,7 @@
       <!-- 8B. Debt & EMI Monitor + Monthly SIP Investment (Balanced Right Column) -->
       <section class="surface-card p-4 space-y-3">
         <!-- Debt & EMI Monitor -->
-        <div class="sub-surface p-3 space-y-2">
+        <div class="sub-surface p-3 space-y-2.5">
           <div class="flex items-center justify-between gap-2">
             <div>
               <span class="text-xs font-black" data-i18n="sec_debt">💳 கடன் &amp; EMI கண்காணிப்பு</span>
@@ -964,7 +964,42 @@
             </div>
             <button type="button" data-action="addDebt" class="pill-btn px-2.5 py-1 rounded-lg bg-pink-500/20 text-pink-400 text-[10px] font-extrabold">+ Debt / EMI</button>
           </div>
+
+          <!-- Top Summary Box: Total Debt, Monthly EMI, Pending Amount & Priority Counts -->
+          <div class="bg-black/25 border border-purple-500/20 rounded-xl p-2.5 space-y-2">
+            <div class="grid grid-cols-3 gap-1.5 text-center">
+              <div class="bg-black/30 rounded-lg p-1.5">
+                <div class="text-[9px] text-muted font-bold" data-i18n="debt_tot_lbl">மொத்த கடன்</div>
+                <div id="debtBoxTotalVal" class="text-xs font-black mt-0.5">₹0</div>
+              </div>
+              <div class="bg-black/30 rounded-lg p-1.5">
+                <div class="text-[9px] text-muted font-bold" data-i18n="debt_emi_lbl">மாதாந்திர EMI</div>
+                <div id="debtBoxEmiVal" class="text-xs font-black text-amber-400 mt-0.5">₹0</div>
+              </div>
+              <div class="bg-black/30 rounded-lg p-1.5">
+                <div class="text-[9px] text-muted font-bold" data-i18n="debt_pend_lbl">பெண்டிங் மீதம்</div>
+                <div id="debtBoxPendingVal" class="text-xs font-black text-rose-400 mt-0.5">₹0</div>
+              </div>
+            </div>
+            <div class="flex flex-wrap items-center justify-between gap-1 text-[9.5px] font-black pt-1 border-t border-white/10">
+              <span class="text-muted" data-i18n="debt_prio_hdr">Priority நிலை:</span>
+              <div class="flex items-center gap-1.5">
+                <span id="debtCountAgg" class="px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-400/30">🔥 Aggressive: 0</span>
+                <span id="debtCountMod" class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/30">⚖️ Moderate: 0</span>
+                <span id="debtCountQck" class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">⚡ Quick: 0</span>
+              </div>
+            </div>
+          </div>
+
           <div id="debtListBox" class="space-y-1.5 text-xs"></div>
+
+          <!-- Bottom AI Debt Strategy Suggestion Box -->
+          <div class="bg-purple-600/15 border border-purple-400/30 rounded-xl p-2.5 text-xs space-y-1">
+            <div class="text-[10px] font-black text-purple-300 uppercase" data-i18n="ai_debt_hdr">🤖 AI கடன் &amp; EMI அடைப்பு ஆலோசனை</div>
+            <p id="debtAiSuggestionText" class="text-[11px] text-muted leading-relaxed">
+              கடன்களை Aggressive, Moderate, Quick என வகைப்படுத்துங்கள் — AI முதலில் எதை அடைப்பது லாபகரமானது என வழிகாட்டும்.
+            </p>
+          </div>
         </div>
 
         <!-- Monthly SIP Investment -->
@@ -1414,6 +1449,11 @@
         calc_2030_proj: "2030 இலக்கு (1 CR)",
         ai_1yr_hdr: "🤖 AI 2030 ₹1 Crore Part-by-Part ஆலோசனை",
         sec_debt: "💳 கடன் & EMI கண்காணிப்பு",
+        debt_tot_lbl: "மொத்த கடன்",
+        debt_emi_lbl: "மாதாந்திர EMI",
+        debt_pend_lbl: "பெண்டிங் மீதம்",
+        debt_prio_hdr: "Priority நிலை:",
+        ai_debt_hdr: "🤖 AI கடன் & EMI அடைப்பு ஆலோசனை",
         sec_sip: "📈 மாதாந்திர SIP முதலீடு",
         lbl_sip_saved: "சேமித்த SIP:",
         lbl_sip_target: "மாத இலக்கு:"
@@ -1483,6 +1523,11 @@
         calc_2030_proj: "2030 Goal (1 CR)",
         ai_1yr_hdr: "🤖 AI 2030 ₹1 Crore Part-by-Part Strategy",
         sec_debt: "💳 Debt & EMI Monitor",
+        debt_tot_lbl: "Total Debt",
+        debt_emi_lbl: "Monthly EMI",
+        debt_pend_lbl: "Pending Left",
+        debt_prio_hdr: "Priority Split:",
+        ai_debt_hdr: "🤖 AI Debt & EMI Payoff Strategy",
         sec_sip: "📈 Monthly SIP Investment",
         lbl_sip_saved: "Saved SIP:",
         lbl_sip_target: "Monthly Target:"
@@ -2502,16 +2547,101 @@
       }
 
       const debtBox = document.getElementById("debtListBox");
-      const totalMonthlyEmi = (appState.debts || []).reduce((s, d) => {
+      const allDebts = appState.debts || [];
+      const sumDebtTotal = allDebts.reduce((s, d) => s + (Number(d.total) || 0), 0);
+      const sumDebtPending = allDebts.reduce((s, d) => s + Math.max(0, (Number(d.total) || 0) - (Number(d.paid) || 0)), 0);
+      const totalMonthlyEmi = allDebts.reduce((s, d) => {
         const rem = Math.max(0, (Number(d.total) || 0) - (Number(d.paid) || 0));
         return rem > 0 ? s + (Number(d.emi) || 0) : s;
       }, 0);
+
+      let cntAgg = 0;
+      let cntMod = 0;
+      let cntQck = 0;
+      allDebts.forEach((d) => {
+        const rem = Math.max(0, (Number(d.total) || 0) - (Number(d.paid) || 0));
+        if (rem <= 0) return;
+        const p = d.priority || "moderate";
+        if (p === "aggressive") cntAgg++;
+        else if (p === "quick") cntQck++;
+        else cntMod++;
+      });
+
+      const dTotEl = document.getElementById("debtBoxTotalVal");
+      const dEmiEl = document.getElementById("debtBoxEmiVal");
+      const dPendEl = document.getElementById("debtBoxPendingVal");
+      if (dTotEl) dTotEl.textContent = formatINR(sumDebtTotal);
+      if (dEmiEl) dEmiEl.textContent = formatINR(totalMonthlyEmi);
+      if (dPendEl) dPendEl.textContent = formatINR(sumDebtPending);
+
+      const cAggEl = document.getElementById("debtCountAgg");
+      const cModEl = document.getElementById("debtCountMod");
+      const cQckEl = document.getElementById("debtCountQck");
+      if (cAggEl) cAggEl.textContent = `🔥 Aggressive: ${cntAgg}`;
+      if (cModEl) cModEl.textContent = `⚖️ Moderate: ${cntMod}`;
+      if (cQckEl) cQckEl.textContent = `⚡ Quick: ${cntQck}`;
+
       const emiBadgeEl = document.getElementById("totalMonthlyEmiBadge");
       if (emiBadgeEl) {
         emiBadgeEl.textContent =
           lang === "en"
             ? `Total Monthly EMI: ${formatINR(totalMonthlyEmi)}`
             : `மொத்த மாதாந்திர EMI: ${formatINR(totalMonthlyEmi)}`;
+      }
+
+      const prioOrder = { aggressive: 1, quick: 2, moderate: 3 };
+      const sortedDebts = allDebts.slice().sort((a, b) => (prioOrder[a.priority || "moderate"] || 3) - (prioOrder[b.priority || "moderate"] || 3));
+
+      debtBox.innerHTML = sortedDebts.length
+        ? sortedDebts
+            .map((d) => {
+              const rem = Math.max(0, (Number(d.total) || 0) - (Number(d.paid) || 0));
+              const emiVal = Number(d.emi) || 0;
+              const prio = d.priority || "moderate";
+              const prioBadge =
+                prio === "aggressive"
+                  ? `<span class="px-1.5 py-0.5 rounded bg-rose-500/25 text-rose-300 text-[9px] font-black">🔥 Aggressive</span>`
+                  : prio === "quick"
+                  ? `<span class="px-1.5 py-0.5 rounded bg-emerald-500/25 text-emerald-300 text-[9px] font-black">⚡ Quick</span>`
+                  : `<span class="px-1.5 py-0.5 rounded bg-amber-500/25 text-amber-300 text-[9px] font-black">⚖️ Moderate</span>`;
+              return `
+            <div class="bg-black/20 p-2.5 rounded-xl flex items-center justify-between gap-2">
+              <div class="min-w-0">
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  <span class="font-extrabold truncate">${escapeHtml(d.title)}</span>
+                  ${prioBadge}
+                </div>
+                <div class="text-[10px] text-muted mt-0.5">${lang === "en" ? "Remaining" : "மீதம்"}: ${formatINR(rem)} / ${formatINR(d.total)}</div>
+                <div class="text-[10px] font-extrabold text-amber-300 mt-0.5">${lang === "en" ? "Monthly EMI" : "மாதாந்திர EMI"}: ${formatINR(emiVal)}</div>
+              </div>
+              <div class="flex items-center gap-1 flex-shrink-0">
+                <button type="button" data-cycle-debt-prio="${d.id}" class="px-2 py-1 rounded bg-indigo-500/20 text-indigo-300 text-[9.5px] font-black" title="Change Priority">${prio === "aggressive" ? "🔥" : prio === "quick" ? "⚡" : "⚖️"}</button>
+                <button type="button" data-edit-debt="${d.id}" class="px-2 py-1 rounded bg-purple-500/20 text-purple-300 text-[10px] font-bold" title="Edit">✏️ Edit</button>
+                <button type="button" data-pay-debt="${d.id}" class="px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">Pay</button>
+                <button type="button" data-del-debt="${d.id}" class="px-1.5 py-1 rounded bg-rose-500/20 text-rose-400 text-[10px] font-bold">✕</button>
+              </div>
+            </div>`;
+            })
+            .join("")
+        : `<div class="text-[11px] text-muted">${lang === "en" ? "No debt records" : "கடன் பதிவுகள் இல்லை"}</div>`;
+
+      const debtAiEl = document.getElementById("debtAiSuggestionText");
+      if (debtAiEl) {
+        const activeDebts = sortedDebts.filter((d) => Math.max(0, (Number(d.total) || 0) - (Number(d.paid) || 0)) > 0);
+        if (!activeDebts.length) {
+          debtAiEl.innerHTML =
+            lang === "en"
+              ? `✅ <strong>Zero Active Debt!</strong> All your surplus income can now flow directly into your 2030 ₹1 Crore wealth engine.`
+              : `✅ <strong>கடன்கள் எதுவும் இல்லை!</strong> உங்கள் முழு சேமிப்பையும் இப்போது நேரடியாக 2030 ₹1 கோடி இலக்கில் முதலீடு செய்யலாம்.`;
+        } else {
+          const topTarget = activeDebts[0];
+          const topRem = Math.max(0, (Number(topTarget.total) || 0) - (Number(topTarget.paid) || 0));
+          const monthsLeft = topTarget.emi > 0 ? Math.ceil(topRem / Number(topTarget.emi)) : 0;
+          debtAiEl.innerHTML =
+            lang === "en"
+              ? `Focus first on <strong>${escapeHtml(topTarget.title)}</strong> (${(topTarget.priority || "moderate").toUpperCase()}) with <strong>${formatINR(topRem)}</strong> pending. Paying regular EMI (${formatINR(topTarget.emi || 0)}/mo) clears it in ~<strong>${monthsLeft || 1} mo</strong> and frees monthly cashflow!`
+              : `முதலில் <strong>${escapeHtml(topTarget.title)}</strong> (${topTarget.priority === "aggressive" ? "🔥 Aggressive" : topTarget.priority === "quick" ? "⚡ Quick" : "⚖️ Moderate"}) கடனில் மீதமுள்ள <strong>${formatINR(topRem)}</strong> தொகையை அடைக்க முன்னுரிமை கொடுங்கள். மாதம் <strong>${formatINR(topTarget.emi || 0)}</strong> EMI செலுத்தினால் ~<strong>${monthsLeft || 1} மாதங்களில்</strong> முழுமையாக முடிந்து உங்கள் கையிருப்பு உயரும்!`;
+        }
       }
 
       debtBox.innerHTML = appState.debts.length
@@ -2800,18 +2930,27 @@
           <div><label class="text-xs font-bold">மொத்த கடன் தொகை (₹)</label><input id="mDebtTotal" type="number" placeholder="50000" /></div>
           <div><label class="text-xs font-bold">ஏற்கனவே கட்டியது (₹)</label><input id="mDebtPaid" type="number" value="0" /></div>
           <div><label class="text-xs font-bold">மாதாந்திர EMI (Monthly EMI ₹)</label><input id="mDebtEmi" type="number" placeholder="3500" /></div>
+          <div>
+            <label class="text-xs font-bold">கடன் Priority வகை (Aggressive / Moderate / Quick)</label>
+            <select id="mDebtPriority">
+              <option value="aggressive">🔥 Aggressive (அக்ரஸிவ் - முதலில் முடிக்க வேண்டியது)</option>
+              <option value="moderate" selected>⚖️ Moderate (மாடரேட் - சீரான EMI)</option>
+              <option value="quick">⚡ Quick (குயிக் - சிறிய &amp; விரைவு கடன்)</option>
+            </select>
+          </div>
           `,
           () => {
             const title = document.getElementById("mDebtTitle").value.trim();
             const total = Number(document.getElementById("mDebtTotal").value) || 0;
             const paid = Number(document.getElementById("mDebtPaid").value) || 0;
             const emi = Number(document.getElementById("mDebtEmi").value) || 0;
+            const priority = document.getElementById("mDebtPriority").value || "moderate";
             if (title && total > 0) {
-              appState.debts.push({ id: "debt_" + Date.now(), title, total, paid, emi });
+              appState.debts.push({ id: "debt_" + Date.now(), title, total, paid, emi, priority });
             }
             closeModal();
             saveState();
-            showToast("கடன் & Monthly EMI சேர்க்கப்பட்டது!");
+            showToast("கடன், EMI & Priority சேர்க்கப்பட்டது!");
           }
         );
       } else if (action === "setOneYearTarget") {
@@ -3053,6 +3192,7 @@
         const id = editDebt.getAttribute("data-edit-debt");
         const d = appState.debts.find((x) => x.id === id);
         if (d) {
+          const curPrio = d.priority || "moderate";
           openModal(
             `✏️ கடன் & EMI திருத்து: ${d.title}`,
             `
@@ -3060,17 +3200,40 @@
             <div><label class="text-xs font-bold">மொத்த கடன் தொகை (₹)</label><input id="eDebtTotal" type="number" value="${Number(d.total) || 0}" /></div>
             <div><label class="text-xs font-bold">ஏற்கனவே கட்டியது (₹)</label><input id="eDebtPaid" type="number" value="${Number(d.paid) || 0}" /></div>
             <div><label class="text-xs font-bold">மாதாந்திர EMI (Monthly EMI ₹)</label><input id="eDebtEmi" type="number" value="${Number(d.emi) || 0}" /></div>
+            <div>
+              <label class="text-xs font-bold">Priority வகை (Aggressive / Moderate / Quick)</label>
+              <select id="eDebtPriority">
+                <option value="aggressive" ${curPrio === "aggressive" ? "selected" : ""}>🔥 Aggressive (அக்ரஸிவ்)</option>
+                <option value="moderate" ${curPrio === "moderate" ? "selected" : ""}>⚖️ Moderate (மாடரேட்)</option>
+                <option value="quick" ${curPrio === "quick" ? "selected" : ""}>⚡ Quick (குயிக்)</option>
+              </select>
+            </div>
             `,
             () => {
               d.title = document.getElementById("eDebtTitle").value.trim() || d.title;
               d.total = Math.max(0, Number(document.getElementById("eDebtTotal").value) || 0);
               d.paid = Math.max(0, Number(document.getElementById("eDebtPaid").value) || 0);
               d.emi = Math.max(0, Number(document.getElementById("eDebtEmi").value) || 0);
+              d.priority = document.getElementById("eDebtPriority").value || "moderate";
               closeModal();
               saveState();
-              showToast("கடன் & EMI விவரம் அப்டேட் செய்யப்பட்டது!");
+              showToast("கடன், EMI & Priority அப்டேட் செய்யப்பட்டது!");
             }
           );
+        }
+        return;
+      }
+
+      const cycleDebtPrio = e.target.closest("[data-cycle-debt-prio]");
+      if (cycleDebtPrio) {
+        const id = cycleDebtPrio.getAttribute("data-cycle-debt-prio");
+        const d = appState.debts.find((x) => x.id === id);
+        if (d) {
+          const order = ["aggressive", "moderate", "quick"];
+          const nextIdx = (order.indexOf(d.priority || "moderate") + 1) % order.length;
+          d.priority = order[nextIdx];
+          saveState();
+          showToast(`Priority: ${d.priority.toUpperCase()}`);
         }
         return;
       }
