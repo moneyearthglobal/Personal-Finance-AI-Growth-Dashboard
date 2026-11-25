@@ -183,8 +183,8 @@
   </style>
 </head>
 <body class="pb-24">
-  <!-- Main Dashboard Container -->
-  <div id="dashboardCaptureRoot" class="max-w-3xl mx-auto px-3 sm:px-5 pt-3 sm:pt-5 space-y-4">
+  <!-- Main Dashboard Container (Adaptive Phone -> Tablet -> Laptop/Desktop) -->
+  <div id="dashboardCaptureRoot" class="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-3 sm:pt-5 space-y-4">
     <!-- Top Profile & Live Date/Time Header -->
     <header class="space-y-2.5">
       <div class="surface-card p-3 flex items-center justify-between gap-3">
@@ -210,25 +210,29 @@
         </button>
 
         <div class="flex items-center gap-1.5 flex-shrink-0">
-          <button id="langToggleBtn" type="button" class="pill-btn px-2.5 py-2 rounded-xl bg-purple-700 text-white text-xs font-black shadow">
-            EN
+          <button id="themeToggleBtn" type="button" class="pill-btn sub-surface px-2.5 py-2 text-xs font-extrabold" title="Toggle Dark/Light">
+            🌓
           </button>
-          <button id="themeToggleBtn" type="button" class="pill-btn p-2 rounded-xl bg-purple-700 text-white shadow" title="Toggle Theme">
-            <svg id="themeIconSvg" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-10h-1M4.34 12h-1m15.02 6.36-.7-.7M6.34 6.34l-.7-.7m12.72 0-.7.7M6.34 17.66l-.7.7M12 8a4 4 0 100 8 4 4 0 000-8z" />
-            </svg>
+          <button id="langToggleBtn" type="button" class="pill-btn sub-surface px-3 py-2 text-xs font-extrabold">
+            EN
           </button>
         </div>
       </div>
 
-      <div class="surface-card p-2.5 flex items-center justify-center gap-2.5">
-        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 live-dot flex-shrink-0"></span>
-        <span id="liveClockText" class="text-xs sm:text-sm font-black tracking-wide text-center">Loading live clock...</span>
+      <!-- Live Date & Time Bar -->
+      <div class="surface-card px-3.5 py-2 flex items-center justify-between text-[11px]">
+        <div class="flex items-center gap-2 font-bold">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 live-dot"></span>
+          <span id="liveClockText">Loading live time...</span>
+        </div>
+        <span class="text-purple-400 font-extrabold">LIVE SYNC</span>
       </div>
     </header>
 
-    <!-- Ordered Sections Flow (Exact Sequence Requested) -->
-    <main class="space-y-4">
+    <!-- Main Content Grid (1-Column on Phone, 2-Column on Laptop/Desktop) -->
+    <main class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
+      <!-- Left Column on Laptop: Overview, Quick Actions, Calendar, Summary -->
+      <div class="lg:col-span-7 space-y-4">
       <!-- 1. Portfolio Overview -->
       <section id="sec-overview" class="overview-gradient rounded-3xl p-4 sm:p-5 shadow-xl space-y-3.5">
         <div class="flex items-start justify-between gap-2">
@@ -242,22 +246,33 @@
           </button>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-          <div class="bg-black/25 border border-white/15 rounded-2xl p-2.5">
-            <div class="text-[10px] text-purple-200 font-bold" data-i18n="lbl_income">வருமானம்</div>
-            <div id="ovIncome" class="text-sm font-black text-emerald-300 mt-0.5">₹0</div>
+        <!-- Portfolio Circle + Income, Expense, Investment, Debt, Savings -->
+        <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center bg-black/20 border border-white/15 rounded-2xl p-3">
+          <div id="donutChartCard" title="Click to Maximize Portfolio Circle" class="sm:col-span-5 flex flex-col items-center justify-center cursor-pointer">
+            <svg id="analyticsDonutSvg" viewBox="0 0 180 180" class="w-36 h-36 sm:w-40 sm:h-40 overflow-visible"></svg>
+            <div class="text-[10px] font-extrabold text-purple-200 mt-1" data-i18n="donut_title">போர்ட்ஃபோலியோ விகிதம் ⤢</div>
           </div>
-          <div class="bg-black/25 border border-white/15 rounded-2xl p-2.5">
-            <div class="text-[10px] text-purple-200 font-bold" data-i18n="lbl_expense">செலவு</div>
-            <div id="ovExpense" class="text-sm font-black text-rose-300 mt-0.5">₹0</div>
-          </div>
-          <div class="bg-black/25 border border-white/15 rounded-2xl p-2.5">
-            <div class="text-[10px] text-purple-200 font-bold" data-i18n="lbl_invest">முதலீடு</div>
-            <div id="ovInvest" class="text-sm font-black text-sky-300 mt-0.5">₹0</div>
-          </div>
-          <div class="bg-black/25 border border-white/15 rounded-2xl p-2.5">
-            <div class="text-[10px] text-purple-200 font-bold" data-i18n="lbl_debt">கடன்</div>
-            <div id="ovDebt" class="text-sm font-black text-amber-300 mt-0.5">₹0</div>
+          <div class="sm:col-span-7 grid grid-cols-2 gap-2">
+            <div class="bg-black/25 border border-white/15 rounded-xl p-2">
+              <div class="text-[10px] text-purple-200 font-bold" data-i18n="lbl_income">வருமானம்</div>
+              <div id="ovIncome" class="text-sm font-black text-emerald-300 mt-0.5">₹0</div>
+            </div>
+            <div class="bg-black/25 border border-white/15 rounded-xl p-2">
+              <div class="text-[10px] text-purple-200 font-bold" data-i18n="lbl_expense">செலவு</div>
+              <div id="ovExpense" class="text-sm font-black text-rose-300 mt-0.5">₹0</div>
+            </div>
+            <div class="bg-black/25 border border-white/15 rounded-xl p-2">
+              <div class="text-[10px] text-purple-200 font-bold" data-i18n="lbl_invest">முதலீடு</div>
+              <div id="ovInvest" class="text-sm font-black text-sky-300 mt-0.5">₹0</div>
+            </div>
+            <div class="bg-black/25 border border-white/15 rounded-xl p-2">
+              <div class="text-[10px] text-purple-200 font-bold" data-i18n="lbl_debt">கடன்</div>
+              <div id="ovDebt" class="text-sm font-black text-amber-300 mt-0.5">₹0</div>
+            </div>
+            <div class="col-span-2 bg-black/25 border border-white/15 rounded-xl p-2 flex items-center justify-between">
+              <span class="text-[10px] text-purple-200 font-bold" data-i18n="lbl_savings">சேமிப்பு (Savings)</span>
+              <span id="ovSavings" class="text-sm font-black text-violet-200">₹0</span>
+            </div>
           </div>
         </div>
 
@@ -492,17 +507,29 @@
           </div>
         </div>
       </section>
+      </div>
 
-      <!-- 5A. Monthly Compulsory Commitment (Pending / Done) -->
+      <!-- Right Column on Laptop: Compulsory + History, Yearly Perf, Bills, Goals, AI, Calc, 2030 Chart -->
+      <div class="lg:col-span-5 space-y-4">
+      <!-- 5A. Monthly Compulsory Commitment (Month-Specific + History Icon + Portfolio Sync) -->
       <section class="surface-card p-4 space-y-3">
-        <div class="flex items-center justify-between gap-2">
+        <div class="flex flex-wrap items-center justify-between gap-2">
           <div>
-            <h2 class="text-sm font-black" data-i18n="sec_compulsory">🛡️ Monthly Compulsory Commitment</h2>
-            <p class="text-[11px] text-muted" data-i18n="sub_compulsory">ஒவ்வொரு மாதமும் கட்டாயமாகத் தேவைப்படும் தொகை (Pending → Done)</p>
+            <div class="flex items-center gap-1.5">
+              <h2 class="text-sm font-black" data-i18n="sec_compulsory">🛡️ Monthly Compulsory Commitment</h2>
+              <span id="compMonthBadge" class="px-2 py-0.5 rounded-full bg-purple-600/25 text-purple-300 text-[10px] font-black">Nov 2026</span>
+            </div>
+            <p class="text-[11px] text-muted" data-i18n="sub_compulsory">ஒவ்வொரு மாதமும் கட்டாயத் தேவை (Done ஆனதும் Portfolio-வில் சேரும்)</p>
           </div>
-          <button type="button" data-action="addCompulsory" class="pill-btn px-3 py-1.5 rounded-xl bg-amber-500 text-slate-950 text-xs font-black shadow" data-i18n="btn_add_comp">
-            + கட்டாயத் தேவை
-          </button>
+          <div class="flex items-center gap-1.5">
+            <button id="openCompHistoryBtn" type="button" class="pill-btn sub-surface px-2.5 py-1.5 text-xs font-black flex items-center gap-1" title="Monthly Compulsory History">
+              <span>📜</span>
+              <span data-i18n="btn_comp_hist">History</span>
+            </button>
+            <button type="button" data-action="addCompulsory" class="pill-btn px-3 py-1.5 rounded-xl bg-amber-500 text-slate-950 text-xs font-black shadow" data-i18n="btn_add_comp">
+              + கட்டாயத் தேவை
+            </button>
+          </div>
         </div>
 
         <div class="grid grid-cols-3 gap-2 text-center">
@@ -521,6 +548,9 @@
         </div>
 
         <div id="compulsoryList" class="space-y-2"></div>
+
+        <!-- Inline Completed Monthly Compulsory History -->
+        <div id="compInlineHistoryBox" class="space-y-1.5"></div>
       </section>
 
       <!-- 5B-Top. Yearly Performance Box (Positioned Directly Above Bills & Due Payable) -->
@@ -715,48 +745,34 @@
         <div class="flex flex-wrap items-center justify-between gap-2">
           <div>
             <h2 class="text-sm font-black" data-i18n="sec_analytics">📊 Cashflow &amp; Wealth Growth Analytics</h2>
-            <p class="text-[11px] text-muted" data-i18n="sub_analytics">Portfolio Ratio Circle &amp; 2026–2030 1-Year Target Trajectory</p>
+            <p class="text-[11px] text-muted" data-i18n="sub_analytics">2026–2030 ₹1 Crore (1 CR) Target Trajectory</p>
           </div>
           <button type="button" data-action="setOneYearTarget" class="pill-btn px-3 py-1 rounded-xl bg-purple-600 text-white text-[11px] font-extrabold shadow" data-i18n="btn_set_1yr">
             🎯 1-Year Target
           </button>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-stretch">
-          <!-- Left: Circle Donut Chart -->
-          <div class="md:col-span-5 sub-surface p-3 flex flex-col items-center justify-between">
-            <div class="w-full flex items-center justify-between text-[11px] font-extrabold">
-              <span data-i18n="donut_title">Portfolio Allocation</span>
-              <span id="donutNetBadge" class="text-emerald-400">₹0</span>
-            </div>
-            <svg id="analyticsDonutSvg" viewBox="0 0 180 180" class="w-40 h-40 my-1 overflow-visible"></svg>
-            <div class="w-full grid grid-cols-2 gap-1 text-[10px] font-bold">
-              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span><span data-i18n="lbl_income">வரவு</span></div>
-              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span><span data-i18n="lbl_expense">செலவு</span></div>
-              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span><span data-i18n="lbl_invest">முதலீடு</span></div>
-              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span><span data-i18n="lbl_debt">கடன்</span></div>
-            </div>
-          </div>
-
-          <!-- Right: TradingView Style 2026–2030 Target Achievement Flow Chart -->
-          <div class="md:col-span-7 sub-surface p-3 flex flex-col justify-between space-y-2">
-            <div class="flex flex-wrap items-center justify-between gap-1">
-              <div>
-                <div class="text-xs font-black flex items-center gap-1.5">
-                  <span data-i18n="tv_title">2030 ₹1 Crore Target Plan (2026 – 2030)</span>
-                  <span id="tvTrendBadge" class="px-2 py-0.5 rounded-full text-[9px] font-black bg-emerald-500/20 text-emerald-400">BULLISH • GREEN</span>
-                </div>
-                <div id="tvEtaSubtitle" class="text-[10px] text-muted font-bold mt-0.5">Calculating part-by-part roadmap to ₹1 Crore...</div>
+        <!-- Full-Width TradingView Style 2026–2030 Target Achievement Flow Chart (Click to Maximize) -->
+        <div id="tvChartCard" title="Click to Maximize 2030 Target Graph" class="sub-surface p-3 flex flex-col justify-between space-y-2 cursor-pointer hover:border-purple-400 transition-colors">
+          <div class="flex flex-wrap items-center justify-between gap-1">
+            <div>
+              <div class="text-xs font-black flex items-center gap-1.5">
+                <span data-i18n="tv_title">2030 ₹1 Crore Target Plan (2026 – 2030)</span>
+                <span id="tvTrendBadge" class="px-2 py-0.5 rounded-full text-[9px] font-black bg-emerald-500/20 text-emerald-400">BULLISH • GREEN</span>
               </div>
-              <div class="text-right">
+              <div id="tvEtaSubtitle" class="text-[10px] text-muted font-bold mt-0.5">Calculating part-by-part roadmap to ₹1 Crore...</div>
+            </div>
+            <div class="flex items-center gap-2 text-right">
+              <div>
                 <div class="text-[9px] uppercase font-bold text-muted" data-i18n="one_yr_tgt_lbl">Part-1 (1-Year Target)</div>
                 <div id="tvTargetTopVal" class="text-xs font-black text-amber-400">₹20,00,000</div>
               </div>
+              <span class="px-2 py-1 rounded-lg bg-purple-600/25 text-purple-300 text-[10px] font-black">⤢</span>
             </div>
+          </div>
 
-            <div class="w-full bg-black/25 rounded-xl p-2 border border-purple-500/20">
-              <svg id="tradingViewGrowthSvg" viewBox="0 0 360 175" class="w-full h-44 overflow-visible"></svg>
-            </div>
+          <div class="w-full bg-black/25 rounded-xl p-2 border border-purple-500/20">
+            <svg id="tradingViewGrowthSvg" viewBox="0 0 360 175" class="w-full h-44 overflow-visible"></svg>
           </div>
         </div>
 
@@ -831,6 +847,7 @@
           </div>
         </div>
       </section>
+      </div>
     </main>
   </div>
 
@@ -956,6 +973,23 @@
     Saved!
   </div>
 
+  <!-- Maximized Chart Popup Modal (Phone, Tablet & Laptop Full View) -->
+  <div id="chartZoomBackdrop" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-3 sm:p-6">
+    <div class="surface-card w-full max-w-4xl p-4 sm:p-6 space-y-4 max-h-[92vh] overflow-y-auto shadow-2xl border-2 border-purple-400/50">
+      <div class="flex items-center justify-between gap-2 border-b border-purple-500/25 pb-3">
+        <div>
+          <h3 id="chartZoomTitle" class="text-base sm:text-lg font-black text-purple-300">Expanded Analytics View</h3>
+          <p id="chartZoomSubtitle" class="text-xs text-muted mt-0.5"></p>
+        </div>
+        <button id="closeChartZoomBtn" type="button" class="pill-btn px-3.5 py-2 rounded-xl bg-rose-600 text-white text-xs font-black shadow">
+          ✕ Close
+        </button>
+      </div>
+      <div id="chartZoomStage" class="w-full bg-black/30 rounded-2xl p-3 sm:p-5 border border-purple-500/25 flex items-center justify-center"></div>
+      <div id="chartZoomFooter" class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs"></div>
+    </div>
+  </div>
+
   <script>
     const STORAGE_KEY = "SHIV_PREM_PAYTM_FIN_AI_V1";
     const KNOWN_KEYS = [
@@ -1046,12 +1080,27 @@
 
     function getMonthBucket(state, ym) {
       if (!state.months[ym]) {
-        state.months[ym] = { income: [], expense: [], invest: 0 };
+        state.months[ym] = { income: [], expense: [], invest: 0, compulsory: [] };
       }
       if (!Array.isArray(state.months[ym].income)) state.months[ym].income = [];
       if (!Array.isArray(state.months[ym].expense)) state.months[ym].expense = [];
+      if (!Array.isArray(state.months[ym].compulsory)) state.months[ym].compulsory = [];
       return state.months[ym];
     }
+
+    function migrateLegacyCompulsoryIfNeeded() {
+      if (Array.isArray(appState.compulsoryCommitments) && appState.compulsoryCommitments.length > 0) {
+        const curBucket = getMonthBucket(appState, appState.selectedMonth || TODAY_INFO.ym);
+        if (curBucket.compulsory.length === 0) {
+          curBucket.compulsory = appState.compulsoryCommitments.map((c) => ({
+            ...c,
+            month: appState.selectedMonth || TODAY_INFO.ym
+          }));
+        }
+        appState.compulsoryCommitments = [];
+      }
+    }
+    migrateLegacyCompulsoryIfNeeded();
 
     function saveState() {
       try {
@@ -1116,6 +1165,7 @@
         0
       );
       const totalInvestAll = yearInvest + (Number(appState.sip && appState.sip.saved) || 0);
+      const totalGoalSavings = (appState.commitments || []).reduce((s, c) => s + (Number(c.saved) || 0), 0);
 
       const shortItems = (appState.commitments || []).filter((c) => c.horizon === "short");
       const shortNeeded = shortItems.reduce(
@@ -1123,7 +1173,8 @@
         0
       );
 
-      const compulsoryNeeded = (appState.compulsoryCommitments || []).reduce(
+      const curCompList = bucket.compulsory || [];
+      const compulsoryNeeded = curCompList.reduce(
         (s, c) => s + Math.max(0, (Number(c.required) || 0) - (Number(c.covered) || 0)),
         0
       );
@@ -1133,6 +1184,7 @@
       const dispExp = ov.enabled ? Number(ov.expense) || 0 : yearExpense;
       const dispInv = ov.enabled ? Number(ov.invest) || 0 : totalInvestAll;
       const dispDebt = ov.enabled ? Number(ov.debt) || 0 : totalDebtRem;
+      const dispSavings = totalGoalSavings + Math.max(0, yearHand);
       const dispBal = ov.enabled ? Number(ov.balance) || 0 : yearIncome - yearExpense;
 
       return {
@@ -1148,6 +1200,7 @@
         dispExp,
         dispInv,
         dispDebt,
+        dispSavings,
         dispBal,
         shortNeeded,
         compulsoryNeeded
@@ -1174,6 +1227,7 @@
         lbl_invest: "முதலீடு",
         lbl_hand: "கையிருப்பு",
         lbl_debt: "கடன்",
+        lbl_savings: "சேமிப்பு",
         rec_hdr: "பெற்ற வரவு",
         sp_hdr: "செய்த செலவு",
         sec_compulsory: "🛡️ மாதாந்திர கட்டாய கமிட்மென்ட்",
@@ -1204,7 +1258,7 @@
         sec_calc: "🧮 விரைவு கால்குலேட்டர்",
         calc_tag: "விரைவு கணக்கு",
         sec_analytics: "📊 கேஷ் ஃப்ளோ & வெல்த் க்ரோத் அனலிடிக்ஸ்",
-        sub_analytics: "போர்ட்ஃபோலியோ சர்க்கிள் & 2030 ₹1 கோடி (1 CR) வரைபடம்",
+        sub_analytics: "2030 ₹1 கோடி (1 CR) வளர்ச்சி வரைபடம்",
         btn_set_1yr: "🎯 Part-1 இலக்கு",
         donut_title: "போர்ட்ஃபோலியோ விகிதம்",
         tv_title: "2030 ₹1 Crore Target Plan (2026 – 2030)",
@@ -1241,6 +1295,7 @@
         lbl_invest: "Invest",
         lbl_hand: "In-Hand",
         lbl_debt: "Debt",
+        lbl_savings: "Savings",
         rec_hdr: "Received / Income",
         sp_hdr: "Spend / Expense",
         sec_compulsory: "🛡️ Monthly Compulsory Commitment",
@@ -1271,7 +1326,7 @@
         sec_calc: "🧮 Quick Calculator",
         calc_tag: "Quick Math",
         sec_analytics: "📊 Cashflow & Wealth Growth Analytics",
-        sub_analytics: "Portfolio Ratio Circle & 2030 ₹1 Crore (1 CR) Target Plan",
+        sub_analytics: "2030 ₹1 Crore (1 CR) Target Plan",
         btn_set_1yr: "🎯 Part-1 Target",
         donut_title: "Portfolio Allocation",
         tv_title: "2030 ₹1 Crore Target Plan (2026 – 2030)",
@@ -1359,6 +1414,8 @@
       document.getElementById("ovExpense").textContent = formatINR(agg.dispExp);
       document.getElementById("ovInvest").textContent = formatINR(agg.dispInv);
       document.getElementById("ovDebt").textContent = formatINR(agg.dispDebt);
+      const ovSavEl = document.getElementById("ovSavings");
+      if (ovSavEl) ovSavEl.textContent = formatINR(agg.dispSavings);
       document.getElementById("ovShortNeed").textContent = formatINR(agg.shortNeeded);
       document.getElementById("ovCompulsoryNeed").textContent = formatINR(agg.compulsoryNeeded);
     }
@@ -1554,7 +1611,15 @@
     }
 
     function renderCompulsoryCommitments() {
-      const list = appState.compulsoryCommitments || [];
+      const ym = appState.selectedMonth || TODAY_INFO.ym;
+      const bucket = getMonthBucket(appState, ym);
+      const list = bucket.compulsory || [];
+
+      const [yStr, mStr] = ym.split("-");
+      const shortMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      const mBadge = document.getElementById("compMonthBadge");
+      if (mBadge) mBadge.textContent = `${shortMonths[(Number(mStr) || 1) - 1]} ${yStr}`;
+
       const reqSum = list.reduce((s, c) => s + (Number(c.required) || 0), 0);
       const covSum = list.reduce((s, c) => s + (Number(c.covered) || 0), 0);
       const remSum = Math.max(0, reqSum - covSum);
@@ -1563,45 +1628,113 @@
       document.getElementById("compCovTotal").textContent = formatINR(covSum);
       document.getElementById("compRemTotal").textContent = formatINR(remSum);
 
+      const activeList = list.filter((c) => !((Number(c.required) || 0) > 0 && (Number(c.covered) || 0) >= (Number(c.required) || 0)));
+      const doneList = list.filter((c) => (Number(c.required) || 0) > 0 && (Number(c.covered) || 0) >= (Number(c.required) || 0));
+
       const listEl = document.getElementById("compulsoryList");
-      listEl.innerHTML = list.length
-        ? list
+      listEl.innerHTML = activeList.length
+        ? activeList
             .map((c) => {
               const req = Number(c.required) || 0;
               const cov = Number(c.covered) || 0;
               const pct = req > 0 ? Math.min(100, Math.round((cov / req) * 100)) : 0;
-              const isDone = cov >= req && req > 0;
               return `
             <div class="sub-surface p-2.5 space-y-1.5">
               <div class="flex items-center justify-between gap-2">
                 <div>
                   <div class="text-xs font-extrabold flex items-center gap-1.5">
                     <span>${escapeHtml(c.title)}</span>
-                    ${
-                      isDone
-                        ? `<span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[9px] font-black">DONE • FINISHED</span>`
-                        : `<span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[9px] font-black">PENDING</span>`
-                    }
+                    <span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[9px] font-black">PENDING</span>
                   </div>
-                  <div class="text-[10px] text-muted">${escapeHtml(c.dueNote || "Monthly Must-Have")} • ${formatINR(cov)} / ${formatINR(req)} (${pct}%)</div>
+                  <div class="text-[10px] text-muted">${escapeHtml(c.dueNote || `${shortMonths[(Number(mStr) || 1) - 1]} ${yStr}`)} • ${formatINR(cov)} / ${formatINR(req)} (${pct}%)</div>
                 </div>
                 <div class="flex items-center gap-1">
-                  ${
-                    !isDone
-                      ? `<button type="button" data-fund-comp="${c.id}" class="px-2.5 py-1 rounded-lg bg-amber-500/25 text-amber-300 text-[10px] font-extrabold">Pending ▾</button>`
-                      : `<button type="button" data-reset-comp="${c.id}" class="px-2.5 py-1 rounded-lg bg-emerald-600 text-white text-[10px] font-extrabold">Done ✓</button>`
-                  }
+                  <button type="button" data-fund-comp="${c.id}" class="px-2.5 py-1 rounded-lg bg-amber-500/25 text-amber-300 text-[10px] font-extrabold">Pending ▾</button>
                   <button type="button" data-del-comp="${c.id}" class="px-2 py-1 rounded-lg bg-rose-500/20 text-rose-400 text-[10px] font-bold">✕</button>
                 </div>
               </div>
               <div class="w-full h-1.5 rounded-full bg-black/30 overflow-hidden">
-                <div class="h-full ${isDone ? "bg-emerald-400" : "bg-amber-400"} rounded-full" style="width:${pct}%"></div>
+                <div class="h-full bg-amber-400 rounded-full" style="width:${pct}%"></div>
               </div>
             </div>`;
             })
             .join("")
-        : `<div class="sub-surface p-3 text-center text-[11px] text-muted">மாதாந்திர கட்டாயத் தேவைகள் இல்லை. '+ கட்டாயத் தேவை' அழுத்திச் சேர்க்கவும்.</div>`;
+        : `<div class="sub-surface p-3 text-center text-[11px] text-muted">${
+            appState.lang === "en"
+              ? `No pending compulsory items for ${shortMonths[(Number(mStr) || 1) - 1]} ${yStr}. Click '+ Compulsory' to add.`
+              : `${shortMonths[(Number(mStr) || 1) - 1]} ${yStr} மாதத்திற்கான நிலுவை கட்டாயத் தேவைகள் இல்லை. '+ கட்டாயத் தேவை' அழுத்திச் சேர்க்கவும்.`
+          }</div>`;
+
+      const histBox = document.getElementById("compInlineHistoryBox");
+      if (histBox) {
+        histBox.innerHTML = doneList.length
+          ? `
+            <div class="bg-emerald-500/10 border border-emerald-400/25 rounded-xl p-2.5 space-y-1.5">
+              <div class="flex items-center justify-between text-[11px] font-black text-emerald-400">
+                <span>✅ ${shortMonths[(Number(mStr) || 1) - 1]} ${yStr} — Completed Compulsory History (${doneList.length})</span>
+                <span>${formatINR(doneList.reduce((s, x) => s + (Number(x.covered) || 0), 0))}</span>
+              </div>
+              ${doneList
+                .map(
+                  (c) => `
+                <div class="flex items-center justify-between text-[11px] bg-black/20 px-2.5 py-1.5 rounded-lg">
+                  <div class="min-w-0">
+                    <span class="font-extrabold text-emerald-300">✓ ${escapeHtml(c.title)}</span>
+                    <span class="text-[10px] text-muted ml-1">(${escapeHtml(c.completedDate || ym)})</span>
+                  </div>
+                  <div class="flex items-center gap-1.5 flex-shrink-0">
+                    <span class="font-black text-emerald-400">${formatINR(c.covered)}</span>
+                    <button type="button" data-reset-comp="${c.id}" class="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[9px] font-bold" title="Reopen">↺</button>
+                    <button type="button" data-del-comp="${c.id}" class="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-400 text-[9px] font-bold">✕</button>
+                  </div>
+                </div>`
+                )
+                .join("")}
+            </div>`
+          : "";
+      }
     }
+
+    function openCompulsoryHistoryModal() {
+      const monthKeys = Object.keys(appState.months || {}).sort().reverse();
+      const shortMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      const sectionsHtml = monthKeys
+        .map((ym) => {
+          const b = appState.months[ym] || {};
+          const items = b.compulsory || [];
+          if (!items.length) return "";
+          const [yStr, mStr] = ym.split("-");
+          const label = `${shortMonths[(Number(mStr) || 1) - 1]} ${yStr}`;
+          const totalSpent = items.reduce((s, c) => s + (Number(c.covered) || 0), 0);
+          return `
+            <div class="sub-surface p-2.5 space-y-1.5">
+              <div class="flex items-center justify-between text-xs font-black">
+                <span class="text-purple-300">📅 ${label}</span>
+                <span class="text-emerald-400">Paid: ${formatINR(totalSpent)}</span>
+              </div>
+              ${items
+                .map((c) => {
+                  const isDone = (Number(c.covered) || 0) >= (Number(c.required) || 0) && (Number(c.required) || 0) > 0;
+                  return `
+                    <div class="flex items-center justify-between text-[11px] bg-black/20 px-2 py-1 rounded-lg">
+                      <span class="font-bold">${isDone ? "✅" : "⏳"} ${escapeHtml(c.title)}</span>
+                      <span class="font-black ${isDone ? "text-emerald-400" : "text-amber-300"}">${formatINR(c.covered)} / ${formatINR(c.required)}</span>
+                    </div>`;
+                })
+                .join("")}
+            </div>`;
+        })
+        .filter(Boolean)
+        .join("");
+
+      openModal(
+        "📜 Monthly Compulsory Commitment History",
+        sectionsHtml || `<div class="text-xs text-muted py-3 text-center">இதுவரை எந்த மாதத்திலும் Compulsory Commitment வரலாறு பதிவாகவில்லை.</div>`,
+        () => closeModal()
+      );
+    }
+
+    document.getElementById("openCompHistoryBtn").onclick = openCompulsoryHistoryModal;
 
     function renderBills() {
       const bills = appState.bills || [];
@@ -1619,28 +1752,23 @@
         ? bills
             .map(
               (b) => `
-            <div class="sub-surface p-2.5 flex items-center justify-between gap-2 text-xs">
+            <div class="sub-surface p-2.5 flex items-center justify-between gap-2">
               <div class="min-w-0">
-                <div class="font-extrabold flex items-center gap-1.5">
-                  <span class="truncate">${escapeHtml(b.title)}</span>
-                  <span class="px-2 py-0.5 rounded-full text-[9px] font-black ${
-                    b.paid ? "bg-emerald-500/20 text-emerald-400" : "bg-rose-500/20 text-rose-400"
-                  }">${b.paid ? "PAID" : "DUE"}</span>
-                </div>
-                <div class="text-[10px] text-muted">Due: ${escapeHtml(b.dueDate || "This Month")} • ${formatINR(b.amount)}</div>
+                <div class="text-xs font-extrabold truncate ${b.paid ? "line-through opacity-60" : ""}">${escapeHtml(b.title)}</div>
+                <div class="text-[10px] text-muted">Due: ${escapeHtml(b.dueDate || "-")} • ${formatINR(b.amount)}</div>
               </div>
               <div class="flex items-center gap-1 flex-shrink-0">
                 ${
-                  !b.paid
-                    ? `<button type="button" data-pay-bill="${b.id}" class="pill-btn px-2.5 py-1 rounded-lg bg-emerald-600 text-white text-[10px] font-black">Pay</button>`
-                    : `<span class="text-emerald-400 font-black text-[10px] px-1.5">✓ Paid</span>`
+                  b.paid
+                    ? `<span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-black">PAID ✓</span>`
+                    : `<button type="button" data-pay-bill="${b.id}" class="pill-btn px-2.5 py-1 rounded-lg bg-emerald-600 text-white text-[10px] font-black">Pay</button>`
                 }
                 <button type="button" data-del-bill="${b.id}" class="pill-btn px-2 py-1 rounded-lg bg-rose-500/20 text-rose-400 text-[10px] font-bold">✕</button>
               </div>
             </div>`
             )
             .join("")
-        : `<div class="sub-surface p-3 text-center text-[11px] text-muted">Airtel, EB, Phone பில்கள் இல்லை. '+ Add Bill' அழுத்திச் சேர்க்கவும்.</div>`;
+        : `<div class="sub-surface p-3 text-center text-[11px] text-muted">${appState.lang === "en" ? "No bills added yet (Airtel, EB, Phone)." : "பில்கள் எதுவும் சேர்க்கப்படவில்லை (Airtel, EB, Phone)."}</div>`;
     }
 
     function renderCommitments() {
@@ -1652,17 +1780,17 @@
           : "commit-tab-btn pill-btn sub-surface py-2 text-xs font-extrabold";
       });
 
-      const items = appState.commitments.filter((c) => c.horizon === tab);
-      const activeItems = items.filter((c) => (Number(c.saved) || 0) < (Number(c.target) || 0) || (Number(c.target) || 0) === 0);
-      const completedItems = items.filter((c) => (Number(c.target) || 0) > 0 && (Number(c.saved) || 0) >= (Number(c.target) || 0));
+      const allTabItems = (appState.commitments || []).filter((c) => c.horizon === tab);
+      const activeItems = allTabItems.filter((c) => !((Number(c.target) || 0) > 0 && (Number(c.saved) || 0) >= (Number(c.target) || 0)));
+      const completedItems = allTabItems.filter((c) => (Number(c.target) || 0) > 0 && (Number(c.saved) || 0) >= (Number(c.target) || 0));
 
-      const totalTarget = items.reduce((s, c) => s + (Number(c.target) || 0), 0);
-      const totalSaved = items.reduce((s, c) => s + (Number(c.saved) || 0), 0);
-      const totalNeeded = Math.max(0, totalTarget - totalSaved);
+      const tgtSum = allTabItems.reduce((s, c) => s + (Number(c.target) || 0), 0);
+      const savSum = allTabItems.reduce((s, c) => s + (Number(c.saved) || 0), 0);
+      const needSum = Math.max(0, tgtSum - savSum);
 
-      document.getElementById("commitOverallTarget").textContent = formatINR(totalTarget);
-      document.getElementById("commitOverallSaved").textContent = formatINR(totalSaved);
-      document.getElementById("commitOverallNeeded").textContent = formatINR(totalNeeded);
+      document.getElementById("commitOverallTarget").textContent = formatINR(tgtSum);
+      document.getElementById("commitOverallSaved").textContent = formatINR(savSum);
+      document.getElementById("commitOverallNeeded").textContent = formatINR(needSum);
 
       const listEl = document.getElementById("commitmentList");
       listEl.innerHTML = activeItems.length
@@ -1676,7 +1804,7 @@
               <div class="flex items-center justify-between gap-2">
                 <div>
                   <div class="text-xs font-extrabold">${escapeHtml(c.title)}</div>
-                  <div class="text-[10px] text-muted">${escapeHtml(c.timeline || "Target")} • ${formatINR(sav)} / ${formatINR(tgt)} (${pct}%)</div>
+                  <div class="text-[10px] text-muted">${escapeHtml(c.timeline || "")} • ${formatINR(sav)} / ${formatINR(tgt)} (${pct}%)</div>
                 </div>
                 <div class="flex items-center gap-1">
                   <button type="button" data-topup-commit="${c.id}" class="pill-btn px-2 py-1 rounded-lg bg-purple-600 text-white text-[10px] font-black">+ Save</button>
@@ -1760,13 +1888,7 @@
       const agg = getAggregates();
       const lang = appState.lang === "en" ? "en" : "ta";
 
-      // 1. Portfolio Allocation Donut Circle Chart
-      const donutNet = document.getElementById("donutNetBadge");
-      if (donutNet) {
-        donutNet.textContent = formatINR(agg.dispBal);
-        donutNet.className = agg.dispBal >= 0 ? "text-emerald-400 font-black" : "text-rose-400 font-black";
-      }
-
+      // 1. Portfolio Allocation Donut Circle Chart (Merged in Top Portfolio Overview)
       const donutSvg = document.getElementById("analyticsDonutSvg");
       if (donutSvg) {
         const cx = 90;
@@ -1777,15 +1899,16 @@
           { val: Math.max(0, agg.dispInc), color: "#34d399" },
           { val: Math.max(0, agg.dispExp), color: "#f43f5e" },
           { val: Math.max(0, agg.dispInv), color: "#38bdf8" },
-          { val: Math.max(0, agg.dispDebt), color: "#fbbf24" }
+          { val: Math.max(0, agg.dispDebt), color: "#fbbf24" },
+          { val: Math.max(0, agg.dispSavings), color: "#c4b5fd" }
         ];
         const total = slices.reduce((s, x) => s + x.val, 0);
 
         if (total <= 0) {
           donutSvg.innerHTML = `
-            <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(168,85,247,0.22)" stroke-width="18" />
-            <text x="${cx}" y="${cy - 4}" text-anchor="middle" fill="currentColor" opacity="0.75" font-size="10" font-weight="800">${lang === "en" ? "No Data Yet" : "டேட்டா இல்லை"}</text>
-            <text x="${cx}" y="${cy + 13}" text-anchor="middle" fill="#a855f7" font-size="13" font-weight="900">₹0</text>
+            <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="18" />
+            <text x="${cx}" y="${cy - 4}" text-anchor="middle" fill="#e9d5ff" font-size="10" font-weight="800">${lang === "en" ? "No Data Yet" : "டேட்டா இல்லை"}</text>
+            <text x="${cx}" y="${cy + 13}" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="900">₹0</text>
           `;
         } else {
           let offset = 0;
@@ -1799,8 +1922,8 @@
             .join("");
           donutSvg.innerHTML = `
             ${arcs}
-            <text x="${cx}" y="${cy - 5}" text-anchor="middle" fill="currentColor" opacity="0.75" font-size="10" font-weight="800">${lang === "en" ? "Net Worth" : "நிகர மதிப்பு"}</text>
-            <text x="${cx}" y="${cy + 12}" text-anchor="middle" fill="${agg.dispBal >= 0 ? "#34d399" : "#f43f5e"}" font-size="12.5" font-weight="900">${formatINR(agg.dispBal)}</text>
+            <text x="${cx}" y="${cy - 5}" text-anchor="middle" fill="#e9d5ff" font-size="10" font-weight="800">${lang === "en" ? "Net Worth" : "நிகர மதிப்பு"}</text>
+            <text x="${cx}" y="${cy + 12}" text-anchor="middle" fill="${agg.dispBal >= 0 ? "#6ee7b7" : "#fda4af"}" font-size="12.5" font-weight="900">${formatINR(agg.dispBal)}</text>
           `;
         }
       }
@@ -1995,7 +2118,8 @@
       if (agg.dispInc > 0) score += 25;
       if (agg.dispBal >= 0 && agg.dispInc > 0) score += 20;
       if (appState.commitments.length > 0) score += 20;
-      if (appState.compulsoryCommitments.length > 0) score += 20;
+      const curComp = getMonthBucket(appState, appState.selectedMonth || TODAY_INFO.ym).compulsory || [];
+      if (curComp.length > 0) score += 20;
       score = Math.min(100, score);
       document.getElementById("aiScoreBadge").textContent = `Score: ${score}%`;
       document.getElementById("aiProgressBar").style.width = `${score}%`;
@@ -2136,12 +2260,13 @@
           }
         );
       } else if (action === "addCompulsory") {
+        const ym = appState.selectedMonth || TODAY_INFO.ym;
         openModal(
-          "மாதாந்திர கட்டாயத் தேவை (Compulsory Commitment)",
+          `மாதாந்திர கட்டாயத் தேவை (${ym})`,
           `
           <div><label class="text-xs font-bold">கட்டாயத் தேவை பெயர்</label><input id="mCompTitle" type="text" placeholder="எ.கா: வீட்டு வாடகை / மளிகை / EMI" /></div>
           <div><label class="text-xs font-bold">கட்டாயத் தொகை (₹)</label><input id="mCompReq" type="number" placeholder="10000" /></div>
-          <div><label class="text-xs font-bold">ஏற்கனவே ஒதுக்கியது (₹)</label><input id="mCompCov" type="number" value="0" /></div>
+          <div><label class="text-xs font-bold">ஏற்கனவே செலுத்தியது (₹)</label><input id="mCompCov" type="number" value="0" /></div>
           <div><label class="text-xs font-bold">குறிப்பு</label><input id="mCompNote" type="text" placeholder="ஒவ்வொரு மாதமும் 5-ம் தேதிக்குள்" /></div>
           `,
           () => {
@@ -2150,11 +2275,29 @@
             const covered = Number(document.getElementById("mCompCov").value) || 0;
             const dueNote = document.getElementById("mCompNote").value.trim();
             if (title && required > 0) {
-              appState.compulsoryCommitments.push({ id: "comp_" + Date.now(), title, required, covered, dueNote });
+              const bucket = getMonthBucket(appState, ym);
+              const isDone = covered >= required;
+              bucket.compulsory.push({
+                id: "comp_" + Date.now(),
+                month: ym,
+                title,
+                required,
+                covered,
+                dueNote,
+                completedDate: isDone ? dateStr : ""
+              });
+              if (covered > 0) {
+                bucket.expense.push({
+                  id: "exp_comp_" + Date.now(),
+                  title: `Compulsory (${ym}): ${title}`,
+                  amount: covered,
+                  date: dateStr
+                });
+              }
             }
             closeModal();
             saveState();
-            showToast("கட்டாயத் தேவை சேர்க்கப்பட்டது!");
+            showToast(`${ym} கட்டாயத் தேவை சேர்க்கப்பட்டது!`);
           }
         );
       } else if (action === "addGoal") {
@@ -2335,17 +2478,31 @@
       const fundComp = e.target.closest("[data-fund-comp]");
       if (fundComp) {
         const id = fundComp.getAttribute("data-fund-comp");
-        const item = (appState.compulsoryCommitments || []).find((c) => c.id === id);
+        const ym = appState.selectedMonth || TODAY_INFO.ym;
+        const bucket = getMonthBucket(appState, ym);
+        const item = (bucket.compulsory || []).find((c) => c.id === id);
         if (item) {
           openModal(
-            `Pending → Done: ${item.title}`,
+            `Pending → Done (${ym}): ${item.title}`,
             `<div><label class="text-xs font-bold">Amount Paid / Covered (₹)</label><input id="mFundCompVal" type="number" value="${Math.max(0, (Number(item.required) || 0) - (Number(item.covered) || 0))}" /></div>`,
             () => {
               const val = Number(document.getElementById("mFundCompVal").value) || 0;
               item.covered = (Number(item.covered) || 0) + val;
+              const dateStr = `${ym}-${String(appState.selectedDay).padStart(2, "0")}`;
+              if (val > 0) {
+                bucket.expense.push({
+                  id: "exp_comp_" + Date.now(),
+                  title: `Compulsory (${ym}): ${item.title}`,
+                  amount: val,
+                  date: dateStr
+                });
+              }
+              if (item.covered >= Number(item.required)) {
+                item.completedDate = dateStr;
+              }
               closeModal();
               saveState();
-              showToast(item.covered >= Number(item.required) ? "Marked Done / Finished!" : "Pending balance updated!");
+              showToast(item.covered >= Number(item.required) ? "Done! Merged into Portfolio & History!" : "Pending balance updated!");
             }
           );
         }
@@ -2355,9 +2512,12 @@
       const resetComp = e.target.closest("[data-reset-comp]");
       if (resetComp) {
         const id = resetComp.getAttribute("data-reset-comp");
-        const item = (appState.compulsoryCommitments || []).find((c) => c.id === id);
+        const ym = appState.selectedMonth || TODAY_INFO.ym;
+        const bucket = getMonthBucket(appState, ym);
+        const item = (bucket.compulsory || []).find((c) => c.id === id);
         if (item) {
           item.covered = 0;
+          item.completedDate = "";
           saveState();
           showToast(`${item.title} reset to Pending!`);
         }
@@ -2367,7 +2527,9 @@
       const delComp = e.target.closest("[data-del-comp]");
       if (delComp) {
         const id = delComp.getAttribute("data-del-comp");
-        appState.compulsoryCommitments = appState.compulsoryCommitments.filter((c) => c.id !== id);
+        const ym = appState.selectedMonth || TODAY_INFO.ym;
+        const bucket = getMonthBucket(appState, ym);
+        bucket.compulsory = (bucket.compulsory || []).filter((c) => c.id !== id);
         saveState();
         return;
       }
@@ -2750,6 +2912,57 @@
       updateLiveClock();
       setInterval(updateLiveClock, 1000);
       renderAll();
+    };
+
+    const chartZoomBackdrop = document.getElementById("chartZoomBackdrop");
+    function openMaximizedChart(type) {
+      const agg = getAggregates();
+      const lang = appState.lang === "en" ? "en" : "ta";
+      const titleEl = document.getElementById("chartZoomTitle");
+      const subEl = document.getElementById("chartZoomSubtitle");
+      const stageEl = document.getElementById("chartZoomStage");
+      const footerEl = document.getElementById("chartZoomFooter");
+
+      if (type === "donut") {
+        titleEl.textContent = lang === "en" ? "📊 Portfolio Allocation — Expanded View" : "📊 போர்ட்ஃபோலியோ விகிதம் — முழு அளவு பார்வை";
+        subEl.textContent = lang === "en" ? "Income vs Spend vs Investment vs Debt Breakdown" : "வரவு, செலவு, முதலீடு மற்றும் கடன் முழு விகித விவரம்";
+        const origSvg = document.getElementById("analyticsDonutSvg");
+        stageEl.innerHTML = `<svg viewBox="0 0 180 180" class="w-64 h-64 sm:w-80 sm:h-80 overflow-visible">${origSvg ? origSvg.innerHTML : ""}</svg>`;
+        footerEl.innerHTML = `
+          <div class="sub-surface p-2.5"><div class="text-[10px] text-muted font-bold">${lang === "en" ? "Income" : "வரவு"}</div><div class="text-sm font-black text-emerald-400 mt-0.5">${formatINR(agg.dispInc)}</div></div>
+          <div class="sub-surface p-2.5"><div class="text-[10px] text-muted font-bold">${lang === "en" ? "Spend" : "செலவு"}</div><div class="text-sm font-black text-rose-400 mt-0.5">${formatINR(agg.dispExp)}</div></div>
+          <div class="sub-surface p-2.5"><div class="text-[10px] text-muted font-bold">${lang === "en" ? "Investment" : "முதலீடு"}</div><div class="text-sm font-black text-sky-400 mt-0.5">${formatINR(agg.dispInv)}</div></div>
+          <div class="sub-surface p-2.5"><div class="text-[10px] text-muted font-bold">${lang === "en" ? "Debt" : "கடன்"}</div><div class="text-sm font-black text-amber-400 mt-0.5">${formatINR(agg.dispDebt)}</div></div>
+        `;
+      } else {
+        titleEl.textContent = lang === "en" ? "📈 2030 ₹1 Crore Target Plan (2026 – 2030) — Expanded View" : "📈 2030 ₹1 கோடி (1 CR) வளர்ச்சி வரைபடம் — முழு அளவு பார்வை";
+        subEl.textContent = document.getElementById("tvEtaSubtitle")?.textContent || "";
+        const origTv = document.getElementById("tradingViewGrowthSvg");
+        stageEl.innerHTML = `<svg viewBox="0 0 360 175" class="w-full max-h-[55vh] overflow-visible">${origTv ? origTv.innerHTML : ""}</svg>`;
+        const goal2030 = Math.max(100000, Number(appState.goal2030Target) || 10000000);
+        const part1Target = Math.max(10000, Number(appState.oneYearTarget) || Math.round(goal2030 / 5));
+        footerEl.innerHTML = `
+          <div class="sub-surface p-2.5"><div class="text-[10px] text-muted font-bold">${lang === "en" ? "Current Wealth" : "தற்போதைய மதிப்பு"}</div><div class="text-sm font-black text-emerald-400 mt-0.5">${formatINR(agg.dispBal + agg.dispInv)}</div></div>
+          <div class="sub-surface p-2.5"><div class="text-[10px] text-muted font-bold">${lang === "en" ? "Part-1 (1-Year)" : "Part-1 இலக்கு"}</div><div class="text-sm font-black text-amber-400 mt-0.5">${formatINR(part1Target)}</div></div>
+          <div class="sub-surface p-2.5"><div class="text-[10px] text-muted font-bold">${lang === "en" ? "2030 Goal (1 CR)" : "2030 இலக்கு (1 CR)"}</div><div class="text-sm font-black text-purple-300 mt-0.5">${formatINR(goal2030)}</div></div>
+          <div class="sub-surface p-2.5"><div class="text-[10px] text-muted font-bold">${lang === "en" ? "Days to 1 CR" : "1 CR அடைய நாட்கள்"}</div><div class="text-sm font-black text-sky-400 mt-0.5">${document.getElementById("box1YrDaysVal")?.textContent || "-"}</div></div>
+        `;
+      }
+
+      chartZoomBackdrop.classList.remove("hidden");
+      chartZoomBackdrop.classList.add("flex");
+    }
+
+    function closeMaximizedChart() {
+      chartZoomBackdrop.classList.add("hidden");
+      chartZoomBackdrop.classList.remove("flex");
+    }
+
+    document.getElementById("donutChartCard").onclick = () => openMaximizedChart("donut");
+    document.getElementById("tvChartCard").onclick = () => openMaximizedChart("tv");
+    document.getElementById("closeChartZoomBtn").onclick = closeMaximizedChart;
+    chartZoomBackdrop.onclick = (e) => {
+      if (e.target === chartZoomBackdrop) closeMaximizedChart();
     };
   </script>
 </body>
